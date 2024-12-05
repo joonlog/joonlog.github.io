@@ -495,7 +495,7 @@ tail -f /usr/local/apache-tomcat-9.0.97/logs/localhost.log
 - `DirectorySlash Off` 설정으로 수정할 수 있지만, 대부분의 WEB의 기본값이기 때문에 수정을 권장하지 않습니다.
 - 따라서 JkMount의 경로에 /ajp 대신 /ajp/* 로 기입해 해결합니다.
 
-## 피드백 
+## 피드백  
 
 - Tomcat 실행할 때 startup.sh, shutdown.sh 작업 자동화하기 위해 systemd에 서비스 등록
 - dnf update 할 때는 다른 서비스와 충돌 되지 않게 커널 업데이트 제외
