@@ -114,7 +114,8 @@ sudo firewall-cmd --reload
 
 ```
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/5f4dca07-e0a7-4c18-8187-fbace3efd91e/9348f813-2018-4289-9faa-21e60a129acd.png)
+![default-apache.png](/assets/img/default-apache.png)
+
 
 -   proxy-vhosts.conf 설정 파일 추가
 
@@ -247,7 +248,8 @@ sudo firewall-cmd --reload
 
 http://<공인 ip>:8080
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/0ff0763d-ae25-4c05-ac28-15d6ce892e4a/d3081510-33bd-420d-86cf-1c4c71f62ac0.png)
+![default-tomcat.png](/assets/img/default-tomcat.png)
+
 
 ## 2. AJP 방식
 
@@ -496,7 +498,7 @@ sudo firewall-cmd --reload
 
 http://<공인ip>:8090
 
-![default-apache.png](/assets/img/default-apache.png)
+![default-tomcat.png](/assets/img/default-tomcat.png)
 
 ----------
 
