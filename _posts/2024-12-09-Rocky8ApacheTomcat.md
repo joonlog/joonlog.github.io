@@ -13,10 +13,10 @@ tags : [rocky8, apache, tomcat, web, was] #소문자만 가능
 
 ### 환경 설정
 
--   KT Cloud VM
+-   KT Cloud
     -   WEB 1대, WAS 1대
     -   공인 IP 포트포워딩
--   **OS**: Rocky Linux 8.1
+-   OS: Rocky Linux 8.1
 -   WEB: Apache 2.4.6
 -   WAS: Tomcat 9.0.97
 
