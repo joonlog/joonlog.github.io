@@ -1,7 +1,7 @@
 ---
 title : Rocky8 MySQL Replication & HAproxy 연동
 date : 2024-12-10 09:00:00 +09:00
-categories : [Linux, "DB"]
+categories : [Linux, DB]
 tags : [rocky8, mysql, haproxy, replication] #소문자만 가능
 ---
 
@@ -14,12 +14,12 @@ tags : [rocky8, mysql, haproxy, replication] #소문자만 가능
 
 ### 환경 설정
 
-- KT Cloud VM
+- KT Cloud
     - MySQL Master 1대, Slave 2대, HAproxy 1대
     - 공인 IP 포트포워딩
-- Rocky Linux 8.1
-- mysql 8.0.40
-- haproxy 1.8.27
+- OS: Rocky Linux 8.1
+- DB: mysql 8.0.40
+- LB: haproxy 1.8.27
 
 ## 개념 및 설정
 
