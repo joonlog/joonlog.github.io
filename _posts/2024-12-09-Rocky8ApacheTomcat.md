@@ -144,7 +144,7 @@ sudo vi /etc/httpd/conf/extra/proxy-vhosts.conf
 
 ```
 
-```yaml
+```toml
 # Apache가 8080 포트에서 수신된 요청 처리
 <VirtualHost *:8080>
     # Apache 서버의 IP 또는 도메인 지정
@@ -479,7 +479,18 @@ sudo vi /usr/local/apache-tomcat-9.0.97/conf/server.xml
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
 
 ```
+```bash
+# AJP를 수신을 허용할 Source IP 지정
+# AJP 키 인증 비활성화
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
 
+```
+```yaml
+# AJP를 수신을 허용할 Source IP 지정
+# AJP 키 인증 비활성화
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
+
+```
 -   Tomcat 실행
 
 ```bash
