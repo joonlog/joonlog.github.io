@@ -130,7 +130,7 @@ sudo vi /etc/httpd/conf/httpd.conf
 
 ```
 
-```toml
+```bash
 # 별도의 파일에서 Virtual Host 설정 관리
 Include conf/extra/proxy-vhosts.conf
 
@@ -144,7 +144,7 @@ sudo vi /etc/httpd/conf/extra/proxy-vhosts.conf
 
 ```
 
-```toml
+```bash
 # Apache가 8080 포트에서 수신된 요청 처리
 <VirtualHost *:8080>
     # Apache 서버의 IP 또는 도메인 지정
@@ -313,7 +313,7 @@ sudo vi /etc/httpd/conf/httpd.conf
 
 ```
 
-```toml
+```bash
 # 설치한 mod_jk 모듈 로드
 LoadModule jk_module modules/mod_jk.so
 
@@ -330,7 +330,7 @@ sudo vi /etc/httpd/conf/extra/ajp-vhosts.conf
 
 ```
 
-```toml
+```bash
 # Apache가 8090 포트에서 수신된 요청 처리
 <VirtualHost *:8090>
     # AJP 요청을 수신할 Apache 서버 IP 지정
@@ -350,7 +350,7 @@ sudo vi /etc/httpd/conf/extra/httpd-modjk.conf
 
 ```
 
-```toml
+```bash
 <IfModule jk_module>
     # ajp worker 설정 파일 지정
     JkWorkersFile conf/extra/workers.properties
@@ -372,7 +372,7 @@ sudo vi /etc/httpd/conf/extra/workers.properties
 
 ```
 
-```toml
+```bash
 # 워커 목록
 worker.list=worker1
 
@@ -473,19 +473,13 @@ sudo vi /usr/local/apache-tomcat-9.0.97/conf/server.xml
 
 ```
 
-```toml
-# AJP를 수신을 허용할 Source IP 지정
-# AJP 키 인증 비활성화
-<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
-
-```
 ```bash
 # AJP를 수신을 허용할 Source IP 지정
 # AJP 키 인증 비활성화
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
 
 ```
-```yaml
+```bash
 # AJP를 수신을 허용할 Source IP 지정
 # AJP 키 인증 비활성화
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
