@@ -120,7 +120,7 @@ sudo firewall-cmd --reload
 
 ```
 
-![default-apache.png](/assets/img/linux/default-apache.png)
+![Rocky8ApacheTomcat1.png](/assets/img/linux/Rocky8ApacheTomcat1.png)
 
 
 -   proxy-vhosts.conf 설정 파일 추가
@@ -254,7 +254,7 @@ sudo firewall-cmd --reload
 
 http://<공인 ip>:8080
 
-![default-tomcat.png](/assets/img/linux/default-tomcat.png)
+![Rocky8ApacheTomcat2.png](/assets/img/linux/Rocky8ApacheTomcat2.png)
 
 
 ## 2. AJP 방식
@@ -479,12 +479,7 @@ sudo vi /usr/local/apache-tomcat-9.0.97/conf/server.xml
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
 
 ```
-```bash
-# AJP를 수신을 허용할 Source IP 지정
-# AJP 키 인증 비활성화
-<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="<WAS IP>" secretRequired="false"/>
 
-```
 -   Tomcat 실행
 
 ```bash
@@ -509,7 +504,7 @@ sudo firewall-cmd --reload
 
 http://<공인ip>:8090
 
-![default-tomcat.png](/assets/img/linux/default-tomcat.png)
+![Rocky8ApacheTomcat2.png](/assets/img/linux/Rocky8ApacheTomcat2.png)
 
 ----------
 
