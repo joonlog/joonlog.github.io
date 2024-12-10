@@ -120,7 +120,7 @@ sudo firewall-cmd --reload
 
 ```
 
-![default-apache.png](/assets/img/default-apache.png)
+![default-apache.png](/assets/img/linux/default-apache.png)
 
 
 -   proxy-vhosts.conf 설정 파일 추가
@@ -254,7 +254,7 @@ sudo firewall-cmd --reload
 
 http://<공인 ip>:8080
 
-![default-tomcat.png](/assets/img/default-tomcat.png)
+![default-tomcat.png](/assets/img/linux/default-tomcat.png)
 
 
 ## 2. AJP 방식
@@ -504,7 +504,7 @@ sudo firewall-cmd --reload
 
 http://<공인ip>:8090
 
-![default-tomcat.png](/assets/img/default-tomcat.png)
+![default-tomcat.png](/assets/img/linux/default-tomcat.png)
 
 ----------
 
