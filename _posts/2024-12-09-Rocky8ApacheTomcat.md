@@ -144,7 +144,7 @@ sudo vi /etc/httpd/conf/extra/proxy-vhosts.conf
 
 ```
 
-```toml
+```yaml
 # Apache가 8080 포트에서 수신된 요청 처리
 <VirtualHost *:8080>
     # Apache 서버의 IP 또는 도메인 지정
