@@ -421,7 +421,7 @@ sudo cp ~/client-configs/files/client1.ovpn /samba
 sudo chown smbuser1.smbuser1 /samba/client1.ovpn
 ```
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/830e9377-46ea-44eb-9447-901b596c57fc/image.png)
+![Rocky8OpenVPN1.png](/assets/img/linux/Rocky8OpenVPN1.png)
 
 - client1.ovpn `C:\Program Files\OpenVPN\config`로 복사
 - **OpenVPN 연결 성공**
@@ -434,9 +434,9 @@ sudo chown smbuser1.smbuser1 /samba/client1.ovpn
     </aside>
     
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/4cd505c3-8a7c-4f2c-a95a-d993814c02b0/image.png)
+![Rocky8OpenVPN2.png](/assets/img/linux/Rocky8OpenVPN2.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/d31deace-d86b-4781-b8f6-a75ae97db608/image.png)
+![Rocky8OpenVPN3.png](/assets/img/linux/Rocky8OpenVPN3.png)
 
 ### 2) 호스트 윈도우
 
@@ -455,7 +455,7 @@ sudo chown smbuser1.smbuser1 /samba/client1.ovpn
         - (NAT 복원) 패킷을 받아 다시 NAT를 통해 원래의 클라이언트 IP로 변경한 후 클라이언트로 전달
 - **연결 성공**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/32e43aa6-559d-477e-b3b7-ab95a3e1f377/image.png)
+![Rocky8OpenVPN4.png](/assets/img/linux/Rocky8OpenVPN4.png)
 
 ### 3) AWS 리눅스
 
@@ -492,7 +492,7 @@ ssh root@<VPN 서버 위치의 다른 서버 IP>
 
 - **연결 성공**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/9c72ebd2-e535-403e-a639-dcd411212267/image.png)
+![Rocky8OpenVPN5.png](/assets/img/linux/Rocky8OpenVPN5.png)
 
 ---
 
