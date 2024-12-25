@@ -14,7 +14,7 @@ https://github.com/cotes2020/jekyll-theme-chirpy
 - 기술 블로그용으로 가장 적합
     - 다른 Jekyll 테마들은 스타트업 블로그 스타일이나 쇼핑몰에서 사용할 것 같은 많은데, 개인용 기술블로그 테마로는 가장 깔끔하다고 느꼈다
     - 카테고리, 타임라인 별로 작성한 글을 볼 수 있고, 블로그 내 검색 기능이 빨라서 좋았다
-    - 게시글마다 읽는데 얼마나 걸리는지 나와있는 것도 맘에 들었다
+    - 게시글 내에 있는 항목 별 바로가기 기능과, 게시글마다 읽는데 얼마나 걸리는지 나와있는 것도 맘에 들었다
     
     ![GitHubBlogBuild1.png](/assets/img/git/githubblog/GitHubBlogBuild1.png)
 
@@ -185,6 +185,8 @@ git push origin main
 > run: npm install && npm run build
 > ```
 > 
+
+일단 여기까지 하고 브라우저에 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다
 
 ## 참고
 
