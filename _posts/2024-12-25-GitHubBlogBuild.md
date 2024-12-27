@@ -122,20 +122,6 @@ bundle exec jekyll serve
   http://localhost:4000
 ```
 
-### 로컬 테스트 오류
-
-> `Unable to monitor directories for changes because iNotify max watches exceeded.`
-> 
-> - Linux의 `inotify` 파일 시스템 감시자의 최대 수 제한을 초과했기 때문에 발생
-> - 1코어 1기가로 실행 중이기 때문에 제한인 것으로 추정
-> - inotify 값 변경해서 해결
->     
->     ```bash
->     cat /proc/sys/fs/inotify/max_user_watches
->     	
->     sudo sysctl fs.inotify.max_user_watches=524288
->     ```
->     
 - Git Push
 
 ```bash
@@ -145,45 +131,20 @@ git push origin main
 ```
 
 - Repo - 저장소 설정 - 페이지 섹션 - 배포 형식을 GitHub Actions로 변경
-    - Configure 후 별도의 수정 없이 Commit
-        - 이 과정 없이는 index.html만 나타남
+    - GitHub Actions 말고 기존 껄로 배포하면 index.html만 나타남
     
     ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/0f6ae2ba-736b-4470-ba01-d3e7f1996a4f/image.png)
     
+    - Configure 후 npm 의존성을 “Build with Jekyll” 단계 전에 추가 후에 Commit
+        
+        ```bash
+        name: npm build
+        run: npm install && npm run build
+        ```
+        
     - ./github/workflows/starter/pages-deploy.yml 삭제
         - 삭제 안하면 pages-deploy.yml도 같이 실행되어서 오류 발생
-
-### GitHub Action 의존성 오류
-
-> 의존성 누락으로 인해 _sass/main.bundle.scss에서 @use 'vendors/bootstrap' 참조 불가
-> 
-> 
-> ```bash
-> Error: Can't find stylesheet to import.
->   ╷
-> 1 │ @use 'vendors/bootstrap';
->   │ ^^^^^^^^^^^^^^^^^^^^^^^^
->   ╵
->   main.bundle.scss 1:1                                                                           @use
->   /home/runner/work/joonlog.github.io/joonlog.github.io/assets/css/jekyll-theme-chirpy.scss 1:1  root stylesheet 
->   Conversion error: Jekyll::Converters::Scss encountered an error while converting 'assets/css/jekyll-theme-chirpy.scss':
->                     Can't find stylesheet to import.
->                     ------------------------------------------------
->       Jekyll 4.3.4   Please append `--trace` to the `build` command 
->                      for any additional information or backtrace. 
->                     ------------------------------------------------
-> ```
-> 
-> **참고: https://github.com/cotes2020/jekyll-theme-chirpy/discussions/1809**
-> 
-> - ci 파일에 npm 의존성 주입 추가로 해결 가능
-> - 하단 코드 `jekyll.yml`의 `Build with Jekyll` Step 상단에 작성
-> 
-> ```bash
-> name: npm build
-> run: npm install && npm run build
-> ```
-> 
+        
 
 일단 여기까지 하고 브라우저에서 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다.
 
