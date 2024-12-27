@@ -16,8 +16,7 @@ https://github.com/cotes2020/jekyll-theme-chirpy
     - 카테고리, 타임라인 별로 작성한 글을 볼 수 있고, 블로그 내 검색 기능이 빨라서 좋았다
     - 게시글 내에 있는 항목 별 바로가기 기능과, 게시글마다 읽는데 얼마나 걸리는지 나와있는 것도 맘에 들었다
     
-    ![GitHubBlogBuild1.png](/assets/img/git/githubblog/GitHubBlogBuild1.png)
-
+    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/2ab88907-1b5f-4296-a16c-f21dbc386160/image.png)
     
 - 많은 사용자
     - 커스터마이징 할 때 오류가 발생해도 사용자가 많으면 고치기가 수월하다
@@ -149,7 +148,7 @@ git push origin main
     - Configure 후 별도의 수정 없이 Commit
         - 이 과정 없이는 index.html만 나타남
     
-    ![GitHubBlogBuild2.png](/assets/img/git/githubblog/GitHubBlogBuild2.png)
+    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/0f6ae2ba-736b-4470-ba01-d3e7f1996a4f/image.png)
     
     - ./github/workflows/starter/pages-deploy.yml 삭제
         - 삭제 안하면 pages-deploy.yml도 같이 실행되어서 오류 발생
@@ -186,7 +185,38 @@ git push origin main
 > ```
 > 
 
-일단 여기까지 하고 브라우저에 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다
+일단 여기까지 하고 브라우저에서 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다.
+
+## 글 포스팅
+
+| 구분 | 새 페이지 추가 | 새 게시물 추가 |
+| --- | --- | --- |
+| **목적** | 고정 콘텐츠(정적 페이지) 작성 | 블로그 글(동적 콘텐츠) 작성 |
+| **위치** | 프로젝트 루트 또는 서브 디렉토리 | `_posts/` 디렉토리 |
+| **파일명 규칙** | 자유로운 이름 (`about.md`) | `YYYY-MM-DD-title.md` 형식 |
+| **URL** | `/about`, `/contact` 등 | `/year/month/day/title` 형식 |
+| **목록 표시** | 목록에 포함되지 않음 | 블로그 목록에 자동 포함 |
+- 형식 : `yyyy-mm-dd-제목.md`
+- 확장자는 `.md` 또는 `.markdown`
+- 중간에 공백을 넣지 않음
+- 작성한 파일은 _posts 디렉토리에 위치
+
+### **Front Matter**
+
+- 사이트의 게시물에 대해 제목 및 레이아웃과 같은 변수와 메타데이터를 설정하기 위해 Markdown 또는 HTML 파일의 맨 위에 YAML 전문을 추가
+- 파일명: `YYYY-MM-DD-title.md`
+    
+    ```yaml
+    ---
+    title : Rocky8 MySQL Replication & HAproxy 연동
+    date : 2024-12-10 09:00:00 +09:00
+    categories : [Linux, DB]
+    tags : [rocky8, mysql, haproxy, replication] #소문자만 가능
+    ---
+    ```
+    
+
+블로그에 포스팅이 되었는지 확인
 
 ## 참고
 
