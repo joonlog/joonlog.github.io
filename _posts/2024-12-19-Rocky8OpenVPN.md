@@ -65,9 +65,7 @@ tags : [rocky8, openvpn, vpn] #소문자만 가능
 | `client1.key` | 클라이언트 개인 키 | `./easyrsa gen-req client1 nopass` |
 | `client1.req` | 클라이언트 인증서 서명 요청 (CSR) | `./easyrsa gen-req client1 nopass` |
 | `client1.crt` | 클라이언트 인증서 | `./easyrsa gen-req client1 nopass` |
-| `client1.ovpn` | OpenVPN 클라이언트 파일
-`base.conf`, `ca.crt`, `client1.key`, `client1.crt`, `ta.key` 
-클라이언트 설정 파일과 4개의 인증 파일을 사용 | 쉘 스크립트 사용 |
+| `client1.ovpn` | `base.conf`, `ca.crt`, `client1.key`, `client1.crt`, `ta.key` 클라이언트 설정 파일과 4개의 인증 파일을 사용하는 OpenVPN 클라이언트 파일 | 쉘 스크립트 사용 |
 | server.conf | 서버 설정 파일 | /usr/share/doc/openvpn/sample/sample-config-files/ 복사 |
 | base.conf  | 클라이언트 설정 파일 | /usr/share/doc/openvpn/sample/sample-config-files/ 복사 |
 

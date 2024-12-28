@@ -49,24 +49,16 @@ tags : [rocky8, dns, bind, master, slave] #소문자만 가능
 
 ### DNS 레코드 유형
 
-| 레코드 유형 | 설명 | 형식 |
-| --- | --- | --- |
-| **NS** | 도메인에 대한 권한을 가진 네임서버를 정의 | `<domain> IN NS <nameserver>
-@ IN NS ns1.example.com.` |
-| **A** | 도메인 이름을 IPv4 주소와 매핑 | `<hostname> IN A <IPv4 address>
-@ IN A 192.168.1.10` |
-| **AAAA** | 도메인 이름을 IPv6 주소와 매핑 | `<hostname> IN AAAA <IPv6 address>
-www IN AAAA 2001:0db8:85a3::8a2e:0370:7334` |
-| **CNAME** | 도메인 이름에 대한 별칭을 설정 | `<alias> IN CNAME <canonical name>
-mail IN CNAME www.example.com.` |
-| **MX** | 메일 서버를 정의하며, 우선순위는 preference로 결정 | `<domain> IN MX <preference> <mail server>
-@ IN MX 10 mail.example.com.` |
-| **TXT** | 도메인에 대한 텍스트 정보를 저장 | `<domain> IN TXT "<text>"
-@ IN TXT "v=spf1 ip4:192.168.1.0/24 -all"` |
-| **PTR** | IP 주소를 도메인 이름으로 매핑 (Reverse DNS) | `<IP-in-reverse>.in-addr.arpa. IN PTR <domain>
-10.1.168.192.in-addr.arpa. IN PTR example.com.` |
-| **SRV** | 특정 서비스의 위치를 정의 | `<service>.<protocol>.<domain> IN SRV <priority> <weight> <port> <target>
-_sip._tcp.example.com. IN SRV 10 60 5060 sipserver.example.com.` |
+| 레코드 유형 | 설명 | 형식 | 예시 |
+| --- | --- | --- | --- |
+| **NS** | 도메인에 대한 권한을 가진 네임서버를 정의 | `<domain> IN NS <nameserver>` | `@ IN NS ns1.example.com.` |
+| **A** | 도메인 이름을 IPv4 주소와 매핑 | `<hostname> IN A <IPv4 address>` | `@ IN A 192.168.1.10` |
+| **AAAA** | 도메인 이름을 IPv6 주소와 매핑 | `<hostname> IN AAAA <IPv6 address>` | `www IN AAAA 2001:0db8:85a3::8a2e:0370:7334` |
+| **CNAME** | 도메인 이름에 대한 별칭을 설정 | `<alias> IN CNAME <canonical name>` | `mail IN CNAME www.example.com.` |
+| **MX** | 메일 서버를 정의하며, 우선순위는 preference로 결정 | `<domain> IN MX <preference> <mail server>` | `@ IN MX 10 mail.example.com.` |
+| **TXT** | 도메인에 대한 텍스트 정보를 저장 | `<domain> IN TXT "<text>"` | `@ IN TXT "v=spf1 ip4:192.168.1.0/24 -all"` |
+| **PTR** | IP 주소를 도메인 이름으로 매핑 (Reverse DNS) | `<IP-in-reverse>.in-addr.arpa. IN PTR <domain>` | `10.1.168.192.in-addr.arpa. IN PTR example.com.` |
+| **SRV** | 특정 서비스의 위치를 정의 | `<service>.<protocol>.<domain> IN SRV <priority> <weight> <port> <target>` | `_sip._tcp.example.com. IN SRV 10 60 5060 sipserver.example.com.` |
 
 ## 작업 과정
 
