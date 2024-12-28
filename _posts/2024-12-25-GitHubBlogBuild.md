@@ -16,7 +16,7 @@ https://github.com/cotes2020/jekyll-theme-chirpy
     - 카테고리, 타임라인 별로 작성한 글을 볼 수 있고, 블로그 내 검색 기능이 빨라서 좋았다
     - 게시글 내에 있는 항목 별 바로가기 기능과, 게시글마다 읽는데 얼마나 걸리는지 나와있는 것도 맘에 들었다
     
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/2ab88907-1b5f-4296-a16c-f21dbc386160/image.png)
+![GitHubBlogBuild1.png](/assets/git/githubblog/GitHubBlogBuild1.png)
     
 - 많은 사용자
     - 커스터마이징 할 때 오류가 발생해도 사용자가 많으면 고치기가 수월하다
@@ -88,7 +88,7 @@ https://github.com/cotes2020/jekyll-theme-chirpy
 ### Jekyll - Chirpy 테마 적용
 
 - Chirpy 복사
-    - chirpy를 단순 fort하면 이후에 깃허브 잔디 심기가 곤란하니까 clone 후 copy
+    - chirpy를 단순 fork하면 이후에 깃허브 잔디 심기가 곤란하니까 clone 후 copy
 
 ```bash
 git clone git@github.com:joonlog/joonlog.github.io.git
@@ -122,6 +122,8 @@ bundle exec jekyll serve
   http://localhost:4000
 ```
 
+### 깃허브 블로그 배포
+
 - Git Push
 
 ```bash
@@ -133,7 +135,7 @@ git push origin main
 - Repo - 저장소 설정 - 페이지 섹션 - 배포 형식을 GitHub Actions로 변경
     - GitHub Actions 말고 기존 껄로 배포하면 index.html만 나타남
     
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/0f6ae2ba-736b-4470-ba01-d3e7f1996a4f/image.png)
+![GitHubBlogBuild2.png](/assets/git/githubblog/GitHubBlogBuild2.png)
     
     - Configure 후 npm 의존성을 “Build with Jekyll” 단계 전에 추가 후에 Commit
         
@@ -157,6 +159,7 @@ git push origin main
 | **파일명 규칙** | 자유로운 이름 (`about.md`) | `YYYY-MM-DD-title.md` 형식 |
 | **URL** | `/about`, `/contact` 등 | `/year/month/day/title` 형식 |
 | **목록 표시** | 목록에 포함되지 않음 | 블로그 목록에 자동 포함 |
+
 - 형식 : `yyyy-mm-dd-제목.md`
 - 확장자는 `.md` 또는 `.markdown`
 - 중간에 공백을 넣지 않음
