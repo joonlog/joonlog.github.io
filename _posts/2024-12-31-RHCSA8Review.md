@@ -1,11 +1,11 @@
 ---
 title : RHCSA 8 후기
 date : 2024-12-31 09:00:00 +09:00
-categories : [Certification, RHCSA 8]
+categories : [Certification, RedHat]
 tags : [redhat, linux, rhcsa8, rhel8] #소문자만 가능
 ---
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8db24459-7346-4d70-afa5-8fa6c279412c/12122efc-1a0e-4ddd-8e93-70c07b825b00/image.png)
+![RHCSA8Review1.png](/assets/img/certification/RHCSA8Review1.png)
 
 작년에 본 시험에 대해 이제야 후기를 남긴다
 
@@ -13,9 +13,7 @@ tags : [redhat, linux, rhcsa8, rhel8] #소문자만 가능
 
 내 리눅스 실력은 기본 명령어만 약간 아는 정도였고 서비스 구축은 할 줄 몰랐다. 
 
-udemy 강의를 들으면서 기본 지식을 쌓았고, 문제들은 다른 블로그들을 전부 뒤져봤다.
-
-강의는 https://www.udemy.com/course/unofficial-linux-redhat-certified-system-administrator-rhcsa-8/?couponCode=KEEPLEARNING 이걸 들었다.
+udemy 강의(https://www.udemy.com/course/unofficial-linux-redhat-certified-system-administrator-rhcsa-8/?couponCode=KEEPLEARNING)를 들으면서 기본 지식을 쌓았고, 문제들은 다른 블로그들을 전부 뒤져봤다.
 
 영어로 되어 있지만 요즘은 크롬 확장 프로그램 trancy 사용하면 한글로 더 편하게 볼 수 있을 것이다.
 
@@ -23,15 +21,21 @@ RHCSA가 절대적인 난이도로 보면 취득한 자격증 중에 가장 난�
 
 원래는 재시험 기회가 없었지만, 2023년부터 정책이 바뀐건지 retake 기회가 1번 주어졌고, 여기서 합격할 수 있었다.
 
+시험 비용이 꽤 비싼 편인데, 할인 쿠폰도 많이 없고 할인율도 15%로 크진 않다.
+
+이 쿠폰은 RedHat 시험에 합격하면 나오는 쿠폰으로 1달? 3달? 동안 3명까지 쓸 수 있다. 그래서 종종 사람들이 커뮤니티에 공유하기도 하는데, 나는 redhat reddit에서 주워서 사용했다. 
+
+redhat discount reddit으로 검색하면 코폰 공유하는 게시물을 찾을 수 있을 것이다.
+
 ### 필수 준비물: 여권
 
 ### 시험 범위
 
-RHCSA : ![RHCSA8Review1.png](/assets/img/linux/RHCSA8Review1.png)
+RHCSA : [https://www.redhat.com/ko/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=개요](https://www.redhat.com/ko/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=%EA%B0%9C%EC%9A%94)
 
-작년에는 RHCSA 8버전으로 시험을 봤었고, 지금은 9버전일 것이다. 
+작년에는 RHCSA 8버전으로 시험을 봤었고 지금은 아마 9버전으로만 볼 수 것이다. 그때가 8에서 9로 넘어가는 과도기였는데 9버전 후기들로 파악할 수 있는 문제가 많지 않아 8버전으로 시험을 봤었다. 문제가 크게 바뀌진 않은 것 같지만 2~3문제정도에서 사용하는 서비스가 아예 달랐던 것으로 기억한다.
 
-그래도 크게 바뀌진 않았을 테니 생각나는 문제들을 적자면
+구버전 문제기도 하고, 문제 풀이들은 다른 블로그에도 많으니 어떤 문제가 나왔는지 정도만 공유하겠다.
 
 루트 비밀번호 초기화
 
