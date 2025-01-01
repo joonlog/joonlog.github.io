@@ -21,15 +21,33 @@ RHCSA가 절대적인 난이도로 보면 취득한 자격증 중에 가장 난�
 
 원래는 재시험 기회가 없었지만, 2023년부터 정책이 바뀐건지 retake 기회가 1번 주어졌고, 여기서 합격할 수 있었다.
 
+자격증 유효 기간은 3년이다.
+
+### 할인 쿠폰
+
 시험 비용이 꽤 비싼 편인데, 할인 쿠폰도 많이 없고 할인율도 15%로 크진 않다.
 
 이 쿠폰은 RedHat 시험에 합격하면 나오는 쿠폰으로 1달? 3달? 동안 3명까지 쓸 수 있다. 그래서 종종 사람들이 커뮤니티에 공유하기도 하는데, 나는 redhat reddit에서 주워서 사용했다. 
 
-redhat discount reddit으로 검색하면 코폰 공유하는 게시물을 찾을 수 있을 것이다.
+redhat discount reddit으로 검색하면 쿠폰 공유하는 게시물을 찾을 수 있을 것이다.
 
-### 필수 준비물: 여권
+### 시험 환경
 
-### 시험 범위
+**여권 준비 필수**
+
+시험 장소는 에티버스러닝이었는데, 칸막이가 쳐진 작은 방에 2명이 시험 볼 수 있게 되어 있었다. 입장해서 준비된 노트북에 로그인을 하면 감독관이 채팅으로 말을 걸어온다. 준비된 웹캠에 여권을 보여주고 웹캠을 가지고 방 안을 꼼꼼히 살펴보도록 요구한다. 
+
+이후 시험을 시작하고 VM으로 된 노드 2개를 가지고 작업하면 된다.
+
+### 유의사항
+
+모든 문제 풀이들은 재부팅 후에도 동작해야 한다. 
+
+예를 들어 httpd 서비스를 기동했다면, systemctl start httpd만 해선 안되고 반드시 enable 까지 해줘야 한다. 그래서 start와 enable을 같이 해주는 systemctl enable --now httpd를 사용하면 좋다.
+
+서비스 이외에도 디스크 마운트, podman 문제도 마찬가지다. 따라서 문제를 다 풀었다면 노드들을 재부팅하고 잘 동작하는지 확인해야 한다.
+
+### 출제 문제
 
 RHCSA : [https://www.redhat.com/ko/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=개요](https://www.redhat.com/ko/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=%EA%B0%9C%EC%9A%94)
 
