@@ -4,7 +4,9 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "jekyll-seo-tag"
 gem "html-proofer", "~> 5.0", group: :test
+gem 'jekyll-sitemap'
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
