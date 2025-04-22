@@ -15,8 +15,8 @@ https://github.com/cotes2020/jekyll-theme-chirpy
     - 다른 Jekyll 테마들은 스타트업 블로그 스타일이나 쇼핑몰에서 사용할 것 같은 많은데, 개인용 기술블로그 테마로는 가장 깔끔하다고 느꼈다
     - 카테고리, 타임라인 별로 작성한 글을 볼 수 있고, 블로그 내 검색 기능이 빨라서 좋았다
     - 게시글 내에 있는 항목 별 바로가기 기능과, 게시글마다 읽는데 얼마나 걸리는지 나와있는 것도 맘에 들었다
-    
-![GitHubBlogBuild1.png](/assets/git/githubblog/GitHubBlogBuild1.png)
+
+![GitHubBlogBuild1.png](/assets/img/git/githubblog/GitHubBlogBuild1.png)
     
 - 많은 사용자
     - 커스터마이징 할 때 오류가 발생해도 사용자가 많으면 고치기가 수월하다
@@ -135,7 +135,7 @@ git push origin main
 - Repo - 저장소 설정 - 페이지 섹션 - 배포 형식을 GitHub Actions로 변경
     - GitHub Actions 말고 기존 껄로 배포하면 index.html만 나타남
     
-![GitHubBlogBuild2.png](/assets/git/githubblog/GitHubBlogBuild2.png)
+![GitHubBlogBuild2.png](/assets/img/git/githubblog/GitHubBlogBuild2.png)
     
     - Configure 후 npm 의존성을 “Build with Jekyll” 단계 전에 추가 후에 Commit
         
