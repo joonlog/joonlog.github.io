@@ -1,8 +1,8 @@
 ---
-title : GitHub Blog SEO
+title : GitHub Blog SEO 설정
 date : 2025-04-25 09:00:00 +09:00
-categories : [Git, GitHub]
-tags : [git, github, github blog, seo, sitemap] #소문자만 가능
+categories : [Git, GitHub Blog]
+tags : [git, github, github blog, jekyll, seo, sitemap] #소문자만 가능
 ---
 
 ### SEO
