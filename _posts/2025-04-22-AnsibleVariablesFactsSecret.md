@@ -198,13 +198,3 @@ $ ansible-playbook --vault-password-file-vault-pass playbook.yaml
     tasks:
     - include_vars: vars/vars.yaml
     ```
-    
-4. include_tasks + vars
-    
-    ```yaml
-    ------
-    tasks:
-    - include_tasks: tasks/main.yaml
-      vars:
-      - pkg: httpd
-    ```
