@@ -93,7 +93,7 @@ handlers:
   ignore_errors: yes
 ```
 
-1. 실패 조건 지정
+2. 실패 조건 지정
 
 ```yaml
 - name: 실패 조건 직접 지정
@@ -102,7 +102,7 @@ handlers:
   failed_when: "'error' in result.stderr"
 ```
 
-1. Changed 상태 지정
+3. Changed 상태 지정
 
 ```yaml
 - name: 강제로 Changed 처리
@@ -110,7 +110,7 @@ handlers:
   changed_when: true
 ```
 
-1. 핸들러 강제 실행
+4. 핸들러 강제 실행
 
 ```yaml
 - name: 전체 플레이북에 핸들러 강제 실행 설정
@@ -118,7 +118,7 @@ handlers:
   force_handlers: yes
 ```
 
-1. Ansible 블록 및 오류 처리 - block ~ rescue ~ always
+5. Ansible 블록 및 오류 처리 - block ~ rescue ~ always
 
 ```yaml
 - name: block-rescue-always 예시
