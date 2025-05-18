@@ -87,56 +87,56 @@ handlers:
 
 1. 실패 무시하기
 
-  ```yaml
-  - name: 실패해도 무시Z
-    command: /bin/false
-    ignore_errors: yes
-  ```
+    ```yaml
+    - name: 실패해도 무시Z
+      command: /bin/false
+      ignore_errors: yes
+    ```
 
 2. 실패 조건 지정
 
-  ```yaml
-  - name: 실패 조건 직접 지정
-    shell: some_command
-    register: result
-    failed_when: "'error' in result.stderr"
-  ```
+    ```yaml
+    - name: 실패 조건 직접 지정
+      shell: some_command
+      register: result
+      failed_when: "'error' in result.stderr"
+    ```
 
 3. Changed 상태 지정
 
-  ```yaml
-  - name: 강제로 Changed 처리
-    shell: echo "Force change"
-    changed_when: true
-  ```
+    ```yaml
+    - name: 강제로 Changed 처리
+      shell: echo "Force change"
+      changed_when: true
+    ```
 
 4. 핸들러 강제 실행
 
-  ```yaml
-  - name: 전체 플레이북에 핸들러 강제 실행 설정
-    hosts: all
-    force_handlers: yes
-  ```
+    ```yaml
+    - name: 전체 플레이북에 핸들러 강제 실행 설정
+      hosts: all
+      force_handlers: yes
+    ```
 
 5. Ansible 블록 및 오류 처리 - block ~ rescue ~ always
 
-  ```yaml
-  - name: block-rescue-always 예시
-    hosts: all
-    tasks:
-      - name: 중요한 작업 실행
-        block:
-          - name: 작업 1
-            shell: /bin/false
+    ```yaml
+    - name: block-rescue-always 예시
+      hosts: all
+      tasks:
+        - name: 중요한 작업 실행
+          block:
+            - name: 작업 1
+              shell: /bin/false
 
-          - name: 작업 2
-            shell: echo "이건 실행 안됨"
-        rescue:
-          - name: 에러 발생 시 대체 작업
-            debug:
-              msg: "문제가 발생했지만 복구 작업 실행"
-        always:
-          - name: 항상 실행되는 작업
-            debug:
-              msg: "이 작업은 성공/실패 여부와 무관하게 항상 실행됨"
-  ```
+            - name: 작업 2
+              shell: echo "이건 실행 안됨"
+          rescue:
+            - name: 에러 발생 시 대체 작업
+              debug:
+                msg: "문제가 발생했지만 복구 작업 실행"
+          always:
+            - name: 항상 실행되는 작업
+              debug:
+                msg: "이 작업은 성공/실패 여부와 무관하게 항상 실행됨"
+    ```
