@@ -1,7 +1,7 @@
 ---
 title : GitHub SSH 설정
 date : 2025-05-22 09:00:00 +09:00
-categories : [Git, GitHub]
+categories : [SCM, Git]
 tags : [git, github, github ssj] #소문자만 가능
 ---
 
