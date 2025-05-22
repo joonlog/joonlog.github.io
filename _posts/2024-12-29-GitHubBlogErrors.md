@@ -1,7 +1,7 @@
 ---
-title : 깃허브 블로그 오류 정리
+title : GitHub 블로그 오류 정리
 date : 2024-12-29 09:00:00 +09:00
-categories : [Git, GitHub Blog]
+categories : [Blog, GitHub Blog]
 tags : [git, github, github blog, github action error] #소문자만 가능
 ---
 

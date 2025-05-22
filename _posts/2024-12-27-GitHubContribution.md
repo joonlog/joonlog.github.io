@@ -1,7 +1,7 @@
 ---
-title : 깃허브 잔디 누락
+title : GitHub 잔디 누락
 date : 2024-12-27 09:00:00 +09:00
-categories : [Git, GitHub]
+categories : [SCM, Git]
 tags : [git, github, github contribution] #소문자만 가능
 ---
 
