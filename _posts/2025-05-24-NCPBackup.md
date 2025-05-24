@@ -30,7 +30,7 @@ tags : [ncp, storage, backup] #소문자만 가능
     - DB 인스턴스 추가 시 로그는 위 로그에 기록됨
     - https://guide.ncloud-docs.com/docs/backup-spec
     
-    ![NCPBackup2.png](/assets/img/ncp/storage/NCPBackup2.png)
+![NCPBackup2.png](/assets/img/ncp/storage/NCPBackup2.png)
     
 
 ---
