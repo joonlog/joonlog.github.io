@@ -77,7 +77,7 @@ dev5 ansible_host=192.168.1.5
 ```bash
 ---
 - name: Playbook 테스트
-  hosts: all:
+  hosts: all:!prod1
 
   tasks:
     - name: 디렉토리 생성
