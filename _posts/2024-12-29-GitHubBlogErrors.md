@@ -1,8 +1,8 @@
 ---
-title : GitHub 블로그 오류 정리
+title : GitHub 블로그 오류 TroubleShooting
 date : 2024-12-29 09:00:00 +09:00
 categories : [Blog, GitHub Blog]
-tags : [git, github, github blog, github action error] #소문자만 가능
+tags : [git, github, github blog, github action error, troubleshooting] #소문자만 가능
 ---
 
 ## Jekyll - Chirpy 테마

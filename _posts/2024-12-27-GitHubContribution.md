@@ -1,8 +1,8 @@
 ---
-title : GitHub 잔디 누락
+title : GitHub 잔디 누락 TroubleShooting
 date : 2024-12-27 09:00:00 +09:00
 categories : [SCM, Git]
-tags : [git, github, github contribution] #소문자만 가능
+tags : [git, github, github contribution, troubleshooting] #소문자만 가능
 ---
 
 커밋을 해도 깃허브에 잔디가 보이지 않아서 찾아보니 잔디가 심어지는 것에 조건이 있었다.
