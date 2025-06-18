@@ -1,5 +1,5 @@
 ---
-title : Apache OPTIONS * 루프백 요청으로 인한 CPU 과부하
+title : Apache OPTIONS * 루프백 요청으로 인한 CPU 과부하 TroubleShooting
 date : 2025-04-25 09:00:00 +09:00
 categories : [Linux, Troubleshooting]
 tags : [linux, apache, mpm, troubleshooting] #소문자만 가능

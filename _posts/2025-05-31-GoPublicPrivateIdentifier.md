@@ -2,7 +2,7 @@
 title : Go Public / Private 식별자
 date : 2025-05-31 09:00:00 +09:00
 categories : [Go, Go Basic]
-tags : [go, public, ] #소문자만 가능
+tags : [go, public, private] #소문자만 가능
 ---
 
 > Go 언어는 `public`, `private` 키워드 없이 **이름의 첫 글자 대소문자**만으로 식별자의 공개 여부를 결정
