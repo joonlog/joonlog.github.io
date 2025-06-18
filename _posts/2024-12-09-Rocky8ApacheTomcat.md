@@ -1,7 +1,7 @@
 ---
 title : Rocky8 Apache Tomcat 연동
 date : 2024-12-09 18:08:00 +09:00
-categories : [Linux, "Web Server"]
+categories : [Linux, Middleware]
 tags : [rocky8, apache, tomcat, web, was] #소문자만 가능
 ---
 

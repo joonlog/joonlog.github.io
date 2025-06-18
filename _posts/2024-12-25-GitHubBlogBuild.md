@@ -148,7 +148,7 @@ git push origin main
         - 삭제 안하면 pages-deploy.yml도 같이 실행되어서 오류 발생
         
 
-일단 여기까지 하고 브라우저에서 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다.
+여기까지 하고 브라우저에서 username.github.io로 접속하면 블로그에 테마가 적용된 게 보일 것이다.
 
 ## 글 포스팅
 

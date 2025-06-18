@@ -1,7 +1,7 @@
 ---
 title : Rocky8 Apache SSL HTTPS Redirection
 date : 2024-12-11 18:00:00 +09:00
-categories : [Linux, Apache]
+categories : [Linux, Middleware]
 tags : [rocky8, apache, ssl, https] #소문자만 가능
 ---
 

@@ -1,7 +1,7 @@
 ---
 title : RSA Key를 사용한 SSH 불가 TroubleShooting
 date : 2025-05-20 09:00:00 +09:00
-categories : [Linux, SSH]
+categories : [Linux, Key]
 tags : [linux, ssh, rsa, key, esdsa, troubleshooting] #소문자만 가능
 ---
 
