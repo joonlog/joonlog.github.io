@@ -2,7 +2,7 @@
 title : 직렬화 기능을 사용중인 Tomcat의 세션 만료로 인한 강제 로그아웃 Troubleshooting
 date : 2025-06-23 09:00:00 +09:00
 categories : [Linux, Middleware]
-tags : [linux, tomcat, serialization, session] #소문자만 가능
+tags : [linux, tomcat, serialization, session, troubleshooting] #소문자만 가능
 ---
 
 ### 문제 상황
