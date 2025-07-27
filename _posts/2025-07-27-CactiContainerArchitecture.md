@@ -37,6 +37,8 @@ tags : [linux, docker, cacti, cacti container]  #소문자만 가능
 
 ### Compose 구조
 
+![CactiContainerArchitecture1.png](/assets/img/linux/CactiContainerArchitecture1.png)
+
 - https://github.com/scline/docker-cacti/blob/master/docker-compose/cacti_multi_shared.yml
 - Cacti Master+ Cacti Master DB + Poller + Poller DB
     
