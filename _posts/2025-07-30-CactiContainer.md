@@ -89,7 +89,7 @@ git clone https://github.com/scline/docker-cacti.git
           - cacti-net
     
       db-master:
-        image: "percona:5.7.14"
+        image: "mariadb:10.3"
         container_name: cacti_master_db
         hostname: db-master
         ports:
