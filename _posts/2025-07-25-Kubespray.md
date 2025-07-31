@@ -1,7 +1,7 @@
 ---
 title : Kubespray를 사용한 Kubernetes 클러스터 배포
 date : 2025-07-25 09:00:00 +09:00
-categories : [Kubernetes, Cluster]
+categories : [Kubernetes, Deploy]
 tags : [kubernetes, k8s, kubespray, docker]  #소문자만 가능
 ---
 
