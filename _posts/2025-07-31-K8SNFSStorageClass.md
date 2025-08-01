@@ -2,7 +2,7 @@
 title : 로컬 Kubernetes에서 NFS를 통한 StorageClass 사용
 date : 2025-07-31 09:00:00 +09:00
 categories : [Kubernetes, Plugins]
-tags : [kubernetes, storageclass, nfs, pvc]  #소문자만 가능
+tags : [kubernetes, k8s, storageclass, nfs, pvc]  #소문자만 가능
 ---
 
 - AWS의 경우 EBS Driver를 통해 pvc를 위한 StorageClass를 사용 가능
