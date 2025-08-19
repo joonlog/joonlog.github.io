@@ -1,6 +1,6 @@
 ---
 title : Kubernetes Label과 Annotation
-date : 2025-08-10 09:00:00 +09:00
+date : 2025-08-17 09:00:00 +09:00
 categories : [Kubernetes, Architecture]
 tags : [kubernetes, k8s, label, annotation]  #소문자만 가능
 ---

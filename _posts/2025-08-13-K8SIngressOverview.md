@@ -1,6 +1,6 @@
 ---
 title : Kubernetes Ingress Overview
-date : 2025-08-09 09:00:00 +09:00
+date : 2025-08-13 09:00:00 +09:00
 categories : [Kubernetes, Architecture]
 tags : [kubernetes, k8s, ingress, ingress controller]  #소문자만 가능
 ---
