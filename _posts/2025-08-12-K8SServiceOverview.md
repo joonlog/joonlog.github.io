@@ -1,6 +1,6 @@
 ---
 title : Kubernetes Service Overview
-date : 2025-08-08 09:00:00 +09:00
+date : 2025-08-12 09:00:00 +09:00
 categories : [Kubernetes, Architecture]
 tags : [kubernetes, k8s, service, clusterip, nodeport, loadbalancer]  #소문자만 가능
 ---
