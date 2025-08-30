@@ -22,10 +22,10 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
     - 결과적으로 같은 글이 여러 상위 카테고리에 중복 표시
         
         ```html
-        {% raw %}{% for category in sort_categories %}
-         {% assign category_name = category | first %}
-         {% assign posts_of_category = category | last %}
-         {% if category_name == first_post.categories[0] %}{% endraw %}
+        &#123;% for category in sort_categories %&#125;
+         &#123;% assign category_name = category | first %&#125;
+         &#123;% assign posts_of_category = category | last %&#125;
+         &#123;% if category_name == first_post.categories[0] %&#125;
         ```
         
 
@@ -37,28 +37,28 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
     - 해당 상위 카테고리를 가진 글들만 대상으로 처리
     
     ```html
-    {% raw %}{% assign group_index = 0 %}
+    &#123;% assign group_index = 0 %&#125;
     
-    {% comment %} Collect all primary categories from posts {% endcomment %}
-    {% assign primary_categories = '' | split: '' %}
-    {% for post in site.posts %}
-      {% assign primary_cat = post.categories[0] %}
-      {% if primary_cat %}
-        {% unless primary_categories contains primary_cat %}
-          {% assign primary_categories = primary_categories | push: primary_cat %}
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
-    {% assign primary_categories = primary_categories | sort %}
+    &#123;% comment %&#125; Collect all primary categories from posts &#123;% endcomment %&#125;
+    &#123;% assign primary_categories = '' | split: '' %&#125;
+    &#123;% for post in site.posts %&#125;
+      &#123;% assign primary_cat = post.categories[0] %&#125;
+      &#123;% if primary_cat %&#125;
+        &#123;% unless primary_categories contains primary_cat %&#125;
+          &#123;% assign primary_categories = primary_categories | push: primary_cat %&#125;
+        &#123;% endunless %&#125;
+      &#123;% endif %&#125;
+    &#123;% endfor %&#125;
+    &#123;% assign primary_categories = primary_categories | sort %&#125;
     
-    {% for category_name in primary_categories %}
-      {% comment %} Get posts that have this as primary category {% endcomment %}
-      {% assign posts_of_category = '' | split: '' %}
-      {% for post in site.posts %}
-        {% if post.categories[0] == category_name %}
-          {% assign posts_of_category = posts_of_category | push: post %}
-        {% endif %}
-      {% endfor %}{% endraw %}
+    &#123;% for category_name in primary_categories %&#125;
+      &#123;% comment %&#125; Get posts that have this as primary category &#123;% endcomment %&#125;
+      &#123;% assign posts_of_category = '' | split: '' %&#125;
+      &#123;% for post in site.posts %&#125;
+        &#123;% if post.categories[0] == category_name %&#125;
+          &#123;% assign posts_of_category = posts_of_category | push: post %&#125;
+        &#123;% endif %&#125;
+      &#123;% endfor %&#125;
     ```
     
 
@@ -68,16 +68,16 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 중복 제거 로직 유지
     
     ```html
-    {% raw %}{% comment %} Collect subcategories {% endcomment %}
-    {% assign sub_categories = '' | split: '' %}
-    {% for post in posts_of_category %}
-      {% assign second_category = post.categories[1] %}
-      {% if second_category %}
-        {% unless sub_categories contains second_category %}
-          {% assign sub_categories = sub_categories | push: second_category %}
-        {% endunless %}
-      {% endif %}
-    {% endfor %}{% endraw %}
+    &#123;% comment %&#125; Collect subcategories &#123;% endcomment %&#125;
+    &#123;% assign sub_categories = '' | split: '' %&#125;
+    &#123;% for post in posts_of_category %&#125;
+      &#123;% assign second_category = post.categories[1] %&#125;
+      &#123;% if second_category %&#125;
+        &#123;% unless sub_categories contains second_category %&#125;
+          &#123;% assign sub_categories = sub_categories | push: second_category %&#125;
+        &#123;% endunless %&#125;
+      &#123;% endif %&#125;
+    &#123;% endfor %&#125;
     ```
     
 
@@ -87,19 +87,17 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 하위 카테고리도 정확한 개수 표시
     
     ```html
-    {% raw %}
     # Primary category
-    {% assign top_posts_size = posts_of_category | size %}
+    &#123;% assign top_posts_size = posts_of_category | size %&#125;
     
     # Subcategory
-    {% comment %} Count posts for this subcategory under current primary category {% endcomment %}
-    {% assign posts_size = 0 %}
-    {% for post in posts_of_category %}
-      {% if post.categories[1] == sub_category %}
-        {% assign posts_size = posts_size | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-    {% endraw %}
+    &#123;% comment %&#125; Count posts for this subcategory under current primary category &#123;% endcomment %&#125;
+    &#123;% assign posts_size = 0 %&#125;
+    &#123;% for post in posts_of_category %&#125;
+      &#123;% if post.categories[1] == sub_category %&#125;
+        &#123;% assign posts_size = posts_size | plus: 1 %&#125;
+      &#123;% endif %&#125;
+    &#123;% endfor %&#125;
     ```
     
 
@@ -107,11 +105,11 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 
 > Liquid syntax error (line 150): 'endif' is not a valid delimiter for for tags. use endfor
 > 
-- 불필요한 `{% endif %}` 제거 (for 루프에는 `{% endfor %}`만 필요)
+- 불필요한 `&#123;% endif %&#125;` 제거 (for 루프에는 `&#123;% endfor %&#125;`만 필요)
     
     ```html
-    {% raw %}{% assign group_index = group_index | plus: 1 %}
-    {% endfor %}{% endraw %} 
+    &#123;% assign group_index = group_index | plus: 1 %&#125;
+    &#123;% endfor %&#125;
     ```
     
 
