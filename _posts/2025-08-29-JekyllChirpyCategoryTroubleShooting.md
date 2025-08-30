@@ -87,17 +87,19 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 하위 카테고리도 정확한 개수 표시
     
     ```html
-    {% raw %}# 상위 카테고리
+    {% raw %}
+    # Primary category
     {% assign top_posts_size = posts_of_category | size %}
     
-    # 하위 카테고리
+    # Subcategory
     {% comment %} Count posts for this subcategory under current primary category {% endcomment %}
     {% assign posts_size = 0 %}
     {% for post in posts_of_category %}
       {% if post.categories[1] == sub_category %}
         {% assign posts_size = posts_size | plus: 1 %}
       {% endif %}
-    {% endfor %}{% endraw %}
+    {% endfor %}
+    {% endraw %}
     ```
     
 
