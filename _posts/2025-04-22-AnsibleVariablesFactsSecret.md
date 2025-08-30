@@ -118,7 +118,7 @@ $ ansible-playbook --vault-password-file-vault-pass playbook.yaml
     
     ⇒ Facts 사용
     ”{{ansible_hostname}}”, “{{ansible_default_ipv4.address}}”
-    ”{{ansible_facts[’hostname’]}}”, “{{ansible_default[’ipv4.address’]}}”
+    ”{{ansible_facts['hostname']}}”, “{{ansible_default['ipv4.address']}}”
     
 3. Facts 끄는 방법
     
