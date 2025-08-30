@@ -22,10 +22,10 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
     - 결과적으로 같은 글이 여러 상위 카테고리에 중복 표시
         
         ```html
-        {% for category in sort_categories %}
+        {% raw %}{% for category in sort_categories %}
          {% assign category_name = category | first %}
          {% assign posts_of_category = category | last %}
-         {% if category_name == first_post.categories[0] %}
+         {% if category_name == first_post.categories[0] %}{% endraw %}
         ```
         
 
@@ -37,7 +37,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
     - 해당 상위 카테고리를 가진 글들만 대상으로 처리
     
     ```html
-    {% assign group_index = 0 %}
+    {% raw %}{% assign group_index = 0 %}
     
     {% comment %} Collect all primary categories from posts {% endcomment %}
     {% assign primary_categories = '' | split: '' %}
@@ -58,7 +58,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
         {% if post.categories[0] == category_name %}
           {% assign posts_of_category = posts_of_category | push: post %}
         {% endif %}
-      {% endfor %}
+      {% endfor %}{% endraw %}
     ```
     
 
@@ -68,7 +68,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 중복 제거 로직 유지
     
     ```html
-    {% comment %} Collect subcategories {% endcomment %}
+    {% raw %}{% comment %} Collect subcategories {% endcomment %}
     {% assign sub_categories = '' | split: '' %}
     {% for post in posts_of_category %}
       {% assign second_category = post.categories[1] %}
@@ -77,7 +77,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
           {% assign sub_categories = sub_categories | push: second_category %}
         {% endunless %}
       {% endif %}
-    {% endfor %}
+    {% endfor %}{% endraw %}
     ```
     
 
@@ -87,7 +87,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 하위 카테고리도 정확한 개수 표시
     
     ```html
-    # 상위 카테고리
+    {% raw %}# 상위 카테고리
     {% assign top_posts_size = posts_of_category | size %}
     
     # 하위 카테고리
@@ -97,7 +97,7 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
       {% if post.categories[1] == sub_category %}
         {% assign posts_size = posts_size | plus: 1 %}
       {% endif %}
-    {% endfor %}
+    {% endfor %}{% endraw %}
     ```
     
 
@@ -108,8 +108,8 @@ tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 �
 - 불필요한 `{% endif %}` 제거 (for 루프에는 `{% endfor %}`만 필요)
     
     ```html
-    {% assign group_index = group_index | plus: 1 %}
-    {% endfor %} 
+    {% raw %}{% assign group_index = group_index | plus: 1 %}
+    {% endfor %}{% endraw %} 
     ```
     
 
