@@ -1,6 +1,6 @@
 ---
 title : Jekyll Chirpy 테마 카테고리 중복/누락 TroubleShooting
-date : 2025-08-29 09:00:00 +09:00
+date : 2025-08-30 09:00:00 +09:00
 categories : [Blog, GitHub Blog]
 tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 가능
 ---
