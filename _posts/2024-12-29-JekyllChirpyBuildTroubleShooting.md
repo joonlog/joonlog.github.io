@@ -1,5 +1,5 @@
 ---
-title : GitHub 블로그 오류 TroubleShooting
+title : GitHub 블로그(Jekyll Chirpy) 오류 TroubleShooting
 date : 2024-12-29 09:00:00 +09:00
 categories : [Blog, GitHub Blog]
 tags : [git, github, github blog, github action error, troubleshooting] #소문자만 가능
