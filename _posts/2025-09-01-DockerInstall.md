@@ -1,8 +1,8 @@
 ---
 title : Linux 환경에서 Docker 설치 (RedHat/Ubuntu 계열)
 date : 2025-09-01 09:00:00 +09:00
-categories : [Linux, Docker]
-tags : [linux, docker, redhat, centos, ubuntu] #소문자만 가능
+categories : [Container, Docker]
+tags : [container, docker, redhat, centos, ubuntu] #소문자만 가능
 ---
 
 - https://docs.docker.com/engine/install
