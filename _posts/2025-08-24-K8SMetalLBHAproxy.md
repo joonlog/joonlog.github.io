@@ -1,8 +1,8 @@
 ---
-title : 외부에서 로컬 Kubernetes 접근을 위한 설정(MetalLB, HAproxy)과 통신 구조
+title : 외부에서 자체 관리형 Kubernetes 접근을 위한 MetalLB/HAproxy 설정과 통신 구조
 date : 2025-08-24 09:00:00 +09:00
 categories : [Kubernetes, Plugins]
-tags : [kubernetes, k8s, local k8s, metallb, haproxy, nginx controller]  #소문자만 가능
+tags : [kubernetes, k8s, local k8s, metallb, haproxy, nginx controller, self managed k8s]  #소문자만 가능
 ---
 
 - 외부에서의 로컬 K8S 클러스터 접근을 위해 MetalLB와 HAproxy를 사용
