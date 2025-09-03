@@ -1,5 +1,5 @@
 ---
-title : Tomcat Thread Stuck으로 인한 사이트 접근 불가(Tibero Backup) TroubleShooting
+title : Tomcat Thread Stuck으로 인한 사이트 접근 불가 TroubleShooting
 date : 2025-07-24 09:00:00 +09:00
 categories : [Linux, Middleware]
 tags : [linux, tomcat, tibero, tibero backup, thread stuck, troubleshooting]  #소문자만 가능
@@ -25,13 +25,18 @@ at com.tmax.tibero.jdbc.common.TbStream.readMsgDs(Unknown Source)
 
 ### 조치
 
-- 백업 방식을 아래와 같이 논리적(tbexport) → 물리적(tbrmgr) 백업으로 전환
+- 백업 방식을 아래와 같이 논리적(tbexport) → 물리적 백업으로 전환
     - 대용량의 DB 백업 시에는 물리적 백업이 모든 면에서 유리
         - 무중단 Hot Backup 가능
             - 단, Hot Backup은 `archive log` 모드에서만 가능
         - 내부 자원 사용 최소화
         - 복구 및 운영 안정성 향상
-    
-    ```bash
-    tbrmgr backup --compress=HIGH -u -o "$today_dir"
-    ```
+
+### 물리적 백업 방안
+
+1. tbrmgr
+- 사용해보니 매일 풀백업을 사용하는 현재의 환경에선 맞지 않고, 백업한 파일을 압축하지 않고 그대로 보관하면서 증분 백업을 통해 보관하는 환경에서 맞는 방안인 것으로 확인
+    - 현재는 매일 풀백업 + 풀백업한 파일 압축하여 보관하는 환경에서 사용 가능한 방법 필요
+2. begin/end 백업
+- 백업 모드 시작 - 데이터파일 복사 - 백업 모드 종료의 구조로 백업하는 방식
+- 이 방식으로 해결
