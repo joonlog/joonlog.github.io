@@ -20,22 +20,22 @@ set -euo pipefail
 
 ########## 환경설정 ##########
 export TB_HOME=/tibero/tibero6
-export TB_SID=JEDODB0
+export TB_SID=<sid명>
 export PATH="$TB_HOME/client/bin:/usr/bin:/bin"
 export LD_LIBRARY_PATH="$TB_HOME/client/lib:${LD_LIBRARY_PATH:-}"
 TBSQL="$TB_HOME/client/bin/tbsql"
 
-USER="sys"
-PASS="sys12#$"
+USER=<계정명>
+PASS=<비밀번호>
 
 DATE=$(date +%Y%m%d)
 BACKUP_ROOT="/data/db_dump"
 BACKUP_DIR="$BACKUP_ROOT/$DATE"
-DATA_DIR="/data/JEDODB"
+DATA_DIR="/data/<db명>"
 ARCHIVE_DIR="/data/archive"
-LOGFILE="$BACKUP_ROOT/JEDODB_backup_$DATE.log"
+LOGFILE="$BACKUP_ROOT/<db명>_backup_$DATE.log"
 LOG_DIR="$BACKUP_ROOT"
-LOG_FILE="$BACKUP_ROOT/JEDODB_backup_check_$DATE.log"
+LOG_FILE="$BACKUP_ROOT/<db명>_backup_check_$DATE.log"
 PIGZ="/usr/bin/pigz"
 export LC_ALL=C
 
@@ -155,7 +155,7 @@ log "===== 컨트롤파일 SQL 백업 ====="
 tbq "ALTER DATABASE BACKUP CONTROLFILE TO TRACE AS '${MISC_DIR}/crectl.sql' REUSE NORESETLOGS;"
 
 log "===== 컨트롤파일 물리 백업 ====="
-cp /data/JEDODB/c1.ctl "$MISC_DIR/" 2>> "$LOGFILE" || true
+cp /data/<db명>/c1.ctl "$MISC_DIR/" 2>> "$LOGFILE" || true
 cp /tibero/tibero6/config/c2.ctl "$MISC_DIR/" 2>> "$LOGFILE" || true
 
 log "===== 아카이브 로그 스위치 및 복사 ====="
@@ -163,8 +163,8 @@ tbq "ALTER SYSTEM SWITCH LOGFILE;"
 cp "$ARCHIVE_DIR"/*.arc "$MISC_DIR/" 2>> "$LOGFILE" || true
 
 log "===== 리두로그/.passwd 백업 ====="
-cp /data/JEDODB/log*.log "$MISC_DIR/" 2>> "$LOGFILE" || true
-cp /data/JEDODB/.passwd  "$MISC_DIR/" 2>> "$LOGFILE" || true
+cp /data/<db명>/log*.log "$MISC_DIR/" 2>> "$LOGFILE" || true
+cp /data/<db명>/.passwd  "$MISC_DIR/" 2>> "$LOGFILE" || true
 
 tar -czf "${BACKUP_DIR}/MISC_${DATE}.tar.gz" -C "$MISC_DIR" . >> "$LOGFILE" 2>&1
 rm -rf "$MISC_DIR"
