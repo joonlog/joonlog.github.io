@@ -2,7 +2,7 @@
 title : Tomcat 마이너 버전 업그레이드 (Tomcat 9)
 date : 2025-09-02 09:00:00 +09:00
 categories : [Linux, Middleware]
-tags : [Linux, tomcat, minor version upgrade, tomcat9 ] #소문자만 가능
+tags : [linux, tomcat, minor version upgrade, tomcat9 ] #소문자만 가능
 ---
 
 - Tomcat 9.0 버전대에서 9.0.108 버전으로의 마이너 버전 업그레이드
