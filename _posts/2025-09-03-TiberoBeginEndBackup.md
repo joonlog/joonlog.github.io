@@ -2,7 +2,7 @@
 title : Tibero DB에서 begin/end모드를 사용한 물리적 백업 및 복구 방법
 date : 2025-09-03 09:00:00 +09:00
 categories : [Linux, DB]
-tags : [Linux, db, tibero6, tibero, begin-end backup, pigz] #소문자만 가능
+tags : [linux, db, tibero6, tibero, begin-end backup, pigz] #소문자만 가l
 ---
 
 - 백업 모드 시작 - 데이터파일 복사 - 백업 모드 종료의 구조로 백업하는 방식

@@ -2,7 +2,7 @@
 title : 같은 Tibero DB 안에서 스키마 복제하는 방법
 date : 2025-09-04 09:00:00 +09:00
 categories : [Linux, DB]
-tags : [Linux, db, tibero6, tibero, schema replication, tbexport] #소문자만 가능
+tags : [linux, db, tibero6, tibero, schema replication, tbexport] #소문자만 가능
 ---
 
 > Tibero DB에서 스키마를 복제할 경우 기존 DB와의 테이블스페이스 및 데이터파일 중복을 고려해서 작업 필요

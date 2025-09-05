@@ -2,7 +2,7 @@
 title : Tibero DB에서 tbrmgr 명령어를 사용한 물리적 백업 및 복구 방법
 date : 2025-09-03 09:00:00 +09:00
 categories : [Linux, DB]
-tags : [Linux, db, tibero6, tibero, tbrmgr] #소문자만 가능
+tags : [linux, db, tibero6, tibero, tbrmgr] #소문자만 가능
 ---
 
 - 백업한 데이터파일을 압축 및 변형하지 않고, 지속적으로 증분하여 백업할 경우에 유용한 방식
