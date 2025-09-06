@@ -13,208 +13,207 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
 
 > CSP 환경이라면 Ingress 설정에서 AWS ALB Controller와 같은 로드밸런서를 사용해 훨씬 간편하게 구축 가능
 > 
+- Jenkins 공식문서:
+****https://www.jenkins.io/doc/book/installing/kubernetes/
 
-- **Jenkins.io 공식문서:**
-https://www.jenkins.io/doc/book/installing/kubernetes/
+### Jenkins 설치
 
-### 1. Helm을 통한 설치
-
-```bash
-helm repo add jenkinsci https://charts.jenkins.io
-helm repo update
-```
-
-### 2. jenkins-ci 네임스페이스 생성
-
-```bash
-kubectl create ns jenkins
-```
-
-### 3. jenkins-pv 생성
-
-```bash
-vim jenkins-01-volume.yaml
-kubectl apply -f jenkins-01-volume.yaml
-```
-
-- https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-01-volume.yaml
-
-```bash
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: jenkins-pv
-spec:
-  storageClassName: jenkins-pv
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 20Gi
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /data/jenkins-volume/
-
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: jenkins-pv
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
-```
-
-### 4. ServiceAccount 생성
-
-```bash
-vim jenkins-02-sa.yaml
-kubectl apply -f jenkins-02-sa.yaml
-```
-
-- https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-02-sa.yaml
-
-```bash
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: jenkins
-  namespace: jenkins
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  annotations:
-    rbac.authorization.kubernetes.io/autoupdate: "true"
-  labels:
-    kubernetes.io/bootstrapping: rbac-defaults
-  name: jenkins
-rules:
-- apiGroups:
-  - '*'
-  resources:
-  - statefulsets
-  - services
-  - replicationcontrollers
-  - replicasets
-  - podtemplates
-  - podsecuritypolicies
-  - pods
-  - pods/log
-  - pods/exec
-  - podpreset
-  - poddisruptionbudget
-  - persistentvolumes
-  - persistentvolumeclaims
-  - jobs
-  - endpoints
-  - deployments
-  - deployments/scale
-  - daemonsets
-  - cronjobs
-  - configmaps
-  - namespaces
-  - events
-  - secrets
-  verbs:
-  - create
-  - get
-  - watch
-  - delete
-  - list
-  - patch
-  - update
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  verbs:
-  - get
-  - list
-  - watch
-  - update
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  annotations:
-    rbac.authorization.kubernetes.io/autoupdate: "true"
-  labels:
-    kubernetes.io/bootstrapping: rbac-defaults
-  name: jenkins
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: jenkins
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: system:serviceaccounts:jenkins
-```
-
-### 5. Jenkins 설치
-
-- https://github.com/jenkinsci/helm-charts/tree/main/charts/jenkins
-    - helm으로 설치
+1. Helm 리포지토리 추가
     
     ```bash
-    wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
-    vim values.yaml
-    
-    helm install jenkins -n jenkins -f helm/values.yaml jenkinsci/jenkins
+    helm repo add jenkinsci https://charts.jenkins.io
+    helm repo update
     ```
     
-- https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
+2. jenkins-ci 네임스페이스 생성
     
     ```bash
-    persistence:
-      storageClass: jenkins-pv
-      size: "20Gi"
-      
-    serviceAccount:
-      create: false
+    kubectl create ns jenkins
+    ```
+    
+3. jenkins-pv 생성(기존 StorageClass 없을 시에만 진행)
+    - 기존에 사용하던 Ceph, Longhorn, EBS Driver, Harbor 같은 StorageClass가 없을 경우에 로컬 경로를 사용한 PV 할당 방법
+        - StorageClass가 있다면 PVC 생성 시 자동으로 PV가 할당되기 때문에 이 과정은 불필요
+    
+    ```bash
+    vim jenkins-01-volume.yaml
+    kubectl apply -f jenkins-01-volume.yaml
+    ```
+    
+    - https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-01-volume.yaml
+    
+    ```bash
+    apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      name: jenkins-pv
+    spec:
+      storageClassName: jenkins-pv
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 20Gi
+      persistentVolumeReclaimPolicy: Retain
+      hostPath:
+        path: /data/jenkins-volume/
+    
+    ---
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: jenkins-pv
+    provisioner: kubernetes.io/no-provisioner
+    volumeBindingMode: WaitForFirstConsumer
+    ```
+    
+4. ServiceAccount 생성
+    
+    ```bash
+    vim jenkins-02-sa.yaml
+    kubectl apply -f jenkins-02-sa.yaml
+    ```
+    
+    - https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-02-sa.yaml
+    
+    ```bash
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
       name: jenkins
+      namespace: jenkins
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      annotations:
+        rbac.authorization.kubernetes.io/autoupdate: "true"
+      labels:
+        kubernetes.io/bootstrapping: rbac-defaults
+      name: jenkins
+    rules:
+    - apiGroups:
+      - '*'
+      resources:
+      - statefulsets
+      - services
+      - replicationcontrollers
+      - replicasets
+      - podtemplates
+      - podsecuritypolicies
+      - pods
+      - pods/log
+      - pods/exec
+      - podpreset
+      - poddisruptionbudget
+      - persistentvolumes
+      - persistentvolumeclaims
+      - jobs
+      - endpoints
+      - deployments
+      - deployments/scale
+      - daemonsets
+      - cronjobs
+      - configmaps
+      - namespaces
+      - events
+      - secrets
+      verbs:
+      - create
+      - get
+      - watch
+      - delete
+      - list
+      - patch
+      - update
+    - apiGroups:
+      - ""
+      resources:
+      - nodes
+      verbs:
+      - get
+      - list
+      - watch
+      - update
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      annotations:
+        rbac.authorization.kubernetes.io/autoupdate: "true"
+      labels:
+        kubernetes.io/bootstrapping: rbac-defaults
+      name: jenkins
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: jenkins
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: system:serviceaccounts:jenkins
     ```
     
-    - /data/jenkins-volume 접근 권한으로 인해 오류 생길 경우 권한 부여 필요
+5. helm 설치
+    - https://github.com/jenkinsci/helm-charts/tree/main/charts/jenkins
+        - helm으로 설치
         
         ```bash
-        sudo chown -R 1000:1000 /data/jenkins-volume/
-        sudo chmod -R 755 /data/jenkins-volume/
+        wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
+        vim values.yaml
+        
+        helm install jenkins -n jenkins -f values.yaml jenkinsci/jenkins
+        ```
+        
+    - helm을 통해 pvc 자동 생성
+        - pv는 longhorn이 자동으로 프로비저닝
+        - SA는 2번에서 생성한 리소스 사용
+        
+        ```bash
+        persistence:
+          storageClass: longhorn
+          size: "20Gi"
+          
+        serviceAccount:
+          create: false
+          name: jenkins
         ```
         
 
-### 6. ingress 생성
+### Jenkins UI 접근
 
-- 8080포트를 사용하는 jenkins service로 연결
-
-```bash
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: jenkins-ingress
-  namespace: jenkins
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: "jenkins.local"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: jenkins
-            port:
-              number: 8080
-EOF
-```
-
-### 7. HAproxy 설정 추가
-
+1. ingress 생성
+    - 8080포트를 사용하는 jenkins service로 연결
+    
+    ```bash
+    cat <<EOF > jenkins-ingress.yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: jenkins-ingress
+      namespace: jenkins
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    spec:
+      ingressClassName: nginx
+      rules:
+      - host: "jenkins.local"
+        http:
+          paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jenkins
+                port:
+                  number: 8080
+    EOF
+    
+    kubectl -n jenkins apply -f jenkins-ingress.yaml
+    ```
+    
+2. HAproxy 설정
 - ingress를 조회하여 MetalLB로부터 부여받은 IP 확인
     - 현재는 172.27.1.100
     
@@ -228,22 +227,26 @@ EOF
     - HAproxy 서버 공인 IP로 접근 시 Jenkins의 Ingress로 통신되도록 설정
     
     ```bash
-    tee /etc/haproxy/haproxy.cfg > /dev/null <<EOF
-    frontend jenkins_frontend
+    tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
+    frontend metallb_frontend_jenkins
         bind *:8080
-        default_backend metallb_backend
+        mode http
+        option forwardfor
+        http-request set-header Host jenkins.local
+        default_backend metallb_backend_jenkins
     
-    backend metallb_backend
-        server metallb 172.27.1.100:80 check
+    backend metallb_backend_jenkins
+        server jenkins 172.27.1.100:80 check
     EOF
     ```
-    
-- 접근 성공!
+3. 접근 성공!
     
     ![Jenkins1.png](/assets/img/kubernetes/Jenkins1.png)
-
+    
     - Jenkins 관리자 비밀번호 확인
         
         ```bash
-        kubectl exec -it jenkins-0 -n jenkins -- cat /var/jenkins_home/secrets/initialAdminPassword
+        jsonpath="{.data.jenkins-admin-password}"
+        secret=$(kubectl get secret -n jenkins jenkins -o jsonpath=$jsonpath)
+        echo $(echo $secret | base64 --decode)
         ```
