@@ -8,11 +8,12 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
 > 매니지드 K8S가 아닌 자체 관리형 K8S에서의 Jenkins 구축 방법
 > 
 
-> 외부에서의 통신을 위한 MetalLB+HAproxy+Nginx Controller가 구성 되었다는 전제 하에 구축
+> UI 접근을 위한 외부 통신으로 MetalLB+HAproxy+Nginx Controller가 구성 되었다는 전제 하에 구축
 > 
+> 
+> > CSP 환경이라면 Ingress 설정에서 AWS ALB Controller와 같은 로드밸런서를 사용해 훨씬 간편하게 구축 가능
+> >
 
-> CSP 환경이라면 Ingress 설정에서 AWS ALB Controller와 같은 로드밸런서를 사용해 훨씬 간편하게 구축 가능
-> 
 - Jenkins 공식문서:
 ****https://www.jenkins.io/doc/book/installing/kubernetes/
 
