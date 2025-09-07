@@ -1,8 +1,8 @@
 ---
 title : 자체 관리형 Kubernetes에서의 Jenkins 구축
 date : 2025-08-29 09:00:00 +09:00
-categories : [Kubernetes, application]
-tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
+categories : [Kubernetes, Plugins]
+tags : [kubernetes, k8s, self managed k8s, longhorn, pv]  #소문자만 가능
 ---
 
 > 매니지드 K8S가 아닌 자체 관리형 K8S에서의 Longhorn 구축 방법
