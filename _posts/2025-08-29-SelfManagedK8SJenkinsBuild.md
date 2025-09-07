@@ -155,9 +155,10 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
       name: system:serviceaccounts:jenkins
     ```
     
-5. helm 설치
+5. jenkins 설치
     - https://github.com/jenkinsci/helm-charts/tree/main/charts/jenkins
         - helm으로 설치
+        - values.yaml 수정
         
         ```bash
         wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
