@@ -245,7 +245,7 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
         default_backend metallb_backend_jenkins
     
     backend metallb_backend_jenkins
-        server jenkins 172.27.1.100:80 check
+        server jenkins 172.27.1.100:80
     EOF
     ```
 3. 접근 성공!
