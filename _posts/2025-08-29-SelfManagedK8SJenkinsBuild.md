@@ -227,7 +227,12 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
     
 - 확인한 IP를 HAproxy 설정에 추가
     - HAproxy 서버 공인 IP로 접근 시 Jenkins의 Ingress로 통신되도록 설정
-    
+    - `http-request set-header Host`
+      - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 jenkins.local로 변경
+    - `http-request del-header X-Forwarded-Host`
+      - 이전 프록시에서 설정한 Host 헤더 제거
+    - `http-request del-header X-Forwarded-Proto`
+      - 이전 프록시에서 설정한 프로토콜 정보 제거
     ```bash
     tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
     frontend metallb_frontend_jenkins
@@ -235,6 +240,8 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
         mode http
         option forwardfor
         http-request set-header Host jenkins.local
+        http-request del-header X-Forwarded-Host
+        http-request del-header X-Forwarded-Proto
         default_backend metallb_backend_jenkins
     
     backend metallb_backend_jenkins

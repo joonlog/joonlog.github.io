@@ -1,5 +1,5 @@
 ---
-title : 자체 관리형 Kubernetes에서의 Jenkins 구축
+title : 자체 관리형 Kubernetes에서의 분산 스토리지 Longhorn 구축
 date : 2025-09-07 09:00:00 +09:00
 categories : [Kubernetes, Plugins]
 tags : [kubernetes, k8s, self managed k8s, longhorn, pv]  #소문자만 가능
@@ -95,7 +95,7 @@ https://longhorn.io/docs/1.9.1/deploy/install/install-with-helm/
     ```
     
 3. ingress 생성
-- 8081포트를 사용하는 jenkins service로 연결
+- 80포트를 사용하는 longhorn service로 연결
     
     ```bash
     cat <<EOF > longhorn-ingress.yaml
@@ -144,8 +144,13 @@ https://longhorn.io/docs/1.9.1/deploy/install/install-with-helm/
     ```
     
 - 확인한 IP를 HAproxy 설정에 추가
-    - HAproxy 서버 공인 IP로 접근 시 Jenkins의 Ingress로 통신되도록 설정
-    
+    - HAproxy 서버 공인 IP로 접근 시 Longhorn의 Ingress로 통신되도록 설정
+    - `http-request set-header Host`
+      - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 longhorn.local로 변경
+    - `http-request del-header X-Forwarded-Host`
+      - 이전 프록시에서 설정한 Host 헤더 제거
+    - `http-request del-header X-Forwarded-Proto`
+      - 이전 프록시에서 설정한 프로토콜 정보 제거
     ```bash
     tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
     frontend metallb_frontend_longhorn
@@ -153,6 +158,8 @@ https://longhorn.io/docs/1.9.1/deploy/install/install-with-helm/
         mode http
         option forwardfor
         http-request set-header Host longhorn.local
+        http-request del-header X-Forwarded-Host
+        http-request del-header X-Forwarded-Proto
         default_backend metallb_backend_longhorn
     
     backend metallb_backend_longhorn
