@@ -83,6 +83,7 @@ systemctl enable --now haproxy
 ```
 
 - haproxy 설정
+  - Jenkins를 예시로 구성
     
     ```bash
     # kubectl get ingress -n jenkins
@@ -91,17 +92,24 @@ systemctl enable --now haproxy
     ```
     
     - 파드가 MetalLB로부터 부여받은 IP가 172.27.1.100일 경우 하기와 같이 설정
-
-```bash
-tee /etc/haproxy/haproxy.cfg > /dev/null <<EOF
-frontend jenkins_frontend
-    bind *:8080
-    default_backend metallb_backend
-
-backend metallb_backend
-    server metallb 172.27.1.100:80 check
-EOF
-```
+        - 백엔드 헬스체크는 MetalLB에서 하고 있으니 HAproxy에선 설정하지 않음
+    - `http-request set-header Host`
+        - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 jenkins.local로 변경
+    - `http-request del-header X-Forwarded-Host`
+        - 이전 프록시에서 설정한 Host 헤더 제거
+    - `http-request del-header X-Forwarded-Proto`
+        - 이전 프록시에서 설정한 프로토콜 정보 제거
+    
+    ```bash
+    tee /etc/haproxy/haproxy.cfg > /dev/null <<EOF
+    frontend jenkins_frontend
+        bind *:8080
+        default_backend metallb_backend
+    
+    backend metallb_backend
+        server metallb 172.27.1.100:80
+    EOF
+    ```
 
 # 통신 구조
 

@@ -163,7 +163,7 @@ https://longhorn.io/docs/1.9.1/deploy/install/install-with-helm/
         default_backend metallb_backend_longhorn
     
     backend metallb_backend_longhorn
-        server longhorn 172.27.1.100:80 check
+        server longhorn 172.27.1.100:80
     EOF
     
     haproxy -c -f /etc/haproxy/haproxy.cfg
