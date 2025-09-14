@@ -1,7 +1,7 @@
 ---
 title : 자체 관리형 Kubernetes에서의 Jenkins 구축
 date : 2025-08-29 09:00:00 +09:00
-categories : [Kubernetes, application]
+categories : [Kubernetes, CI/CD]
 tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
 ---
 

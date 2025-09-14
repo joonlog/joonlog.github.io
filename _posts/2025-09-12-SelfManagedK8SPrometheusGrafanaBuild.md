@@ -1,7 +1,7 @@
 ---
 title : 자체 관리형 Kubernetes에서의 Prometheus와 Grafana 구축
 date : 2025-09-12 09:00:00 +09:00
-categories : [Kubernetes, Applications]
+categories : [Kubernetes, Monitoring]
 tags : [kubernetes, k8s, self managed k8s, prometheus, grafana, metric monitoring]  #소문자만 가능
 ---
 
