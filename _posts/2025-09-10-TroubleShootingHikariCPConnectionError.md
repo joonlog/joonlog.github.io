@@ -2,7 +2,7 @@
 title : HikariCP connection is closed 에러 TroubleShooting
 date : 2025-09-10 09:00:00 +09:00
 categories : [Linux, DB]
-tags : [linux, spring, hikaricp, mysql, wait_timeout, maxlifetime] #소문자만 가능
+tags : [linux, spring, hikaricp, mysql, wait_timeout, maxlifetime, troubleshooting] #소문자만 가능
 ---
 
 - MySQL은 `wait_timeout` 설정값에 따라 커넥션 중 일정 시간이상 사용하지 않은 커넥션을 **종료**
