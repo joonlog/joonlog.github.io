@@ -168,10 +168,11 @@ https://github.com/prometheus-community/helm-charts
         mode http
         option forwardfor
         http-request set-header Host grafana.local
-        http-request del-header X-Forwarded-Host
-        http-request del-header X-Forwarded-Proto
+        http-request set-header X-Forwarded-Host %[req.hdr(host)]
+        http-request set-header X-Forwarded-Proto http
+        http-request set-header X-Forwarded-Port %[dst_port]
         default_backend metallb_backend_grafana
-    
+
     backend metallb_backend_grafana
         server grafana 172.27.1.100:80
     EOF
@@ -280,10 +281,11 @@ https://github.com/prometheus-community/helm-charts
         mode http
         option forwardfor
         http-request set-header Host prometheus.local
-        http-request del-header X-Forwarded-Host
-        http-request del-header X-Forwarded-Proto
+        http-request set-header X-Forwarded-Host %[req.hdr(host)]
+        http-request set-header X-Forwarded-Proto http
+        http-request set-header X-Forwarded-Port %[dst_port]
         default_backend metallb_backend_prometheus
-    
+
     backend metallb_backend_prometheus
         server prometheus 172.27.1.100:80
     EOF
