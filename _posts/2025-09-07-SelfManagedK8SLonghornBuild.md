@@ -145,30 +145,28 @@ https://longhorn.io/docs/1.9.1/deploy/install/install-with-helm/
     
 - 확인한 IP를 HAproxy 설정에 추가
     - HAproxy 서버 공인 IP로 접근 시 Longhorn의 Ingress로 통신되도록 설정
-    - `http-request set-header Host`
-      - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 longhorn.local로 변경
-    - `http-request del-header X-Forwarded-Host`
-      - 이전 프록시에서 설정한 Host 헤더 제거
-    - `http-request del-header X-Forwarded-Proto`
-      - 이전 프록시에서 설정한 프로토콜 정보 제거
+    
     ```bash
-    tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
-    frontend metallb_frontend_longhorn
-        bind *:8081
+    vim /etc/haproxy/haproxy.cfg
+    haproxy -c -f /etc/haproxy/haproxy.cfg
+    systemctl reload haproxy
+    ```
+    
+    ```bash
+    frontend unified_frontend_8080
+        bind *:8080
         mode http
         option forwardfor
-        http-request set-header Host longhorn.local
+    
         http-request set-header X-Forwarded-Host %[req.hdr(host)]
         http-request set-header X-Forwarded-Proto http
         http-request set-header X-Forwarded-Port %[dst_port]
-        default_backend metallb_backend_longhorn
-
+    
+        # Host 기반 라우팅
+        use_backend metallb_backend_longhorn if { hdr(host) -m sub longhorn }
+        
     backend metallb_backend_longhorn
         server longhorn 172.27.1.100:80
-    EOF
-
-    haproxy -c -f /etc/haproxy/haproxy.cfg
-    systemctl restart haproxy
     ```
     
 5. 접근 성공!
