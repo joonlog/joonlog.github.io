@@ -127,7 +127,7 @@ https://github.com/prometheus-community/helm-charts
     spec:
       ingressClassName: nginx
       rules:
-      - host: "grafana.local"
+      - host: "grafana.<도메인>"
         http:
           paths:
           - path: /
@@ -148,34 +148,35 @@ https://github.com/prometheus-community/helm-charts
     
     ```bash
     # kubectl get ingress -n monitoring 
-    NAME              CLASS   HOSTS           ADDRESS        PORTS   AGE
-    grafana-ingress   nginx   grafana.local   172.27.1.100   80      9s
+    # kubectl get ingress -n monitoring 
+    NAME              CLASS   HOSTS            ADDRESS        PORTS   AGE
+    grafana-ingress   nginx   grafana.<도메인> 172.27.1.100   80      9s
     ```
     
 - 확인한 IP를 HAproxy 설정에 추가
-    - HAproxy 서버 공인 IP로 접근 시 Grafana의 Ingress로 통신되도록 설정
-    - `http-request set-header Host`
-        - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 grafana.local로 변경
-    - `http-request del-header X-Forwarded-Host`
-        - 이전 프록시에서 설정한 Host 헤더 제거
-    - `http-request del-header X-Forwarded-Proto`
-        - 이전 프록시에서 설정한 프로토콜 정보 제거
+    - HAproxy 서버 공인 IP로 접근 시 grafana의 Ingress로 통신되도록 설정
     
     ```bash
-    tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
-    frontend metallb_frontend_grafana
-        bind *:8082
+    vim /etc/haproxy/haproxy.cfg
+    haproxy -c -f /etc/haproxy/haproxy.cfg
+    systemctl reload haproxy
+    ```
+    
+    ```bash
+    frontend unified_frontend_8080
+        bind *:8080
         mode http
         option forwardfor
-        http-request set-header Host grafana.local
+    
         http-request set-header X-Forwarded-Host %[req.hdr(host)]
         http-request set-header X-Forwarded-Proto http
         http-request set-header X-Forwarded-Port %[dst_port]
-        default_backend metallb_backend_grafana
-
+    
+        # Host 기반 라우팅
+        use_backend metallb_backend_grafana if { hdr(host) -m sub grafana }
+    
     backend metallb_backend_grafana
         server grafana 172.27.1.100:80
-    EOF
     ```
     
 3. 접근 성공!
@@ -262,33 +263,33 @@ https://github.com/prometheus-community/helm-charts
     ```bash
     # kubectl get ingress -n monitoring 
     NAME                 CLASS   HOSTS              ADDRESS        PORTS   AGE
-    prometheus-ingress   nginx   prometheus.local   172.27.1.100   80      9s
+    prometheus-ingress   nginx   prometheus.<도메인> 172.27.1.100   80      9s
     ```
     
 - 확인한 IP를 HAproxy 설정에 추가
-    - HAproxy 서버 공인 IP로 접근 시 Prometheus의 Ingress로 통신되도록 설정
-    - `http-request set-header Host`
-        - 클라이언트에서 오는 모든 HTTP 요청의 Host 헤더를 prometheus.local로 변경
-    - `http-request del-header X-Forwarded-Host`
-        - 이전 프록시에서 설정한 Host 헤더 제거
-    - `http-request del-header X-Forwarded-Proto`
-        - 이전 프록시에서 설정한 프로토콜 정보 제거
+    - HAproxy 서버 공인 IP로 접근 시 prometheus의 Ingress로 통신되도록 설정
     
     ```bash
-    tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
-    frontend metallb_frontend_prometheus
-        bind *:8083
+    vim /etc/haproxy/haproxy.cfg
+    haproxy -c -f /etc/haproxy/haproxy.cfg
+    systemctl reload haproxy
+    ```
+    
+    ```bash
+    frontend unified_frontend_8080
+        bind *:8080
         mode http
         option forwardfor
-        http-request set-header Host prometheus.local
+    
         http-request set-header X-Forwarded-Host %[req.hdr(host)]
         http-request set-header X-Forwarded-Proto http
         http-request set-header X-Forwarded-Port %[dst_port]
-        default_backend metallb_backend_prometheus
-
+    
+        # Host 기반 라우팅
+        use_backend metallb_backend_prometheus if { hdr(host) -m sub prometheus }
+    
     backend metallb_backend_prometheus
         server prometheus 172.27.1.100:80
-    EOF
     ```
     
 3. 접근 성공!
