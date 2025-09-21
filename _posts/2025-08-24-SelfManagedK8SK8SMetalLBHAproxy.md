@@ -114,6 +114,7 @@ systemctl enable --now haproxy
 # 통신 구조
 
 - jenkins 파드가 하기와 같이 구성되어 있다 가정할 때 통신 구조
+    - 현재 외부에서의 접근 시 80/443 포트를 사용하지 못하고 별도의 포트를 사용해야 하는 환경이기 때문에 8080포트를 사용
 
 ```bash
 # kubectl get ingress -n jenkins
@@ -131,10 +132,13 @@ NAME                       READY   AGE
 statefulset.apps/jenkins   1/1     9d
 ```
 
-1. 서버의 공인 IP:8080으로 접속
-    1. 도메인으로 접속이 필요할 경우 ingress에서 설정
-2. 공인IP:8080 → HAproxy
-3. HAproxy frontend :8080 → backend 172.27.1.100
-4. HAproxy backend 172.27.1.100 → Jenkins Ingress
-5. Jenkins Ingress → Jenkins Service
-6. Jenkins Service → Jenkins Pod
+1. 브라우저에서 <도메인>:8080으로 접속
+2. DNS 해석되어 공인IP:8080으로 라우팅
+    - 공인IP:8080는 HAproxy 서버
+3. HAproxy frontend 설정으로 8080포트로 들어오는 요청을 HAproxy backend로 라우팅
+    - HAproxy backend는 172.27.1.100:80
+4. 172.27.1.100 IP는 MetalLB의 IP 풀에서부터 할당받은 Nginx Controller의 IP
+    - Nginx Ingress Controller는 LoadBalancer 타입 Service
+5. Nginx Ingress Controller는 HAproxy backend로부터 받은 트래픽의 Host 헤더가 Jenkins Ingress에 정의된 Host인 jenkins.local인지 확인
+6. Jenkins Ingress에 정의된 규칙에 따라 Jenkins Service로 라우팅
+7. Jenkins Service에서 Jenkins Pod로 라우팅
