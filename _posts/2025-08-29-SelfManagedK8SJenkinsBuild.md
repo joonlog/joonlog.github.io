@@ -227,6 +227,12 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
     
 - 확인한 IP를 HAproxy 설정에 추가
     - HAproxy 서버 공인 IP로 접근 시 jenkins의 Ingress로 통신되도록 설정
+    - `http-response replace-value Location ^http://jenkins\.<도메인>/(.*)$ http://jenkins.<도메인>:<포트>/\\1`
+    - 두 조건을 만족할 경우 설정 필요
+        - 외부 브라우저에서 Jenkins 접근 시 포트를 붙여서 접근해야 될 경우
+        - 애플리케이션 내부적으로 url로 응답이 나오도록 설정되어 있을 경우
+            - EX) Jenkins 파이프라인 빌드 시 파라미터를 기입해야 할 경우 Jenkins 설정된 url 응답
+    - 설정하지 않으면 접근 시 자동으로 포트가 제거된 상태로 리다이렉션되어 404 에러
     
     ```bash
     vim /etc/haproxy/haproxy.cfg
@@ -248,6 +254,7 @@ tags : [kubernetes, k8s, self managed k8s, jenkins]  #소문자만 가능
         use_backend metallb_backend_jenkins if { hdr(host) -m sub jenkins }
     
     backend metallb_backend_jenkins
+        http-response replace-value Location ^http://jenkins\.<도메인>/(.*)$ http://jenkins.<도메인>:<포트>/\\1
         server jenkins 172.27.1.100:80
     ```
 3. 접근 성공!
