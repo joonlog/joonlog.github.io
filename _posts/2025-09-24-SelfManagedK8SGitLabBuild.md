@@ -1,7 +1,7 @@
 ---
 title : 자체 관리형 Kubernetes에서의 GitLab 구축
 date : 2025-09-24 09:00:00 +09:00
-categories : [Kubernetes, SCM]
+categories : [Kubernetes, GitLab]
 tags : [kubernetes, k8s, self managed k8s, scm, gitlab, gitlab registry, minio]  #소문자만 가능
 ---
 

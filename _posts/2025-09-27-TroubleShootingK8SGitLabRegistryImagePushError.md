@@ -1,7 +1,7 @@
 ---
 title : K8S에 구축한 GitLab Registry에 Container Image 푸시 시 blob upload unknown 에러 TroubleShooting
 date : 2025-09-27 09:00:00 +09:00
-categories : [Kubernetes, SCM]
+categories : [Kubernetes, GitLab]
 tags : [Kubernetes, k8s, self managed k8s, troubleshooting, gitlab, gitlab helm chart, gitlab registry, minio, object storage] #소문자만 가능
 ---
 
