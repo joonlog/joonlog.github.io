@@ -1,7 +1,7 @@
 ---
 title : Jenkins 파이프라인을 K8S Pod로 사용하기 위한 설정
 date : 2025-09-17 09:00:00 +09:00
-categories : [Kubernetes, CI/CD]
+categories : [Kubernetes, Jenkins]
 tags : [kubernetes, jenkins, cicd, jenkins pipeline, jenkins agent] #소문자만 가능
 ---
 

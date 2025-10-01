@@ -1,7 +1,7 @@
 ---
 title : K8S에 구축한 Jenkins CI 파이프라인의 Dind 네트워크 에러 TroubleShooting
 date : 2025-09-27 09:00:00 +09:00
-categories : [Kubernetes, SCM]
+categories : [Kubernetes, Jenkins]
 tags : [Kubernetes, k8s, self managed k8s, troubleshooting, jenkins, dind] #소문자만 가능
 ---
 
