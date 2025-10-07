@@ -1,11 +1,11 @@
 ---
-title : Teleport 18 바이너리 빌드
+title : Teleport 18 소스 빌드 환경 설정
 date : 2025-10-06 09:00:00 +09:00
 categories : [Go, Teleport]
-tags : [go, teleport, teleport 18, teleport binary build]  #소문자만 가능
+tags : [go, teleport, teleport 18, teleport source build]  #소문자만 가능
 ---
 
-# 로컬 바이너리 빌드
+# 로컬 소스 빌드
 
 > Teleport 18 소스 코드를 로컬에서 빌드하기 위한 환경 세팅
 > 
@@ -101,9 +101,9 @@ make clean
 make full
 ```
 
-# 도커 바이너리 빌드
+# 도커 소스 빌드
 
-> Teleport 18 바이너리 빌드를 도커 환경에서 하기 위한 방법
+> Teleport 18 소스 빌드를 도커 환경에서 하기 위한 방법
 > 
 
 ### 1. 소스코드 Pull
