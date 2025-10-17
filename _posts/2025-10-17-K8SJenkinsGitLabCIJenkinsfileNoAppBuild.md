@@ -11,7 +11,7 @@ tags : [Kubernetes, k8s, self managed k8s, jenkins, gitlab, jenkins pipeline, ci
 > Jenkins와 GitLab이 같은 K8S에 있는 환경인 가정하에 유효
 > 
 
-> PHP처럼 별도의 애플리케이션 빌드 과정이 필요 없는 경우에 유효
+> Python, PHP처럼 애플리케이션 빌드 과정이 필요 없는 인터프리터 언어 기반인 경우에 유효
 > 
 
 ### 1. Kubernetes Pod 템플릿
