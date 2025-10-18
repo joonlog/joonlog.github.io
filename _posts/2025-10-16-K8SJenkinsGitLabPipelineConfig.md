@@ -1,5 +1,5 @@
 ---
-title : K8S에 구축된 Jenkins - GitLab 파이프라인 설정
+title : K8S에 구축된 Jenkins-GitLab 파이프라인 설정
 date : 2025-10-16 09:00:00 +09:00
 categories : [Kubernetes, Jenkins]
 tags : [Kubernetes, k8s, self managed k8s, jenkins, gitlab, jenkins pipeline] #소문자만 가능
