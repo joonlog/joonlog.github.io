@@ -1,8 +1,8 @@
 ---
 title : Cacti Conainer 구축
 date : 2025-07-30 09:00:00 +09:00
-categories : [Docker, Cacti]
-tags : [docker, cacti, cacti container]  #소문자만 가능
+categories : [Container, Cacti]
+tags : [docker, container, cacti, cacti container]  #소문자만 가능
 ---
 
 - Containerd 사용
