@@ -1,8 +1,8 @@
 ---
 title : Cacti Conainer 구조
 date : 2025-07-27 09:00:00 +09:00
-categories : [Docker, Cacti]
-tags : [docker, cacti, cacti container]  #소문자만 가능
+categories : [Container, Cacti]
+tags : [docker, container, cacti, cacti container]  #소문자만 가능
 ---
 
 > https://github.com/scline/docker-cacti

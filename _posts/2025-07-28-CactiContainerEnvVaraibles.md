@@ -1,8 +1,8 @@
 ---
 title : Cacti Conainer 환경변수
 date : 2025-07-28 09:00:00 +09:00
-categories : [Docker, Cacti]
-tags : [docker, cacti, cacti container, cacti env]  #소문자만 가능
+categories : [Container, Cacti]
+tags : [docker, container, cacti, cacti container, cacti env]  #소문자만 가능
 ---
 
 ### Cacti Master
