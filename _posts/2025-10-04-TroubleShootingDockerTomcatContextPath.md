@@ -1,8 +1,8 @@
 ---
 title : Docker Tomcat에서 Context Path 설정 무시 TroubleShooting
 date : 2025-10-04 09:00:00 +09:00
-categories : [Docker, Java]
-tags : [docker, java 1.8, tomcat 9, context path, servlet path, appbase, docbase] #소문자만 가능
+categories : [Container, Java]
+tags : [docker, container java 1.8, tomcat 9, context path, servlet path, appbase, docbase] #소문자만 가능
 ---
 
 > IDE 환경에서는 잘 작동하던 Context Path 설정이 Docker Tomcat에서는 무시되어 발생한 문제
