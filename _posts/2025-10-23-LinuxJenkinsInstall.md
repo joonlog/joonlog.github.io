@@ -2,7 +2,7 @@
 title : Linux 환경에서 Jenkins 설치
 date : 2025-10-23 09:00:00 +09:00
 categories : [Linux, Jenkins]
-tags : [linux, jenkins, rocky 8.10]  #소문자만 가능
+tags : [linux, jenkins, rocky 8.10, java21]  #소문자만 가능
 ---
 
 > 로컬 리눅스 환경에서 Jenkins 설치하는 방법
