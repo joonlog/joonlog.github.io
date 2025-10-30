@@ -23,11 +23,11 @@ tags : [jekyll, chirpy, chirpy category error, jekyll plugin, ruby, troubleshoot
     - `categories: [Certification, Kubernetes]` 형태의 포스트가 있으면 `site.categories['Certification']`에도 포함되고 `site.categories['Kubernetes']`에도 포함됨
     - `/categories/kubernetes/` 와 같은 1단계 경로로만 페이지를 생성하고 `/categories/certification/kubernetes/` 같이 2단계 이상으로는 페이지를 생성하지 않음
 2. `_layouts/category.html`의 한계
-    
+
     ```
-    {% for post in page.posts %}
+    {% raw %}{% for post in page.posts %}{% endraw %}
     ```
-    
+
     - `page.posts`는 Jekyll Archives가 이미 생성한 데이터
     - Liquid 템플릿에서는 이미 섞인 데이터를 받음
     - 페이지 생성 자체는 Ruby 플러그인이 하기 때문에 Liquid로는 근본 해결 불가
@@ -166,23 +166,23 @@ tags : [jekyll, chirpy, chirpy category error, jekyll plugin, ruby, troubleshoot
     - 서브카테고리 URL을 `/categories/sub/`에서 `/categories/primary/sub/`로 수정
     - URL 마지막 `/` 제거 (Jekyll이 `.html` 파일을 디렉토리로 인식하는 문제 방지)
 - 56줄 메인 카테고리 링크
-    
+
     ```
     # 변경 전
-    {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
-    
+    {% raw %}{% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}{% endraw %}
+
     # 변경 후
-    {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}{% endcapture %}
+    {% raw %}{% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}{% endcapture %}{% endraw %}
     ```
     
 - 121줄 서브 카테고리 링크
-    
+
     ```
     # 변경 전
-    {% capture _sub_ctg_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
-    
+    {% raw %}{% capture _sub_ctg_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}{% endraw %}
+
     # 변경 후
-    {% capture _sub_ctg_url %}/categories/{{ category_name | slugify | url_encode }}/{{ sub_category | slugify | url_encode }}{% endcapture %}
+    {% raw %}{% capture _sub_ctg_url %}/categories/{{ category_name | slugify | url_encode }}/{{ sub_category | slugify | url_encode }}{% endcapture %}{% endraw %}
     ```
     
 
