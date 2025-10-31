@@ -1,8 +1,8 @@
 ---
 title : Ansible Variables / Secrets / Facts
 date : 2025-04-22 09:00:00 +09:00
-categories : [Linux, Ansible]
-tags : [linux, ansible] #소문자만 가능
+categories : [Ansible, Basic]
+tags : [ansible, variables, facts, secrets] #소문자만 가능
 ---
 
 ## 1. Variable

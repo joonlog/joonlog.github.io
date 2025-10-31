@@ -1,8 +1,8 @@
 ---
 title : Ansible 조건문 / 반복문 / 핸들러 / 오류 처리
 date : 2025-05-18 09:00:00 +09:00
-categories : [Linux, Ansible]
-tags : [linux, ansible, loop, if, handler, block rescue] #소문자만 가능
+categories : [Ansible, Basic]
+tags : [ansible, loop, if, handler, block rescue] #소문자만 가능
 ---
 
 ## 반복문과 조건문
