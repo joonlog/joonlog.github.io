@@ -179,13 +179,7 @@ cp /etc/logrotate.conf /etc/logrotate.conf.bak
     53 23 * * * root /usr/lib64/sa/sa2 -A      # 매일 23:53에 sa2 실행 (일간 요약)
     ```
     
-- sysstat 서비스 활성화
-    - /etc/default/sysstat
-        
-        ```bash
-        ENABLED="true"
-        ```
-        
+- sysstat 서비스 활성화    
     
     ```bash
     systemctl enable --now sysstat
