@@ -1,7 +1,7 @@
 ---
-title : GitHub 블로그 구축
+title : GitHub 블로그 구축 - Jekyll Chirpy
 date : 2024-12-25 09:00:00 +09:00
-categories : [SCM, GitHub Blog]
+categories : [GitHub Blog, Jekyll]
 tags : [git, github, github blog, jekyll, chirpy] #소문자만 가능
 ---
 
