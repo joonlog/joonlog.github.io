@@ -1,8 +1,8 @@
 ---
 title : GitHub Blog(Jekyll Chirpy) SEO 설정
 date : 2025-04-25 09:00:00 +09:00
-categories : [Blog, GitHub Blog]
-tags : [git, github, github blog, jekyll, seo, sitemap] #소문자만 가능
+categories : [GitHub Blog, Jekyll]
+tags : [git, github, github blog, jekyll, jekyll chirpy, seo, sitemap] #소문자만 가능
 ---
 
 ### SEO

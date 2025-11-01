@@ -1,7 +1,7 @@
 ---
 title : Jekyll Chirpy 테마 카테고리 에러 TroubleShooting(1)
 date : 2025-08-30 09:00:00 +09:00
-categories : [Blog, GitHub Blog]
+categories : [GitHub Blog, Jekyll]
 tags : [jekyll, chirpy, chirpy category error, troubleshooting] #소문자만 가능
 ---
 
