@@ -8,28 +8,72 @@
         </div>
     </header>
 
-    {{/* 디버깅: 전체 포스트 수 확인 */}}
-    <p>총 포스트 수: {{ len .Site.RegularPages }}</p>
-    <p>카테고리 taxonomy 수: {{ len .Site.Taxonomies.categories }}</p>
+    {{/* 메인/서브 카테고리 구조 생성 */}}
+    {{ $mainCategories := dict }}
 
-    {{/* 간단한 테스트: 모든 포스트의 카테고리 출력 */}}
-    <section>
-        <h2>디버깅: 포스트별 카테고리</h2>
-        {{ range first 10 .Site.RegularPages }}
-            <div>
-                <strong>{{ .Title }}</strong>:
-                {{ range .Params.categories }}
-                    {{ . }} |
+    {{/* 모든 포스트를 순회하며 메인/서브 추출 */}}
+    {{ range .Site.RegularPages }}
+        {{ if .Params.categories }}
+            {{ if ge (len .Params.categories) 2 }}
+                {{ $main := index .Params.categories 0 }}
+                {{ $sub := index .Params.categories 1 }}
+
+                {{/* 메인 카테고리 초기화 */}}
+                {{ if not (index $mainCategories $main) }}
+                    {{ $mainCategories = merge $mainCategories (dict $main (dict "subs" slice)) }}
                 {{ end }}
-            </div>
-        {{ end }}
-    </section>
 
-    {{/* 간단한 테스트: 모든 카테고리 출력 */}}
-    <section>
-        <h2>디버깅: 모든 카테고리</h2>
-        {{ range .Site.Taxonomies.categories }}
-            <div>{{ .Page.Title }} ({{ .Count }})</div>
+                {{/* 서브 카테고리 추가 (중복 체크) */}}
+                {{ $mainData := index $mainCategories $main }}
+                {{ $subs := $mainData.subs }}
+                {{ $found := false }}
+                {{ range $subs }}
+                    {{ if eq . $sub }}
+                        {{ $found = true }}
+                    {{ end }}
+                {{ end }}
+                {{ if not $found }}
+                    {{ $subs = $subs | append $sub }}
+                    {{ $mainCategories = merge $mainCategories (dict $main (dict "subs" $subs)) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    <section class="hierarchical-categories-page">
+        {{/* 메인 카테고리 정렬하여 표시 */}}
+        {{ range $mainName, $data := $mainCategories }}
+            <details class="main-category-block" open>
+                <summary class="main-category-title">
+                    <span class="category-icon">📁</span>
+                    <a href="/categories/{{ $mainName | urlize }}/">{{ $mainName }}</a>
+                </summary>
+
+                {{ if $data.subs }}
+                    <div class="sub-categories-list">
+                        {{ range sort $data.subs }}
+                            {{ $subName := . }}
+                            {{/* 해당 서브 카테고리의 포스트 수 계산 */}}
+                            {{ $count := 0 }}
+                            {{ range $.Site.RegularPages }}
+                                {{ if .Params.categories }}
+                                    {{ if ge (len .Params.categories) 2 }}
+                                        {{ if and (eq (index .Params.categories 0) $mainName) (eq (index .Params.categories 1) $subName) }}
+                                            {{ $count = add $count 1 }}
+                                        {{ end }}
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+
+                            <a href="/categories/{{ $subName | urlize }}/" class="sub-category-item">
+                                <span class="sub-icon">└─</span>
+                                <span class="sub-name">{{ $subName }}</span>
+                                <span class="sub-count">{{ $count }}</span>
+                            </a>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            </details>
         {{ end }}
     </section>
 
@@ -39,3 +83,92 @@
 {{ define "right-sidebar" }}
     {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
 {{ end }}
+
+<style>
+.hierarchical-categories-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.main-category-block {
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-l1);
+    border: 1px solid var(--card-separator-color);
+}
+
+.main-category-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    list-style: none;
+}
+
+.main-category-title::-webkit-details-marker {
+    display: none;
+}
+
+.category-icon {
+    font-size: 1.2rem;
+}
+
+.main-category-title a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.main-category-title a:hover {
+    text-decoration: underline;
+}
+
+.sub-categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+
+.sub-category-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--body-background);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.sub-category-item:hover {
+    border-color: var(--accent-color);
+    transform: translateX(4px);
+}
+
+.sub-icon {
+    color: var(--card-text-color-tertiary);
+    font-family: monospace;
+}
+
+.sub-name {
+    flex: 1;
+    color: var(--card-text-color-main);
+    font-weight: 500;
+}
+
+.sub-count {
+    color: var(--card-text-color-secondary);
+    background: var(--card-background);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+</style>
