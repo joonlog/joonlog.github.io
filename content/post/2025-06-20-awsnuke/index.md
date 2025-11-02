@@ -1,0 +1,151 @@
+---
+title: "AWS 자원에 핵폭탄 날리기 (AWS Nuke)"
+date: 2025-06-20T09:00:00+09:00
+categories: ["AWS", "AWS CLI"]
+tags: ["aws", "aws-nuke"]
+---
+
+
+- 계정 내 전체 자원 삭제 시 AWS 콘솔에서 일일이 삭제하지 않고도 명령어 만으로 전체 삭제 가능
+
+## 1. AWS CLI 설치
+
+### 설치 (Rocky Linux 8.1 기준)
+
+```bash
+dnf install -y unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
+
+aws --version
+```
+
+---
+
+## 2. 인증 설정: 루트 계정 키 생성 및 CLI 등록
+
+### 루트 계정으로 AWS 콘솔 로그인 후 키 생성
+
+1. 보안 자격 증명 페이지 접속
+2. Access Key 생성
+3. 키값 저장 (Secret Key는 재확인 불가)
+
+### 액세스 키 등록
+
+```bash
+aws configure --profile default
+# Access Key ID: [입력]
+# Secret Access Key: [입력]
+# Region: ap-northeast-2
+# Output: json
+```
+
+---
+
+## 3. 계정 ID 및 인증 확인
+
+```bash
+aws sts get-caller-identity --profile default
+# 결과의 "Account" → 계정 ID 확인 (예: 934697152199)
+```
+
+---
+
+## 4. Go 설치 및 `aws-nuke` 빌드
+
+```bash
+dnf remove -y golang
+```
+
+### 최신 Go 수동 설치 (1.24.3)
+
+```bash
+cd /usr/local
+curl -LO https://go.dev/dl/go1.24.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.24.3.linux-amd64.tar.gz
+```
+
+### 환경변수 설정
+
+```bash
+echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+go version  # → go1.24.3
+```
+
+### aws-nuke clone + build
+
+```bash
+git clone https://github.com/rebuy-de/aws-nuke.git
+cd aws-nuke
+make build
+```
+
+### 실행 파일 위치
+
+```bash
+./dist/aws-nuke  # 여기에 실행 파일 생성됨
+cp ./dist/aws-nuke /usr/local/bin/
+```
+
+---
+
+## 5. 계정 alias 설정 (필수)
+
+### CLI로 설정 가능
+
+- alias는 중복되면 생성 실패하니 유니크하게 생성
+
+```bash
+aws iam create-account-alias --account-alias delete-<계정ID>
+```
+
+---
+
+## 6. `nuke-config.yaml` 작성
+
+- 해당 설정은 전체 삭제 yaml
+    - 삭제하고 싶은 자원 지정해서 사용 가능
+
+```yaml
+regions:
+  - global
+  - us-east-1
+  - us-west-1
+  - ap-northeast-2
+  - ap-southeast-2
+  - ap-northeast-1
+  - eu-west-1
+  - eu-central-1
+
+account-blocklist:
+  - "000000000000"  # 더미 ID, 필수
+
+accounts:
+  "계정ID 여기 입력":
+    filters: {}
+```
+
+---
+
+## 7. 삭제 실행
+
+```bash
+aws-nuke -c nuke-config.yaml --profile default --no-dry-run
+```
+
+> ❗ 중간에:
+> 
+> 
+> `Enter account alias to continue:` → `delete-934697152199` 입력
+> 
+
+> 일부 자원은 한 번에 안 지워질 수 있음 → 반복 실행하면 정리 완료
+> 
+
+---
+
+## ❗❗❗ 주의 ❗❗❗
+
+- EC2, ELB, RDS 등 리소스 삭제 방지 기능이 걸려 있는 경우, aws-nuke는 어떠한 경우에도 해당 자원을 삭제할 수 없음

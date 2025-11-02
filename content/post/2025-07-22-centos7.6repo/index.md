@@ -1,0 +1,41 @@
+---
+title: "CentOS 7.6 Yum Repository"
+date: 2025-07-22T09:00:00+09:00
+categories: ["Linux", "EOS Repository"]
+tags: ["linux", "centos 7.6", "yum repository", "eos"]
+---
+
+
+- /etc/yum.repos.d/CentOS-Base.rep
+
+```bash
+[base]
+name=CentOS-$releasever - Base
+baseurl=http://centos.mirror.cdnetworks.com/7/os/x86_64
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#released updates
+[updates]
+name=CentOS-$releasever - Updates
+baseurl=http://centos.mirror.cdnetworks.com/7/updates/x86_64
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://centos.mirror.cdnetworks.com/7/extras/x86_64
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+baseurl=http://centos.mirror.cdnetworks.com/7/centosplus/x86_64
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+```
