@@ -5,6 +5,7 @@ categories: ["Linux", "Middleware"]
 tags: ["rocky8", "apache", "tomcat", "web", "was"]
 ---
 
+
 ### 목표
 
 -   Apache-Tomcat을 사용한 **WEB**-**WAS** 연동
@@ -120,7 +121,7 @@ sudo firewall-cmd --reload
 
 ```
 
-![Rocky8ApacheTomcat1.png](/img/linux/Rocky8ApacheTomcat1.png)
+![Rocky8ApacheTomcat1.png](Rocky8ApacheTomcat1.png)
 
 
 -   proxy-vhosts.conf 설정 파일 추가
@@ -149,7 +150,7 @@ sudo vi /etc/httpd/conf/extra/proxy-vhosts.conf
 <VirtualHost *:8080>
     # Apache 서버의 IP 또는 도메인 지정
     ServerName <WEB IP>
-
+    
     # Apache가 수신한 요청을 WAS 8080 포트로 프록시 처리
     ProxyRequests Off
     ProxyPass / http://<WAS IP>:8080/
@@ -254,7 +255,7 @@ sudo firewall-cmd --reload
 
 http://<공인 ip>:8080
 
-![Rocky8ApacheTomcat2.png](/img/linux/Rocky8ApacheTomcat2.png)
+![Rocky8ApacheTomcat2.png](Rocky8ApacheTomcat2.png)
 
 
 ## 2. AJP 방식
@@ -283,7 +284,7 @@ cd tomcat-connectors-1.2.50-src/native
 sudo dnf install make -y
 sudo dnf install redhat-rpm-config -y
 
-make
+make 
 sudo make install
 
 ```
@@ -335,7 +336,7 @@ sudo vi /etc/httpd/conf/extra/ajp-vhosts.conf
 <VirtualHost *:8090>
     # AJP 요청을 수신할 Apache 서버 IP 지정
     ServerName <WEB IP>
-
+    
     # 모든 요청(/*)을 worker1으로 라우팅
     JkMount /* worker1
 </VirtualHost>
@@ -376,7 +377,7 @@ sudo vi /etc/httpd/conf/extra/workers.properties
 # 워커 목록
 worker.list=worker1
 
-# AJP 포트
+# AJP 포트 
 worker.worker1.port=8009
 # Tomcat 서버 IP
 worker.worker1.host=<WAS IP>
@@ -504,7 +505,7 @@ sudo firewall-cmd --reload
 
 http://<공인ip>:8090
 
-![Rocky8ApacheTomcat2.png](/img/linux/Rocky8ApacheTomcat2.png)
+![Rocky8ApacheTomcat2.png](Rocky8ApacheTomcat2.png)
 
 ----------
 
@@ -545,7 +546,7 @@ tail -f /usr/local/apache-tomcat-9.0.97/logs/localhost.log
 -   httpd.conf에서 LoadModule이 Include보다 앞에 위치해야 함
 
 > JkMount는 VirtualHost 내부에 위치해야 한다.
->
+> 
 > [*](https://ineastdev.tistory.com/entry/apache-tomcat-%EC%9D%84-modjk-%EB%A1%9C-%EC%97%B0%EB%8F%99%EC%8B%9C-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD)[https://ineastdev.tistory.com/entry/apache-tomcat-을-modjk-로-연동시-주의사항*](https://ineastdev.tistory.com/entry/apache-tomcat-%EC%9D%84-modjk-%EB%A1%9C-%EC%97%B0%EB%8F%99%EC%8B%9C-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD*)
 
 -   VirtualHost를 설정한 적이 없다면 httpd.conf에 Include된 파일 중에 VirtualHost가 있는지 확인 필수
