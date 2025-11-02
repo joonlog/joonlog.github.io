@@ -12,79 +12,59 @@
         </div>
     </header>
 
-    {{/* 계층 구조 데이터 생성 */}}
-    {{- $hierarchical := dict -}}
+    {{/* 계층 구조 데이터 생성 - scratch 사용 */}}
+    {{ $.Scratch.Set "hierarchical" slice }}
 
-    {{/* 모든 포스트를 순회하며 메인/서브 카테고리 추출 */}}
-    {{- range .Site.RegularPages -}}
-        {{- if .Params.categories -}}
-            {{- if ge (len .Params.categories) 2 -}}
-                {{- $main := index .Params.categories 0 -}}
-                {{- $sub := index .Params.categories 1 -}}
+    {{/* 메인 카테고리별로 그룹핑 */}}
+    {{ range $mainCat := .Site.Taxonomies.categories }}
+        {{ $mainName := $mainCat.Page.Title }}
+        {{ $mainPosts := slice }}
+        {{ $subCategories := dict }}
 
-                {{/* 메인 카테고리 초기화 */}}
-                {{- if not (index $hierarchical $main) -}}
-                    {{- $hierarchical = merge $hierarchical (dict $main (dict "count" 0 "subs" dict "mainUrl" (printf "/categories/%s/" ($main | urlize)))) -}}
-                {{- end -}}
+        {{/* 해당 메인 카테고리의 포스트들 확인 */}}
+        {{ range $mainCat.Pages }}
+            {{ if .Params.categories }}
+                {{ if ge (len .Params.categories) 2 }}
+                    {{ $mc := index .Params.categories 0 }}
+                    {{ $sc := index .Params.categories 1 }}
 
-                {{/* 메인 카테고리 포스트 수 증가 */}}
-                {{- $mainData := index $hierarchical $main -}}
-                {{- $newCount := add $mainData.count 1 -}}
-                {{- $mainData = merge $mainData (dict "count" $newCount) -}}
+                    {{ if eq $mc $mainName }}
+                        {{ $mainPosts = $mainPosts | append . }}
 
-                {{/* 서브 카테고리 초기화 및 카운트 */}}
-                {{- $subs := $mainData.subs -}}
-                {{- $subCount := default 0 (index $subs $sub) -}}
-                {{- $subs = merge $subs (dict $sub (add $subCount 1)) -}}
-                {{- $mainData = merge $mainData (dict "subs" $subs) -}}
+                        {{/* 서브 카테고리 카운트 */}}
+                        {{ $currentCount := default 0 (index $subCategories $sc) }}
+                        {{ $subCategories = merge $subCategories (dict $sc (add $currentCount 1)) }}
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
 
-                {{- $hierarchical = merge $hierarchical (dict $main $mainData) -}}
-            {{- end -}}
-        {{- end -}}
-    {{- end -}}
+        {{ if gt (len $mainPosts) 0 }}
+            {{ $.Scratch.Add "hierarchical" (dict "name" $mainName "count" (len $mainPosts) "subs" $subCategories "url" $mainCat.Page.RelPermalink) }}
+        {{ end }}
+    {{ end }}
 
     <section class="hierarchical-categories-page">
-        {{/* 메인 카테고리를 이름순으로 정렬하여 표시 */}}
-        {{- $sortedKeys := slice -}}
-        {{- range $key, $value := $hierarchical -}}
-            {{- $sortedKeys = $sortedKeys | append $key -}}
-        {{- end -}}
-        {{- $sortedKeys = sort $sortedKeys -}}
-
-        {{- range $sortedKeys -}}
-            {{- $mainCat := . -}}
-            {{- $data := index $hierarchical $mainCat -}}
-
+        {{ $hierarchical := $.Scratch.Get "hierarchical" }}
+        {{ range $hierarchical }}
             <div class="main-category-block">
                 <h2 class="main-category-title">
-                    <a href="{{ $data.mainUrl }}">
-                        {{ $mainCat }}
-                    </a>
-                    <span class="count">({{ $data.count }})</span>
+                    <a href="{{ .url }}">{{ .name }}</a>
+                    <span class="count">({{ .count }})</span>
                 </h2>
 
-                {{/* 서브 카테고리 표시 */}}
-                {{- if $data.subs -}}
+                {{ if .subs }}
                     <div class="sub-categories-grid">
-                        {{/* 서브 카테고리도 정렬 */}}
-                        {{- $sortedSubs := slice -}}
-                        {{- range $subKey, $subValue := $data.subs -}}
-                            {{- $sortedSubs = $sortedSubs | append $subKey -}}
-                        {{- end -}}
-                        {{- $sortedSubs = sort $sortedSubs -}}
-
-                        {{- range $sortedSubs -}}
-                            {{- $subCat := . -}}
-                            {{- $subCount := index $data.subs $subCat -}}
-                            <a href="/categories/{{ $subCat | urlize }}/" class="sub-category-card">
-                                <span class="sub-name">{{ $subCat }}</span>
+                        {{ range $subName, $subCount := .subs }}
+                            <a href="/categories/{{ $subName | urlize }}/" class="sub-category-card">
+                                <span class="sub-name">{{ $subName }}</span>
                                 <span class="sub-count">{{ $subCount }}</span>
                             </a>
-                        {{- end -}}
+                        {{ end }}
                     </div>
-                {{- end -}}
+                {{ end }}
             </div>
-        {{- end -}}
+        {{ end }}
     </section>
 
     {{ partialCached "footer/footer" . }}
