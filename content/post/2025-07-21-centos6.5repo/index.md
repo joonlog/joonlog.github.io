@@ -1,0 +1,49 @@
+---
+title: "CentOS 6.5 Yum Repository"
+date: 2025-07-21T09:00:00+09:00
+categories: ["Linux", "EOS Repository"]
+tags: ["linux", "centos 6.5", "yum repository", "eos"]
+---
+
+
+- /etc/yum.repos.d/CentOS-Base.repo
+
+```bash
+
+[base]
+name=CentOS-\$releasever - Base
+baseurl=http://centos.mirror.cdnetworks.com/6/os/x86_64/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+ 
+#released updates
+[updates]
+name=CentOS-\$releasever - Updates
+baseurl=http://centos.mirror.cdnetworks.com/6/updates/x86_64/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+ 
+#additional packages that may be useful
+[extras]
+name=CentOS-\$releasever - Extras
+baseurl=http://centos.mirror.cdnetworks.com/6/extras/x86_64/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+ 
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-\$releasever - Plus
+baseurl=http://centos.mirror.cdnetworks.com/6/centosplus/x86_64/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+ 
+#contrib - packages by Centos Users
+[contrib]
+name=CentOS-\$releasever - Contrib
+baseurl=http://centos.mirror.cdnetworks.com/6/contrib/x86_64/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+EOF
+```
