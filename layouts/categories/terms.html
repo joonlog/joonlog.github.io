@@ -1,69 +1,35 @@
 {{ define "main" }}
     <header>
-        <h3 class="section-title">{{ T "list.section" }}</h3>
-
+        <h3 class="section-title">Categories</h3>
         <div class="section-card">
             <div class="section-details">
                 <h1 class="section-term">{{ .Title }}</h1>
-                {{ with .Params.description }}
-                    <h2 class="section-description">{{ . }}</h2>
-                {{ end }}
             </div>
         </div>
     </header>
 
-    {{/* 계층 구조 데이터 생성 - scratch 사용 */}}
-    {{ $.Scratch.Set "hierarchical" slice }}
+    {{/* 디버깅: 전체 포스트 수 확인 */}}
+    <p>총 포스트 수: {{ len .Site.RegularPages }}</p>
+    <p>카테고리 taxonomy 수: {{ len .Site.Taxonomies.categories }}</p>
 
-    {{/* 메인 카테고리별로 그룹핑 */}}
-    {{ range $mainCat := .Site.Taxonomies.categories }}
-        {{ $mainName := $mainCat.Page.Title }}
-        {{ $mainPosts := slice }}
-        {{ $subCategories := dict }}
-
-        {{/* 해당 메인 카테고리의 포스트들 확인 */}}
-        {{ range $mainCat.Pages }}
-            {{ if .Params.categories }}
-                {{ if ge (len .Params.categories) 2 }}
-                    {{ $mc := index .Params.categories 0 }}
-                    {{ $sc := index .Params.categories 1 }}
-
-                    {{ if eq $mc $mainName }}
-                        {{ $mainPosts = $mainPosts | append . }}
-
-                        {{/* 서브 카테고리 카운트 */}}
-                        {{ $currentCount := default 0 (index $subCategories $sc) }}
-                        {{ $subCategories = merge $subCategories (dict $sc (add $currentCount 1)) }}
-                    {{ end }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
-
-        {{ if gt (len $mainPosts) 0 }}
-            {{ $.Scratch.Add "hierarchical" (dict "name" $mainName "count" (len $mainPosts) "subs" $subCategories "url" $mainCat.Page.RelPermalink) }}
-        {{ end }}
-    {{ end }}
-
-    <section class="hierarchical-categories-page">
-        {{ $hierarchical := $.Scratch.Get "hierarchical" }}
-        {{ range $hierarchical }}
-            <div class="main-category-block">
-                <h2 class="main-category-title">
-                    <a href="{{ .url }}">{{ .name }}</a>
-                    <span class="count">({{ .count }})</span>
-                </h2>
-
-                {{ if .subs }}
-                    <div class="sub-categories-grid">
-                        {{ range $subName, $subCount := .subs }}
-                            <a href="/categories/{{ $subName | urlize }}/" class="sub-category-card">
-                                <span class="sub-name">{{ $subName }}</span>
-                                <span class="sub-count">{{ $subCount }}</span>
-                            </a>
-                        {{ end }}
-                    </div>
+    {{/* 간단한 테스트: 모든 포스트의 카테고리 출력 */}}
+    <section>
+        <h2>디버깅: 포스트별 카테고리</h2>
+        {{ range first 10 .Site.RegularPages }}
+            <div>
+                <strong>{{ .Title }}</strong>:
+                {{ range .Params.categories }}
+                    {{ . }} |
                 {{ end }}
             </div>
+        {{ end }}
+    </section>
+
+    {{/* 간단한 테스트: 모든 카테고리 출력 */}}
+    <section>
+        <h2>디버깅: 모든 카테고리</h2>
+        {{ range .Site.Taxonomies.categories }}
+            <div>{{ .Page.Title }} ({{ .Count }})</div>
         {{ end }}
     </section>
 
@@ -73,78 +39,3 @@
 {{ define "right-sidebar" }}
     {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
 {{ end }}
-
-<style>
-.hierarchical-categories-page {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-.main-category-block {
-    background: var(--card-background);
-    border-radius: var(--card-border-radius);
-    padding: 2rem;
-    box-shadow: var(--shadow-l1);
-}
-
-.main-category-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--card-separator-color);
-    padding-bottom: 0.5rem;
-}
-
-.main-category-title a {
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-.main-category-title a:hover {
-    text-decoration: underline;
-}
-
-.main-category-title .count {
-    color: var(--card-text-color-secondary);
-    font-size: 1rem;
-    font-weight: normal;
-    margin-left: 0.5rem;
-}
-
-.sub-categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.sub-category-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    background: var(--body-background);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: 1px solid var(--card-separator-color);
-}
-
-.sub-category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-l2);
-    border-color: var(--accent-color);
-}
-
-.sub-name {
-    color: var(--card-text-color-main);
-    font-weight: 500;
-}
-
-.sub-count {
-    color: var(--card-text-color-secondary);
-    font-size: 0.9em;
-    background: var(--card-background);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-}
-</style>
