@@ -1,0 +1,171 @@
+{{ define "main" }}
+    <header>
+        <h3 class="section-title">{{ T "list.section" }}</h3>
+
+        <div class="section-card">
+            <div class="section-details">
+                <h1 class="section-term">{{ .Title }}</h1>
+                {{ with .Params.description }}
+                    <h2 class="section-description">{{ . }}</h2>
+                {{ end }}
+            </div>
+        </div>
+    </header>
+
+    {{/* 계층 구조 데이터 생성 */}}
+    {{- $hierarchical := dict -}}
+
+    {{/* 모든 포스트를 순회하며 메인/서브 카테고리 추출 */}}
+    {{- range .Site.RegularPages -}}
+        {{- if .Params.categories -}}
+            {{- if ge (len .Params.categories) 2 -}}
+                {{- $main := index .Params.categories 0 -}}
+                {{- $sub := index .Params.categories 1 -}}
+
+                {{/* 메인 카테고리 초기화 */}}
+                {{- if not (index $hierarchical $main) -}}
+                    {{- $hierarchical = merge $hierarchical (dict $main (dict "count" 0 "subs" dict "mainUrl" (printf "/categories/%s/" ($main | urlize)))) -}}
+                {{- end -}}
+
+                {{/* 메인 카테고리 포스트 수 증가 */}}
+                {{- $mainData := index $hierarchical $main -}}
+                {{- $newCount := add $mainData.count 1 -}}
+                {{- $mainData = merge $mainData (dict "count" $newCount) -}}
+
+                {{/* 서브 카테고리 초기화 및 카운트 */}}
+                {{- $subs := $mainData.subs -}}
+                {{- $subCount := default 0 (index $subs $sub) -}}
+                {{- $subs = merge $subs (dict $sub (add $subCount 1)) -}}
+                {{- $mainData = merge $mainData (dict "subs" $subs) -}}
+
+                {{- $hierarchical = merge $hierarchical (dict $main $mainData) -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    <section class="hierarchical-categories-page">
+        {{/* 메인 카테고리를 이름순으로 정렬하여 표시 */}}
+        {{- $sortedKeys := slice -}}
+        {{- range $key, $value := $hierarchical -}}
+            {{- $sortedKeys = $sortedKeys | append $key -}}
+        {{- end -}}
+        {{- $sortedKeys = sort $sortedKeys -}}
+
+        {{- range $sortedKeys -}}
+            {{- $mainCat := . -}}
+            {{- $data := index $hierarchical $mainCat -}}
+
+            <div class="main-category-block">
+                <h2 class="main-category-title">
+                    <a href="{{ $data.mainUrl }}">
+                        {{ $mainCat }}
+                    </a>
+                    <span class="count">({{ $data.count }})</span>
+                </h2>
+
+                {{/* 서브 카테고리 표시 */}}
+                {{- if $data.subs -}}
+                    <div class="sub-categories-grid">
+                        {{/* 서브 카테고리도 정렬 */}}
+                        {{- $sortedSubs := slice -}}
+                        {{- range $subKey, $subValue := $data.subs -}}
+                            {{- $sortedSubs = $sortedSubs | append $subKey -}}
+                        {{- end -}}
+                        {{- $sortedSubs = sort $sortedSubs -}}
+
+                        {{- range $sortedSubs -}}
+                            {{- $subCat := . -}}
+                            {{- $subCount := index $data.subs $subCat -}}
+                            <a href="/categories/{{ $subCat | urlize }}/" class="sub-category-card">
+                                <span class="sub-name">{{ $subCat }}</span>
+                                <span class="sub-count">{{ $subCount }}</span>
+                            </a>
+                        {{- end -}}
+                    </div>
+                {{- end -}}
+            </div>
+        {{- end -}}
+    </section>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
+
+<style>
+.hierarchical-categories-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.main-category-block {
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-l1);
+}
+
+.main-category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--card-separator-color);
+    padding-bottom: 0.5rem;
+}
+
+.main-category-title a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.main-category-title a:hover {
+    text-decoration: underline;
+}
+
+.main-category-title .count {
+    color: var(--card-text-color-secondary);
+    font-size: 1rem;
+    font-weight: normal;
+    margin-left: 0.5rem;
+}
+
+.sub-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.sub-category-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--body-background);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid var(--card-separator-color);
+}
+
+.sub-category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l2);
+    border-color: var(--accent-color);
+}
+
+.sub-name {
+    color: var(--card-text-color-main);
+    font-weight: 500;
+}
+
+.sub-count {
+    color: var(--card-text-color-secondary);
+    font-size: 0.9em;
+    background: var(--card-background);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+</style>
+{{ end }}
