@@ -7,3 +7,4 @@ resources
 hugo-migration-log.md
 claude-*-cwd
 node-compile-cache/
+systemd-private-*
