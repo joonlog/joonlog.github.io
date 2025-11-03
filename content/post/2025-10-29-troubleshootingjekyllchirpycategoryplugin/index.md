@@ -8,7 +8,7 @@ tags: ["jekyll", "chirpy", "chirpy category error", "jekyll plugin", "ruby", "tr
 
 ### 문제 재발견
 
-- 이전에 [Jekyll Chirpy 테마 카테고리 중복/누락 TroubleShooting](https://joonlog.github.io/posts/troubleshooting-jekyll-chirpy-category/) 글에서 `_layouts/categories.html` Liquid 템플릿을 수정해서 카테고리 문제를 해결했다고 생각지만, 계속해서 버그가 확인됨
+- 이전에 [Jekyll Chirpy 테마 카테고리 중복/누락 TroubleShooting](https://joonlog.github.io/p/jekyll-chirpy-%ED%85%8C%EB%A7%88-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EC%97%90%EB%9F%AC-troubleshooting1/) 글에서 `_layouts/categories.html` Liquid 템플릿을 수정해서 카테고리 문제를 해결했다고 생각지만, 계속해서 버그가 확인됨
     - 카테고리 목록 페이지(`/categories/`)는 제대로 표시됨
     - 하지만 개별 카테고리 페이지(`/categories/kubernetes/`)에 들어가면 메인 카테고리와 서브 카테고리가 전부 섞여서 표시됨
     - 예시:
