@@ -16,19 +16,39 @@
     {{/* 모든 페이지를 순회하며 메인-서브 구조 파싱 */}}
     {{ range .Site.RegularPages }}
         {{ $cats := .Params.categories }}
-        {{ if and $cats (ge (len $cats) 2) }}
-            {{ $main := index $cats 0 }}
-            {{ $sub := index $cats 1 }}
+        {{ if $cats }}
+            {{ $firstCat := index $cats 0 }}
+            {{ $parts := split $firstCat "/" }}
 
-            {{/* 메인 카테고리가 없으면 초기화 */}}
-            {{ if not (index $hierarchy $main) }}
-                {{ $hierarchy = merge $hierarchy (dict $main (slice)) }}
+            {{ if ge (len $parts) 2 }}
+                {{/* 새 형식: ["메인/서브"] */}}
+                {{ $main := index $parts 0 }}
+                {{ $sub := index $parts 1 }}
+
+                {{/* 메인 카테고리가 없으면 초기화 */}}
+                {{ if not (index $hierarchy $main) }}
+                    {{ $hierarchy = merge $hierarchy (dict $main (slice)) }}
+                {{ end }}
+
+                {{/* 서브 카테고리 추가 */}}
+                {{ $subs := index $hierarchy $main }}
+                {{ $subs = $subs | append $sub }}
+                {{ $hierarchy = merge $hierarchy (dict $main $subs) }}
+            {{ else if ge (len $cats) 2 }}
+                {{/* 구 형식: ["메인", "서브"] - 하위호환 */}}
+                {{ $main := index $cats 0 }}
+                {{ $sub := index $cats 1 }}
+
+                {{/* 메인 카테고리가 없으면 초기화 */}}
+                {{ if not (index $hierarchy $main) }}
+                    {{ $hierarchy = merge $hierarchy (dict $main (slice)) }}
+                {{ end }}
+
+                {{/* 서브 카테고리 추가 */}}
+                {{ $subs := index $hierarchy $main }}
+                {{ $subs = $subs | append $sub }}
+                {{ $hierarchy = merge $hierarchy (dict $main $subs) }}
             {{ end }}
-
-            {{/* 서브 카테고리 추가 (중복 방지는 나중에) */}}
-            {{ $subs := index $hierarchy $main }}
-            {{ $subs = $subs | append $sub }}
-            {{ $hierarchy = merge $hierarchy (dict $main $subs) }}
         {{ end }}
     {{ end }}
 
@@ -47,20 +67,40 @@
                         {{ $count := 0 }}
                         {{ range $.Site.RegularPages }}
                             {{ $cats := .Params.categories }}
-                            {{ if and $cats (ge (len $cats) 2) }}
-                                {{ if and (eq (index $cats 0) $mainCat) (eq (index $cats 1) $subCat) }}
-                                    {{ $count = add $count 1 }}
+                            {{ if $cats }}
+                                {{ $firstCat := index $cats 0 }}
+                                {{ $parts := split $firstCat "/" }}
+
+                                {{ if ge (len $parts) 2 }}
+                                    {{/* 새 형식: ["메인/서브"] */}}
+                                    {{ if and (eq (index $parts 0) $mainCat) (eq (index $parts 1) $subCat) }}
+                                        {{ $count = add $count 1 }}
+                                    {{ end }}
+                                {{ else if ge (len $cats) 2 }}
+                                    {{/* 구 형식: ["메인", "서브"] */}}
+                                    {{ if and (eq (index $cats 0) $mainCat) (eq (index $cats 1) $subCat) }}
+                                        {{ $count = add $count 1 }}
+                                    {{ end }}
                                 {{ end }}
                             {{ end }}
                         {{ end }}
 
                         {{/* Hugo taxonomy URL 사용 */}}
-                        {{ $subCatKey := $subCat | urlize }}
-                        {{ with $.Site.Taxonomies.categories.Get $subCatKey }}
+                        {{ $fullCatKey := printf "%s/%s" $mainCat $subCat | urlize }}
+                        {{ with $.Site.Taxonomies.categories.Get $fullCatKey }}
                             <a href="{{ .Page.RelPermalink }}" class="sub-cat-link">
                                 <span>{{ $subCat }}</span>
                                 <span class="count">({{ $count }})</span>
                             </a>
+                        {{ else }}
+                            {{/* 구 형식 fallback */}}
+                            {{ $subCatKey := $subCat | urlize }}
+                            {{ with $.Site.Taxonomies.categories.Get $subCatKey }}
+                                <a href="{{ .Page.RelPermalink }}" class="sub-cat-link">
+                                    <span>{{ $subCat }}</span>
+                                    <span class="count">({{ $count }})</span>
+                                </a>
+                            {{ end }}
                         {{ end }}
                     {{ end }}
                 </div>
