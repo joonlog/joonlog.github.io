@@ -5,7 +5,7 @@ layout: "categories"
 slug: "categories"
 menu:
     main:
-        weight: -5
+        weight: 1.5
         params:
             icon: categories
 ---
