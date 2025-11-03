@@ -73,14 +73,7 @@
         {{ end }}
     </section>
 
-    {{ partialCached "footer/footer" . }}
-{{ end }}
-
-{{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
-{{ end }}
-
-<style>
+    <style>
 .page-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -187,5 +180,11 @@
     color: var(--card-text-color-secondary);
     font-size: 0.9rem;
 }
-</style>
+    </style>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
 {{ end }}
