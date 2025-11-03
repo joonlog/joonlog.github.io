@@ -5,3 +5,5 @@ resources
 # Claude Code 관련 파일
 .claude/
 hugo-migration-log.md
+claude-*-cwd
+node-compile-cache/

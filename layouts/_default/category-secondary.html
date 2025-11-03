@@ -1,0 +1,94 @@
+{{ define "main" }}
+    <header class="page-header">
+        <div class="breadcrumb">
+            <a href="{{ printf "/categories/%s/" (.Params.primary_category | urlize) }}">
+                {{ .Params.primary_category }}
+            </a>
+            <span class="separator">›</span>
+            <span class="current">{{ .Title }}</span>
+        </div>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}
+            <p class="description">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    {{ $primaryCat := .Params.primary_category }}
+    {{ $secondaryCat := .Params.secondary_category }}
+
+    {{/* Primary AND Secondary 조건에 맞는 포스트만 필터링 */}}
+    {{ $posts := slice }}
+    {{ range .Site.RegularPages }}
+        {{ $cats := .Params.categories }}
+        {{ if and $cats (ge (len $cats) 2) }}
+            {{ if and (eq (index $cats 0) $primaryCat) (eq (index $cats 1) $secondaryCat) }}
+                {{ $posts = $posts | append . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    <div class="post-count">
+        총 {{ len $posts }}개의 포스트
+    </div>
+
+    <section class="category-posts">
+        <div class="post-list">
+            {{ range $posts }}
+                {{ partial "article-list/default" . }}
+            {{ end }}
+        </div>
+    </section>
+
+    <style>
+    .page-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+    }
+
+    .breadcrumb {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .breadcrumb a {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .breadcrumb .separator {
+        margin: 0 0.5rem;
+        color: var(--card-text-color-secondary);
+    }
+
+    .breadcrumb .current {
+        color: var(--card-text-color-main);
+        font-weight: 600;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-header .description {
+        color: var(--card-text-color-secondary);
+    }
+
+    .post-count {
+        margin-bottom: 2rem;
+        color: var(--card-text-color-secondary);
+        font-size: 0.95rem;
+    }
+
+    .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    </style>
+{{ end }}
