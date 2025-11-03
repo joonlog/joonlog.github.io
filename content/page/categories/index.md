@@ -7,5 +7,5 @@ menu:
     main:
         weight: 1.5
         params:
-            icon: category
+            icon: folders
 ---
