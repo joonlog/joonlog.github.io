@@ -16,7 +16,7 @@
     {{/* 모든 페이지를 순회하며 메인-서브 구조 파싱 */}}
     {{ range .Site.RegularPages }}
         {{ $cats := .Params.categories }}
-        {{ if ge (len $cats) 2 }}
+        {{ if and $cats (ge (len $cats) 2) }}
             {{ $main := index $cats 0 }}
             {{ $sub := index $cats 1 }}
 
@@ -47,7 +47,7 @@
                         {{ $count := 0 }}
                         {{ range $.Site.RegularPages }}
                             {{ $cats := .Params.categories }}
-                            {{ if ge (len $cats) 2 }}
+                            {{ if and $cats (ge (len $cats) 2) }}
                                 {{ if and (eq (index $cats 0) $mainCat) (eq (index $cats 1) $subCat) }}
                                     {{ $count = add $count 1 }}
                                 {{ end }}
