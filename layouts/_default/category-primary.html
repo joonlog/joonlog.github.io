@@ -1,0 +1,107 @@
+{{ define "main" }}
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}
+            <p class="description">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    {{ $primaryCat := .Params.primary_category }}
+
+    {{/* Primary 카테고리에 속하는 모든 포스트 필터링 */}}
+    {{ $posts := slice }}
+    {{ range .Site.RegularPages }}
+        {{ $cats := .Params.categories }}
+        {{ if and $cats (ge (len $cats) 1) }}
+            {{ if eq (index $cats 0) $primaryCat }}
+                {{ $posts = $posts | append . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    <div class="post-count">
+        총 {{ len $posts }}개의 포스트
+    </div>
+
+    {{/* 서브 카테고리별로 그룹핑 */}}
+    <section class="category-posts">
+        {{ $subCategories := slice }}
+        {{ range $posts }}
+            {{ $cats := .Params.categories }}
+            {{ if ge (len $cats) 2 }}
+                {{ $sub := index $cats 1 }}
+                {{ if not (in $subCategories $sub) }}
+                    {{ $subCategories = $subCategories | append $sub }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+        {{ $subCategories = $subCategories | uniq | sort }}
+
+        {{ range $subCat := $subCategories }}
+            <div class="sub-category-group">
+                <h2 class="sub-category-title">
+                    <a href="{{ printf "/categories/%s/%s/" ($primaryCat | urlize) ($subCat | urlize) }}">
+                        {{ $subCat }}
+                    </a>
+                </h2>
+                <div class="post-list">
+                    {{ range $posts }}
+                        {{ $cats := .Params.categories }}
+                        {{ if and (ge (len $cats) 2) (eq (index $cats 1) $subCat) }}
+                            {{ partial "article-list/default" . }}
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+    </section>
+
+    <style>
+    .page-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-header .description {
+        color: var(--card-text-color-secondary);
+    }
+
+    .post-count {
+        margin-bottom: 2rem;
+        color: var(--card-text-color-secondary);
+        font-size: 0.95rem;
+    }
+
+    .sub-category-group {
+        margin-bottom: 3rem;
+    }
+
+    .sub-category-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .sub-category-title a {
+        color: var(--card-text-color-main);
+        text-decoration: none;
+    }
+
+    .sub-category-title a:hover {
+        color: var(--accent-color);
+    }
+
+    .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    </style>
+{{ end }}
