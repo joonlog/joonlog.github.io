@@ -4,7 +4,9 @@ resources
 
 # Claude Code 관련 파일
 .claude/
+CLAUDE.md
 hugo-migration-log.md
+hierarchical-categories-implementation.md
 claude-*-cwd
 node-compile-cache/
 systemd-private-*
