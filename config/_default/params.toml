@@ -19,7 +19,7 @@ subtitle = "인프라/개발 기술 블로그"
 [sidebar.avatar]
 enabled = true
 local = true
-src = "img/avatar.png"
+src = "img/dog.jpg"
 
 [article]
 headingAnchor = false
