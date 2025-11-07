@@ -2,6 +2,9 @@ public
 resources
 .hugo_build.lock
 
+# 자동 생성되는 카테고리 페이지
+content/page/categories/
+
 # Claude Code 관련 파일
 .claude/
 CLAUDE.md
