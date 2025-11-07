@@ -53,13 +53,13 @@ func main() {
 	}
 
 	// 기존 categories 디렉토리 삭제 및 재생성
-	os.RemoveAll("content/categories")
-	os.MkdirAll("content/categories", 0755)
+	os.RemoveAll("content/page/categories")
+	os.MkdirAll("content/page/categories", 0755)
 
 	// 카테고리 페이지 생성
 	for primary, secondaries := range categories {
 		// Primary 카테고리 디렉토리 생성
-		primaryDir := filepath.Join("content/categories", slugify(primary))
+		primaryDir := filepath.Join("content/page/categories", slugify(primary))
 		os.MkdirAll(primaryDir, 0755)
 
 		// Primary 카테고리 _index.md 생성
