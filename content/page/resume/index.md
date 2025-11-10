@@ -13,7 +13,6 @@ comments: false
 경험을 기록으로 남기며 성장하는 1년 차 클라우드 엔지니어입니다.
 축적된 경험을 토대로 더 나은 해결책을 만들어갑니다.
 
-- **Phone** | 010-7471-8889
 - **Email** | ksi05298@gmail.com
 - **Blog** | [joonlog.github.io](https://joonlog.github.io)
 - **GitHub** | [github.com/joonlog](https://github.com/joonlog)
