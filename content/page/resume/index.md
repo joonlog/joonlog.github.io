@@ -45,37 +45,39 @@ comments: false
 
 ## Skills
 
-### Linux
+**Linux**
 
 - WEB-WAS-DB 기반 3티어 인프라 구축 및 운영
 - EOS 대상 서버 OS 마이그레이션 수행
 - 쉘 스크립트를 활용한 로그 관리 및 백업 자동화
+- 관련 포스트: [Linux](https://joonlog.github.io/categories/linux/)
 
-### CSP
+**CSP**
 
 - AWS, KT Cloud, NCP 기반 MSP 업무 수행
 - VM, 네트워크, 로드 밸런서, WAF, 백업 등의 리소스 운영
 - CSP 마켓플레이스를 통한 3rd Party 솔루션 운영 지원
 
-### Ansible
+**Ansible**
 
 - 서버 환경 설정 및 모니터링 에이전트 배포 자동화
 - 보안 취약점 점검 및 조치 자동화
 
-### Container
+**Container**
 
 - Dockerfile 작성 및 이미지 빌드
 - Docker Compose를 사용한 멀티 컨테이너 환경 구성
 - nerdctl, CNI, buildkit 기반 Containerd 운영
 
-### Kubernetes
+**Kubernetes**
 
 - Kubespray를 사용한 자체 관리형 클러스터 구축
-- HAproxy, MetalLB, Nginx Controller를 사용한 외부 트래픽 네트워크 라우팅
+- [HAproxy, MetalLB, Nginx Controller를 사용한 외부 트래픽 네트워크 라우팅](https://joonlog.github.io/p/%EC%99%B8%EB%B6%80%EC%97%90%EC%84%9C-%EC%9E%90%EC%B2%B4-%EA%B4%80%EB%A6%AC%ED%98%95-kubernetes-%EC%A0%91%EA%B7%BC%EC%9D%84-%EC%9C%84%ED%95%9C-metallb/haproxy-%EC%84%A4%EC%A0%95%EA%B3%BC-%ED%86%B5%EC%8B%A0-%EA%B5%AC%EC%A1%B0/)
 - Longhorn을 활용한 데이터 영속성 및 고가용성 스토리지 구성
 - Helm Chart 기반 Jenkins, GitLab, Prometheus, Grafana 등의 애플리케이션 배포
+- 관련 포스트: [Kubernetes](https://joonlog.github.io/categories/kubernetes/)
 
-### CI/CD
+**CI/CD**
 
 - Jenkins 기반 CI/CD 파이프라인 구축
 - GitLab 연동을 통한 자동 빌드 및 Docker 이미지 배포
