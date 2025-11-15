@@ -27,18 +27,20 @@ comments: false
 #### 공공 H사 KT Cloud 운영
 
 - KT Cloud 기반 3티어 구조(10개 시스템, 40여대 서버)의 인프라 운영 및 Ansible 기반 자동화 관리
-- 메트릭 모니터링 및 시각화를 통한 서비스 가용성 관리 및 장애 대응
+- Nagios/Munin 기반 메트릭 모니터링 및 장애 알람 관리
 - DBSafer, LENA, Tibero, MCCS 등의 3rd Party 솔루션 운영 지원
 - 공공기관 보안 점검 요구사항에 따른 Ansible 기반 취약점 점검 및 조치 자동화
 - 쉘 스크립트를 사용한 WEB/WAS 로그 관리 자동화 및 KT 백업 이중화
 
 #### 공공 G사 Naver Cloud 구축 및 운영
+*2025년 10월 - 2025년 12월 (예정)*
 
-- 온프레미스 환경을 NCP로 이전 및 Docker 컨테이너화 수행
-- NCP 기반 3티어 컨테이너 구조(6개 시스템, 30여대 서버) 인프라 구축
-- GitLab Omnibus 서버 구축 및 Repository / Container Registry 운영
-- Nginx - PHP-FPM, Spring Java 애플리케이션용 Dockerfile 및 Compose 작성
-- Jenkins 기반 CI/CD 파이프라인으로 Java/PHP 서비스 자동 배포 구현
+- 온프레미스 환경을 NCP 기반 Docker 컨테이너 환경으로 마이그레이션 (6개 서비스, 30여대 서버)
+- Nginx-WAS-MariaDB 3티어 컨테이너 구조 구축 (PHP-FPM 8.3, Spring Java 1.8)
+- PHP-FPM, Spring Java용 Dockerfile 및 docker-compose.yml 작성
+- GitLab Container Registry를 활용한 이미지 버전 관리
+- Jenkins 컨테이너 에이전트 기반 CI/CD 파이프라인 구현 (소스 빌드 - 이미지 빌드 - 자동 배포)
+- Ansible을 사용한 서버 환경 설정 표준화 및 자동화
 
 ---
 
