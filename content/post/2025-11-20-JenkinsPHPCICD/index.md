@@ -33,8 +33,9 @@ tags: ["container", "jenkins", "cicd", "php cicd"]
 
 - 컨테이너 이미지를 빌드하기 위한 Dockerfile도 Git 리포지토리에 있어야 함
 - PHP는 빌드 과정이 필요 없는 인터프리터 언어이기 때문에 소스 빌드 없이 이미지 빌드 → 이미지 푸시 과정만 필요
+- CI 완료 전 CD 파이프라인을 트리거
 
-### 환경
+### 1. 환경
 
 - agent any로 jenkins agent 컨테이너를 파이프라인으로 사용
 
@@ -50,7 +51,7 @@ pipeline {
     }
 ```
 
-### 소스코드 체크아웃
+### 2. Git 체크아웃
 
 - Git 리포지토리의 최신 커밋을 체크아웃
 - 파이프라인 로그에 커밋 정보 출력
@@ -65,7 +66,7 @@ pipeline {
         }
 ```
 
-### 컨테이너 이미지 빌드 및 레지스트리 푸시
+### 3. 컨테이너 이미지 빌드 및 레지스트리 푸시
 
 - Git 리포지토리에 있는 Dockerfile을 기반으로 이미지 빌드
 - Git 커밋 해시와 Jenkins 빌드 번호를 조합해서 태그 생성
@@ -99,12 +100,37 @@ pipeline {
                     echo "Docker image pushed: ${fullImage}:latest"
                 }
             }
+```
+
+### 4. CD 파이프라인 트리거
+
+- CI 파이프라인이 완료 되기 전 CD 파이프라인을 동작하도록 트리거
+
+```bash
+        stage('Trigger CD') {
+            steps {
+                build job: '<CD 파이프라인 이름>',
+                      parameters: [
+                        string(name: 'IMAGE_TAG',    value: 'latest'),
+                        string(name: 'DEPLOY_TARGET', value: 'ALL')
+                      ],
+                      wait: true,          // CD 끝날 때까지 기다릴지
+                      propagate: true      // CD 실패하면 이 Job도 실패로 처리할지
+            }
         }
     }
+```
 
+### 5. 파이프라인 결과 체크
+
+```bash
     post {
-        success { echo "Build #${env.BUILD_NUMBER} succeeded for ${APP_NAME}" }
-        failure { echo "Build #${env.BUILD_NUMBER} failed - check console output" }
+        success {
+            echo "Build #${env.BUILD_NUMBER} succeeded for ${APP_NAME}"
+        }
+        failure {
+            echo "Build #${env.BUILD_NUMBER} failed - check console output"
+        }
     }
 }
 ```
@@ -137,12 +163,27 @@ pipeline {
         IMAGE_NAME = '<컨테이너 이미지 명>'
         DEPLOY_CREDENTIAL_ID = '<배포 서버 SSH 계정명>'
         GITLAB_CREDENTIAL_ID = '<저장한 Git PAT 토큰 ID>'
-        // .env 전체를 담은 Secret file ID
-        TEACHER_ENV_FILE_CREDENTIAL_ID = 'hlle-prod-env'
+        TEACHER_ENV_FILE_CREDENTIAL_ID = '<Credential에 저장한 .env 파일 ID>'
+        COMPOSE_FILE_LOCAL        = 'docker-compose.yaml'
     }
 ```
 
-### 준비
+### 1. Git 체크아웃
+
+- 파이프라인이 “`Pipeline script from SCM`” 으로 되어 있기 때문에 가능
+- `docker-compose`.yaml 파일을 가져오기 위함
+
+```bash
+        stage('Checkout') {
+            steps {
+                // CD Job이 Pipeline from SCM로 설정돼 있다는 전제
+                checkout scm
+                sh "ls -al ${COMPOSE_FILE_LOCAL} || echo 'compose 파일 경로 확인 필요'"
+            }
+        }
+```
+
+### 2. 준비
 
 - `배포할 이미지 태그` / `배포 대상 서버`를 선택할 수 있게 설정
 - deployHosts: 배포 대상 호스트 목록
@@ -170,10 +211,11 @@ pipeline {
         }
 ```
 
-### 배포
+### 3. 배포
 
 - 컨테이너 레지스트리에서 이미지 풀링
-- .env 파일을 Credential에서 배포 서버로 복사
+- `.env` 파일을 Credential에서 배포 서버로 복사
+- git으로 체크아웃한 `docker-compose` 파일을 배포 서버로 복사
 - 배포 경로에서 docker compose 명령어를 통한 애플리케이션 재기동
 
 ```bash
@@ -191,19 +233,32 @@ pipeline {
                                          passwordVariable: 'GITLAB_TOKEN'),
                         // .env 전체를 파일로 받음
                         file(credentialsId: "${TEACHER_ENV_FILE_CREDENTIAL_ID}",
-                             variable: 'HLLE_ENV_FILE')
+                             variable: '<env 변수명>')
                     ]) {
                         for (host in hosts) {
                             echo "Deploying to ${host}..."
 
                             sh """
-                                # 1) .env 파일을 대상 서버로 복사
-                                sshpass -p "\$DEPLOY_PASS" scp -o StrictHostKeyChecking=no "\$HLLE_ENV_FILE" "\$DEPLOY_USER"@${host}:/tmp/teacher.env
+                                # 0) 임시 파일 경로(충돌 방지용)
+                                TMP_ENV=/tmp/env.\$(date +%s)
+                                TMP_COMPOSE=/tmp/compose.\$(date +%s).yaml
 
-                                # 2) sudo 로 /home/gill/hlle/.env 위치로 이동 + 소유권 nginx로 맞추기
+                                # 1) .env / docker-compose.yaml 둘 다 /tmp 로 복사
+                                sshpass -p "\$DEPLOY_PASS" scp -o StrictHostKeyChecking=no "\$<env 변수명>" "\$DEPLOY_USER"@${host}:"\$TMP_ENV"
+
+                                sshpass -p "\$DEPLOY_PASS" scp -o StrictHostKeyChecking=no "${COMPOSE_FILE_LOCAL}" "\$DEPLOY_USER"@${host}:"\$TMP_COMPOSE"
+
+                                # 2) 서버 안에서 sudo로 최종 위치로 이동 + 권한 조정 + 컨테이너 재기동
                                 sshpass -p "\$DEPLOY_PASS" ssh -o StrictHostKeyChecking=no "\$DEPLOY_USER"@${host} "
-                                    sudo mv /tmp/teacher.env ${DEPLOY_PATH}/.env
+                                    echo 'Apply .env & docker-compose.yaml...'
+
+                                    # .env 교체
+                                    sudo mv \$TMP_ENV ${DEPLOY_PATH}/.env
                                     sudo chown nginx:nginx ${DEPLOY_PATH}/.env
+
+                                    # docker-compose.yaml 교체
+                                    sudo mv \$TMP_COMPOSE ${DEPLOY_PATH}/docker-compose.yaml
+                                    sudo chown root:root ${DEPLOY_PATH}/docker-compose.yaml
 
                                     echo 'Logging in to GitLab Registry...'
                                     echo '\$GITLAB_TOKEN' | sudo docker login ${GITLAB_REGISTRY} -u '\$GITLAB_USER' --password-stdin
@@ -213,11 +268,9 @@ pipeline {
 
                                     echo 'Redeploying containers...'
                                     export IMAGE_TAG=${params.IMAGE_TAG}
+
                                     sudo docker compose -f ${DEPLOY_PATH}/docker-compose.yaml down
                                     sudo docker compose -f ${DEPLOY_PATH}/docker-compose.yaml up -d
-
-                                    echo 'Checking deployment status...'
-                                    sudo docker compose ps
 
                                     sudo docker logout ${GITLAB_REGISTRY}
                                 "
@@ -231,7 +284,7 @@ pipeline {
         }
 ```
 
-### 헬스 체크
+### 4. 헬스 체크
 
 - 배포 완료 후 컨테이너 상태 점검
 
@@ -244,19 +297,18 @@ pipeline {
 
                     def hosts = env.DEPLOY_HOSTS.split(',')
 
-                    withCredentials([usernamePassword(credentialsId: "${DEPLOY_CREDENTIAL_ID}",
-                                                      usernameVariable: 'DEPLOY_USER',
-                                                      passwordVariable: 'DEPLOY_PASS')]) {
+                    withCredentials([
+                        usernamePassword(credentialsId: "${DEPLOY_CREDENTIAL_ID}",
+                                         usernameVariable: 'DEPLOY_USER',
+                                         passwordVariable: 'DEPLOY_PASS')
+                    ]) {
                         for (host in hosts) {
                             echo "Health checking ${host}..."
 
                             sh """
-                                sshpass -p "\$DEPLOY_PASS" ssh -o StrictHostKeyChecking=no \$DEPLOY_USER@${host} "
+                                sshpass -p "\$DEPLOY_PASS" ssh -o StrictHostKeyChecking=no "\$DEPLOY_USER"@${host} "
                                     # 컨테이너 상태 확인
-                                    sudo docker ps | grep works
-
-                                    # 헬스체크 (옵션)
-                                    # curl -f http://localhost:8080/health || exit 1
+                                    sudo docker ps | grep pj-1 || exit 1
                                 "
                             """
 
@@ -265,6 +317,19 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+```
+
+### 5. 파이프라인 결과 체크
+
+```bash
+    post {
+        success {
+            echo "Deployment succeeded - ${IMAGE_NAME}:${params.IMAGE_TAG} deployed to ${env.DEPLOY_HOSTS}"
+        }
+        failure {
+            echo "Deployment failed - check console output"
         }
     }
 }
