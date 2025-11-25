@@ -1,8 +1,8 @@
 ---
-title: "Rocky8 OpenVPN"
+title: "OpenVPN 구축"
 date: 2024-12-19T09:00:00+09:00
 categories: ["Linux", "VPN"]
-tags: ["rocky8", "openvpn", "vpn"]
+tags: ["rocky 8.10", "openvpn", "vpn"]
 ---
 
 
@@ -17,19 +17,10 @@ tags: ["rocky8", "openvpn", "vpn"]
 
 ### 환경 설정
 
-- KT Cloud
-    - Vpn Server 1대
-        - 공인 IP 포트포워딩: 2222→22, 443→443
-    - Window Client 1대
-        - 공인 IP 포트포워딩: 3389→3389
-    - Linux Client 1대
-        - 공인 IP 포트포워딩: X
-- AWS
-    - VPN Client 1대
-        - 공인 IP 포트포워딩: X
-- 로컬
-    - Window Host Client 1대
-- OS: Rocky Linux 8.1, AL 2023, Window 2019
+- OS
+    - Rocky 8.10
+    - AL 2023
+    - Window 2019
 - VPN: openvpn 2.4.12
 
 ## 개념 및 설정
