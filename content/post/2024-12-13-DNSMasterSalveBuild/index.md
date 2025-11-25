@@ -1,23 +1,20 @@
 ---
-title: "Rocky8 DNS Master-Slave 서버"
+title: "DNS Master-Slave 구축"
 date: 2024-12-13T09:00:00+09:00
 categories: ["Linux", "DNS"]
-tags: ["rocky8", "dns", "bind", "master", "slave"]
+tags: ["rocky 8.10", "dns", "bind", "master", "slave"]
 ---
 
 
 ### 목표
 
-- DNS master slave 구조로 네임서버 구성
+- DNS master 1대, slave1대 구조로 네임서버 구성
     - DNS 서버 고가용성 및 부하분산
 - 도메인 하나 IP 변경했을때 정상적으로 변경돼서 나오는 지 확인
 
 ### 환경 설정
 
-- KT Cloud
-    - DNS Master 1대, Slave 1대
-    - 공인 IP 포트포워딩
-- OS: Rocky Linux 8.1
+- OS: Rocky 8.10
 
 ## 개념 및 설정
 

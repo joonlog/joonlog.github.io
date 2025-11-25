@@ -1,14 +1,14 @@
 ---
-title: "Rocky8 Nagios 모니터링"
+title: "Nagios 모니터링 구축"
 date: 2024-12-12T09:00:00+09:00
 categories: ["Linux", "Monitoring"]
-tags: ["rocky8", "nagios", "nrpe"]
+tags: ["rocky 8.10", "nagios", "nrpe"]
 ---
 
 
 ### 목표
 
-- Nagios 서버 클라이언트 시스템 모니터링 환경 구성
+- Nagios 서버 1대, 클라이언트 1대, private 클라이언트 1대로 시스템 모니터링 환경 구성
 - NRPE와 check_tcp 플러그인을 활용한 포트 및 기본 시스템 리소스 모니터링 구현
 - Nagios 웹 인터페이스를 통한 모니터링 결과 시각화
 - 커스텀 플러그인 작성을 통한 특정 메모리 모니터링 기능 추가
@@ -16,11 +16,10 @@ tags: ["rocky8", "nagios", "nrpe"]
 
 ### 환경 설정
 
-- KT Cloud
-    - Nagios Server 1대, Client 1대, Private Client 1대
-    - 공인 IP 포트포워딩
-- OS: Rocky Linux 8.1
-- Monitoring: nagios 4.4.6, nagios-plugins 2.2.1, nrpe 4.1.0
+- OS: Rocky 8.10
+- Monitoring: nagios 4.4.6
+- nagios-plugins 2.2.1
+- nrpe 4.1.0
 
 ## 개념 및 설정
 

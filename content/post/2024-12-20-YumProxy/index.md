@@ -1,5 +1,5 @@
 ---
-title: "Rocky8 Yum Proxy"
+title: "Yum Proxy 설정"
 date: 2024-12-20T09:00:00+09:00
 categories: ["Linux", "Package"]
 tags: ["rocky8", "yum", "proxy"]
@@ -8,18 +8,13 @@ tags: ["rocky8", "yum", "proxy"]
 
 ### 목표
 
-- pub 1ea, priv 1ea 서버 생성 후 yum proxy 통하여 priv 서버에서 yum 설치 가능하게 설정
+- pub 1대, priv 1대 서버 생성 후 yum proxy 통하여 priv 서버에서 yum 설치 가능하게 설정
 - 외에도 pub 서버에서 yumdownloader 명령어 통해서 rpm 빼와서 priv 서버로 옮긴 후 rpm 통한 설치
     - mariadb 최신버전 설치로 테스트
 
 ### 환경 설정
 
-- KT Cloud
-    - public 1대
-        - 공인 IP 포트포워딩: 2222→22
-    - private 1대
-        - 공인 IP 포트포워딩: X
-- OS: Rocky Linux 8.1
+- OS: Rocky Linux 8.10
 
 ## 작업 과정
 
