@@ -1,8 +1,8 @@
 ---
-title: "Rocky8 Apache SSL HTTPS Redirection"
+title: "Apache SSL HTTPS Redirection"
 date: 2024-12-11T18:00:00+09:00
 categories: ["Linux", "Middleware"]
-tags: ["rocky8", "apache", "ssl", "https"]
+tags: ["rocky 8.10", "apache", "ssl", "https"]
 ---
 
 
@@ -15,10 +15,7 @@ tags: ["rocky8", "apache", "ssl", "https"]
 
 ### 환경 설정
 
-- KT Cloud
-    - SSL 1대
-    - 공인 IP 포트포워딩
-- OS: Rocky Linux 8.1
+- OS: Rocky 8.10
 - WEB: Apache 2.4.6
 - SSL: Let’s encrypt certbot
 

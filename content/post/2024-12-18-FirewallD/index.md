@@ -1,8 +1,8 @@
 ---
-title: "Rocky8 Firewall"
+title: "FirewallD"
 date: 2024-12-18T09:00:00+09:00
 categories: ["Linux", "Firewall"]
-tags: ["rocky8", "firewall", "firewalld"]
+tags: ["rocky 8.10", "firewall", "firewalld"]
 ---
 
 
@@ -13,11 +13,7 @@ tags: ["rocky8", "firewall", "firewalld"]
 
 ### 환경 설정
 
-- KT Cloud
-    - Firewall 2대
-        - 공인 IP 포트포워딩: 2222→22, 8080→80
-        - 공인 IP 포트포워딩: 2223→22, 8081→80
-- OS: Rocky Linux 8.1
+- OS: Rocky 8.10
 
 ## 개념 및 설정
 

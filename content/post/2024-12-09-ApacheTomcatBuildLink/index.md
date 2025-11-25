@@ -1,22 +1,22 @@
 ---
-title: "Rocky8 Apache Tomcat 연동"
+title: "Apache-Tomcat 설치 및 연동"
 date: 2024-12-09T18:08:00+09:00
 categories: ["Linux", "Middleware"]
-tags: ["rocky8", "apache", "tomcat", "web", "was"]
+tags: ["rocky 8.10", "apache", "tomcat", "web", "was"]
 ---
 
 
 ### 목표
 
--   Apache-Tomcat을 사용한 **WEB**-**WAS** 연동
--   **Proxy** / **AJP** 방식 둘 모두 수행
--   AJP는 **mod_jk** 사용
+- Apache-Tomcat을 사용한 **WEB**-**WAS** 연동
+- **Proxy** / **AJP** 방식 둘 모두 수행
+- AJP는 **mod_jk** 사용
 
 ### 환경 설정
 
--   OS: Rocky Linux 8.10
--   WEB: Apache 2.4.6
--   WAS: Tomcat 9.0.97
+- OS: Rocky 8.10
+- WEB: Apache 2.4.6
+- WAS: Tomcat 9.0.97
 
 ## 개념 및 설정
 

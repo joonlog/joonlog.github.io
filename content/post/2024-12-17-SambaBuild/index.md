@@ -1,24 +1,21 @@
 ---
-title: "Rocky8 Samba"
+title: "Samba 파일 공유 구축"
 date: 2024-12-17T09:00:00+09:00
 categories: ["Linux", "File Sharing"]
-tags: ["rocky8", "samba"]
+tags: ["rocky 8.10", "windows 2019", "samba"]
 ---
 
 
 ### 목표
 
-- 리눅스 - 윈도우 Samba 연동
+- 리눅스 1대와 윈도우 1대를 Samba로 연동
 - 리눅스/윈도우 모두 같은 사용자가 공유 폴더 제어하게 설정
 
 ### 환경 설정
 
-- KT Cloud VM
-    - Samba Server 1대
-        - 공인 IP 포트포워딩: 2222→22
-    - Window Client 1대
-        - 공인 IP 포트포워딩: 3389→3389
-- OS: Rocky Linux 8.1 / X7 Windows 2019
+- OS
+    - Rocky 8.10
+    - Windows 2019
 - SAMBA: SMB 4.19.4
 
 ## 개념 및 설정

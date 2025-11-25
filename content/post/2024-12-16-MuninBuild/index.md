@@ -1,24 +1,19 @@
 ---
-title: "Rocky8 Munin 모니터링"
+title: "Munin 모니터링 구축"
 date: 2024-12-16T09:00:00+09:00
 categories: ["Linux", "Monitoring"]
-tags: ["rocky8", "munin", "master", "slave"]
+tags: ["rocky 8.10", "munin", "master", "slave"]
 ---
 
 
 ### 목표
 
-- Munin 서버-클라이언트 매트릭 모니터링
+- Munin 서버 1대, 클라이언트 1대로 모니터링 구축
 - 웹 인터페이스를 통해 실시간 데이터 시각화
 
 ### 환경 설정
 
-- KT Cloud
-    - Munin Server 1대
-        - 공인 IP 포트포워딩: 2222→22, 8080→80
-    - Client 1대
-        - 공인 IP 포트포워딩: 2223→22
-- OS: Rocky Linux 8.1
+- OS: Rocky 8.10
 - Monitoring: munin 2.0.73
 
 ## 개념 및 설정
