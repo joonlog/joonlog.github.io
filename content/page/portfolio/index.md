@@ -6,7 +6,7 @@ menu:
     main:
         weight: 6
         params:
-            icon: briefcase
+            icon: user
 comments: false
 ---
 
