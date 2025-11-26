@@ -10,22 +10,12 @@ menu:
 comments: false
 ---
 
-경험을 기록으로 남기며 성장하는 1년 차 클라우드 엔지니어입니다.
-레거시 환경의 클라우드 마이그레이션부터 컨테이너 오케스트레이션까지, **실무에서 직접 설계하고 구축한 경험**을 중심으로 정리했습니다.
-
----
-
 ## 주요 프로젝트
 
 ### 공공 G사 온프레미스 → NCP 클라우드 마이그레이션 & 컨테이너화
-*2024년 10월 - 2024년 12월 (예정) | Naver Cloud Platform*
+*2025년 10월 - 2025년 12월 (예정) | Naver Cloud Platform*
 
-**레거시 온프레미스 환경을 NCP 기반 Docker 컨테이너 환경으로 전환하고, 전사 CI/CD 파이프라인을 구축한 프로젝트**
-
-#### 프로젝트 배경
-- 온프레미스 환경의 유지보수 비용 증가 및 확장성 한계
-- SVN 기반 수동 배포로 인한 휴먼 에러 및 배포 시간 지연
-- 클라우드 환경으로의 전환 및 개발 프로세스 현대화 필요
+온프레미스 환경을 NCP 컨테이너 환경으로 마이그레이션하고 CI/CD 파이프라인 구축
 
 #### 프로젝트 규모
 - **서비스**: 6개 (Java Spring 1.8, PHP-FPM 8.3)
@@ -73,17 +63,17 @@ comments: false
 
 #### 성능 최적화
 
-**웹 애플리케이션 응답 시간 최적화 (개발팀 협업)**
+**웹 애플리케이션 응답 시간 최적화**
 - **개선 전**: 평균 3초 이상
 - **개선 후**: 평균 150ms
-- **개선율**: **약 20배 성능 향상**
+- **개선율**: **20배 성능 향상**
 
 **최적화 작업**:
 - Nginx gzip 압축 설정 (4096+ 파일 대상)
 - Nginx keepalive 설정
 - MariaDB 인덱스 추가 (개발팀 협업)
 - WAS/DB connection pool 및 buffer 튜닝
-- hey, jmeter 부하 테스트를 통한 CPU, Memory, Connection 수치 기반 튜닝
+- hey, jmeter 부하 테스트 기반 튜닝 (CPU, Memory, Connection 모니터링)
 
 #### 사용 기술
 - **Cloud**: Naver Cloud Platform (Server, Load Balancer, ACG, VPC)
@@ -135,7 +125,7 @@ comments: false
 
 **115개 이상의 기술 포스트** (2024년 11월 - 현재)
 
-실무 경험과 학습 내용을 체계적으로 문서화하고 있습니다.
+실무 경험과 학습 내용을 기록합니다.
 
 - [Kubernetes](https://joonlog.github.io/categories/kubernetes/) - 셀프 매니지드 클러스터 구축
 - [Container](https://joonlog.github.io/categories/container/) - Docker, CI/CD 파이프라인
