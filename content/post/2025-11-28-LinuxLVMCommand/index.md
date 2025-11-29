@@ -1,24 +1,31 @@
 ---
-title: "Linux LVM 명령어"
+title: "Linux에서 디스크 추가 시에 LVM 증설"
 date: 2025-11-28T09:00:00+09:00
 categories: ["Linux", "System"]
 tags: ["linux", "lvm"]
 ---
 
 
-> 20GB 추가디스크를 LVM으로 구성하는 방법
+> 20GB 추가디스크가 서버에 부탁됐을 때 디스크를 LVM으로 /data 경로에 마운트하는 방법
 > 
+
+### 0. 디스크 초기화
+
+```bash
+fdisk /dev/xvdb
+n p 1 enter enter t 8e 2
+```
 
 ### 1. PV 생성
 
 ```bash
-pvcreate /dev/xvdb
+pvcreate /dev/xvdb1
 ```
 
 ### 2. VG 생성
 
 ```bash
-vgcreate vgdata /dev/xvdb
+vgcreate vgdata /dev/xvdb1
 ```
 
 ### 3. LV 생성
