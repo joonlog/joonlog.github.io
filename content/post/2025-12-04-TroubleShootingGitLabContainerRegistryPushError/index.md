@@ -1,5 +1,5 @@
 ---
-title: "GitLab Container Registry에 Docker Push 실패"
+title: "GitLab Container Registry에 Docker Push 실패 TroubleShooting"
 date: 2025-12-04T09:00:00+09:00
 categories: ["Linux", "GitLab"]
 tags: ["linux", "gitlab", "gitlab.rb", "external_url"]
