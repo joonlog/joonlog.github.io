@@ -8,11 +8,11 @@ tags: ["kt cloud", "zone"]
 
 - KT Cloud는 Zone 별로 구조가 상이하니 Zone 간 차이에 대해 이해가 필요하다.
 
-![KTCloudZone1.png](KTCloudZone1.png)
+![KTCloudZone1.webp](KTCloudZone1.webp)
 
 ### G1/G2(A, B, M1)(Cloudstack)
 
-![KTCloudZone2.png](KTCloudZone2.png)
+![KTCloudZone2.webp](KTCloudZone2.webp)
 
 - G1 존의 경우 VR 밑에서 서버가 생성된다. 이에 Subnet(tier)을 나눠서 구성이 불가하다.
 - VR에서 방화벽의 역할을 해주나 블랙리스트가 아닌 화이트 리스트만 적용이되어 보안적으로 취약하다.
@@ -31,7 +31,7 @@ tags: ["kt cloud", "zone"]
 
 ### G1(G-cloud, Ent-cloud)(Cloudstack)
 
-![KTCloudZone3.png](KTCloudZone3.png)
+![KTCloudZone3.webp](KTCloudZone3.webp)
 
 - DMZ/Private zone으로 물리적으로 분리되어 있음
     - Subnet(tier) 생성 불가능
@@ -43,13 +43,13 @@ tags: ["kt cloud", "zone"]
 
 https://manual.cloud.kt.com/kt/enterprise-security-intro
 
-![KTCloudZone4.png](KTCloudZone4.png)
+![KTCloudZone4.webp](KTCloudZone4.webp)
 
 - DMZ/Private zone을 최대 13개 티어로 구성 가능
 
 ### **Dx(Dx-M1, Dx-central,** Dx-G**)**(OpenStack)
 
-![KTCloudZone5.png](KTCloudZone5.png)
+![KTCloudZone5.webp](KTCloudZone5.webp)
 
 - scale up, scale out 지원
 - 월 추가 비용 필요(30?)

@@ -133,11 +133,11 @@ smbclient -L localhost -U smbuser1
 
 - smb.cnf에서 설정한 대로 네트워크 드라이브 연결
 
-![Rocky8Samba1.png](Rocky8Samba1.png)
+![Rocky8Samba1.webp](Rocky8Samba1.webp)
 
 - 윈도우에서 작성한 파일 리눅스에서 확인
 
-![Rocky8Samba2.png](Rocky8Samba2.png)
+![Rocky8Samba2.webp](Rocky8Samba2.webp)
 
 ## 3. Samba Server에서 Client 설정
 
@@ -165,7 +165,7 @@ sudo mkdir -p /mnt/smb
 sudo mount -t cifs //<Server-IP>/samba-share /mnt/smb -o username=smbuser1,password=<password>
 ```
 
-![Rocky8Samba3.png](Rocky8Samba3.png)
+![Rocky8Samba3.webp](Rocky8Samba3.webp)
 
 ### 3) Samba 영구 마운트
 
@@ -200,7 +200,7 @@ sudo systemctl restart mnt-smb.automount
 systemctl status mnt-smb.automount
 ```
 
-![Rocky8Samba4.png](Rocky8Samba4.png)
+![Rocky8Samba4.webp](Rocky8Samba4.webp)
 
 - 마운트된 디렉터리 /mnt/smb에서 작업해야지만 smbuser1 사용자로 작업 취급
 
