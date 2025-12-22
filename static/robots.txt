@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joonlog.github.io/sitemap.xml
