@@ -6,7 +6,7 @@ tags: ["ansible", "inventory"]
 ---
 
 
-![Ansible1.png](Ansible1.png)
+![Ansible1.webp](Ansible1.webp)
 
 - 대량의 서버 인프라 관리를 자동화하는 IaC 도구
 - 컨트롤 노드에서 앤서블 실행 시 스크립트에 작성된 내용에 따라 각 노드에 작업 자동화
