@@ -49,7 +49,7 @@ SEO는 Search Engine Optimization, 즉 검색 엔진 최적화로 구글이나 �
     
     2) `URL 접두어` 방식 선택 → `https://<블로그주소>` 입력
     
-    ![GitHubBlogSEO1.png](GitHubBlogSEO1.png)
+    ![GitHubBlogSEO1.webp](GitHubBlogSEO1.webp)
 
     3) 생성된 verifications 값 _config.yml에 입력
     
@@ -60,14 +60,14 @@ SEO는 Search Engine Optimization, 즉 검색 엔진 최적화로 구글이나 �
     
     4) 배포 후 Google Search Console 내 소유권 확인
     
-    ![GitHubBlogSEO2.png](GitHubBlogSEO2.png)
+    ![GitHubBlogSEO2.webp](GitHubBlogSEO2.webp)
     
     5) 2번에서 생성된 사이트맵 Google Search Console에 등록
     
     - 등록 후에 즉시 활성화가 되는 것은 아님
         - 하루 정도 대기 필요
 
-![GitHubBlogSEO3.png](GitHubBlogSEO3.png)
+![GitHubBlogSEO3.webp](GitHubBlogSEO3.webp)
 
 ### 참고
 
