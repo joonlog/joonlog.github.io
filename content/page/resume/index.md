@@ -93,8 +93,8 @@ comments: false
 | [Certified Kubernetes Administrator (CKA)](https://www.credly.com/badges/9742f672-1425-428f-9980-8b1325607265/public_url) | Linux Foundation | 2024.03.01 |
 | [AWS Certified Solutions Architect - Associate (SAA)](https://www.credly.com/badges/6f0cabfe-d746-46bb-8e2a-dc41f061d95d/public_url) | AWS | 2023.10.19 |
 | [Red Hat Certified System Administrator (RHCSA)](https://www.credly.com/badges/c8c22402-924e-476f-907c-40624d0a5586/public_url) | Red Hat | 2023.09.07 |
-| [리눅스마스터 2급](https://drive.google.com/file/d/1-VOw3rzaLnSa50fOrYL2PS7LYhXAxB-K/view?usp=sharing) | 한국정보통신진흥협회 | 2022.09.23 |
-| [정보처리산업기사](https://drive.google.com/file/d/1EuwuB2t4jP2zsKCmy-vDkCBB1VPzPnIk/view?usp=sharing) | 한국산업인력공단 | 2019.05.22 |
+| 리눅스마스터 2급 | 한국정보통신진흥협회 | 2022.09.23 |
+| 정보처리산업기사 | 한국산업인력공단 | 2019.05.22 |
 
 ---
 
