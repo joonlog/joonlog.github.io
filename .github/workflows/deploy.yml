@@ -34,9 +34,9 @@ jobs:
             - run: go version
 
             - name: Setup Hugo
-              uses: peaceiris/actions-hugo@v2
+              uses: peaceiris/actions-hugo@v3
               with:
-                  hugo-version: "latest"
+                  hugo-version: "0.124.1"
                   extended: true
 
             - name: Generate category pages
