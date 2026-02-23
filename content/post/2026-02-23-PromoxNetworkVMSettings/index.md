@@ -52,7 +52,7 @@ tags: ["home server", "promox", "pve", "nftables"]
 - VM에서 인터넷 통신 필요 시 pve에서 nftables 활성화 필수
     - 기본 설정에선 vmbr1에서 vmbr0으로의 FORWARD를 막고 있음
     
-    ![PromoxNetworkVMSettings01.png](PromoxNetworkVMSettings01.png)
+    ![PromoxNetworkVMSettings01.png]
     
 
 ### Promox에서 VM 생성
