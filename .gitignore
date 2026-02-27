@@ -7,7 +7,6 @@ content/categories/
 
 # Claude Code 관련 파일
 .claude/
-CLAUDE.md
 RESUME_CONTEXT.md
 hugo-migration-log.md
 hierarchical-categories-implementation.md
