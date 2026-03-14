@@ -109,7 +109,7 @@ tags: ["linux", "rocky 8.10", "cacti"]
     $database_default  = 'cactidb';
     $database_hostname = 'localhost';
     $database_username = 'cacti_user';
-    $database_password = 'Passwd123';
+    $database_password = '<PASSWORD>';
     $database_port     = '3306';
     $database_retries  = 5;
     $database_ssl      = false;
