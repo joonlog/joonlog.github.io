@@ -201,7 +201,7 @@ https://github.com/prometheus-community/helm-charts
             ```bash
               grafana:
                 ...
-                adminPassword: prom-operator
+                adminPassword: <GRAFANA_PASSWORD>
                 grafana.ini:
                   server:
                     domain: <도메인>:48082
