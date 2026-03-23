@@ -1,7 +1,7 @@
 ---
 title: "HAproxy 동시 재기동 오류 TroubleShooting"
 date: 2025-09-16T09:00:00+09:00
-categories: ["Linux", "LoadBalancer"]
+categories: ["Linux", "Load Balancer"]
 tags: ["linux", "troubleshooting", "haproxy", "loadbalancer"]
 ---
 
