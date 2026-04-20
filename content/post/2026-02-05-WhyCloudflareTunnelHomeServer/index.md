@@ -1,148 +1,99 @@
 ---
-title: "Cloudflare Tunnel을 사용한 홈서버 Promox PVE 콘솔 접근 설정"
-date: 2026-02-06T09:00:00+09:00
+title: "홈서버 접근 용도로 Cloudflare Tunnel을 쓰는 이유"
+date: 2026-02-05T09:00:00+09:00
 categories: ["Home Server", "Cloudflare"]
-tags: ["home server", "cloudflare", "cloudflare tunnel", "cloudflare access", "promox"]
+tags: ["home server", "cloudflare", "cloudflare tunnel", "promox"]
 ---
 
 
-### 목표
+> 외부에서 홈서버에 안전하게 접근하기 위한 설정
+> 
 
-- 현재 외부에서 홈서버 Promox PVE 콘솔에 접근 시 공인 IP로 직접 접근하는 중
-- PVE 접속용 도메인 설정
-- 외부에서 도메인 접근 시 Cloudflare 인증을 요구하도록 설정하고, 인증 성공 시에만 PVE 콘솔에 접근하도록 설정
+홈서버를 디폴트 상태로 외부에서 접근하기 위해선 IP와 Port로 접근이 필요하다.
 
-### 0. 사전 준비
+클라우드라면 Security Group / ACL 등등으로 제어가 쉽기 때문에 상관이 없지만, 홈서버는 집에서 사용하는 공유기 공인 IP를 외부에 오픈해야하기 때문에 보안적으로 위험하다.
 
-- Cloudflare에 등록할 도메인 준비
-- 도메인 네임서버를 Cloudflare로 설정
-    - Cloudflare 회원가입 및 로그인
-    - 로그인 시 나오는 네임서버 도메인 2개를 도메인 등록기관의 네임서버 설정에 등록
-    - 초록색 체크 표시 뜨면 OK!
-        
-        ![CloudflareTunnelSetting01.png](CloudflareTunnelSetting01.png)
-        
+기본적으로 홈 IP는 AnyOpen되어 있고, 외부에서 접근한다는 것 자체가 Wifi든 모바일이든 매번 접근하는 IP가 가변적이기 때문에 IP로 접근을 차단하는 것에도 무리가 있다.
 
-### 1. Cloudflared 설치 및 연동
+특히 Proxmox 관리 콘솔(PVE)은 관리자 권한 탈취될 시 홈 네트워크 전체에 대한 통제권을 넘길 수 있기 때문에 매우 위험하다.
 
-![CloudflareTunnelSetting02.png](CloudflareTunnelSetting02.png)
+따라서 `Cloudflare Tunnel`로 공인 IP를 숨기고, `Cloudflare Access`로 인증된 사용자만 접근할 수 있게 하려고 한다.
 
-- `Networks` - `Connectors` - `Add a tunnel`
+## **1. Cloudflare Tunnel**
 
-![CloudflareTunnelSetting03.png](CloudflareTunnelSetting03.png)
+- IP와 포트를 공개하지 않고도 외부에서 서버로 접속할 수 있게 하는 서비스
+- 외부에서 Cloudflare를 거쳐서 서버에 접속
+- 기존 인바운드+포트 포워딩 기반 접근과 다른 아웃바운드 기반 리버스 프록시 연결
 
-- `Cloudflared` 선택
+### Cloudflare Tunnel을 쓰는 이유
 
-![CloudflareTunnelSetting04.png](CloudflareTunnelSetting04.png)
+- 홈서버는 가정용 공유기에 부여된 공인 IP로 접근해야 하기 때문에 보안에 취약
+- 기업에서 쓰는 서버들의 경우 WAF, IPS, F/W 등 방어 솔루션이 많지만, 홈서버는 사실상 방어 수단이 전무
+- Cloudflare를 거치면서 레이턴시가 늘어나더라도, 홈서버는 보안이 최우선
+- 따라서 Zero-Inbound를 유지하고도 운영이 가능한 Cloudflare Tunnel 사용
 
-- tunnel 이름 기입
+### **기존 포트포워딩 방식**
 
-![CloudflareTunnelSetting05.png](CloudflareTunnelSetting05.png)
-
-- OS 확인 및 Cloudflared 설치
-    - Promox는 Debian 리눅스 64bit
-        - `cat /etc/os-release` + `uname -m` 명령어로 확인 가능
-    - `root` 사용자로 진행
-        - Promox는 sudo가 설치되어 있지 않음
+1. 포트포워딩은 외부에서 들어오는 Inbound 연결을 서버가 직접 받아들이는 구조
     
-    ```jsx
-    # Add cloudflare gpg key
-    mkdir -p --mode=0755 /usr/share/keyrings
-    curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
-    
-    # Add this repo to your apt repositories
-    echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | tee /etc/apt/sources.list.d/cloudflared.list
-    
-    # install cloudflared
-    apt-get update && apt-get install cloudflared
+    ```
+    외부 클라이언트 → 공유기(포트포워딩) → 홈서버
     ```
     
-    - apt-get update 시 `enterprise.proxmox.com 패키지 Unauthorized` 오류가 나는 경우
-        - Promox의 기본 패키지는 유료 구독형이기 때문에 비활성화 필요
-        
-        ```jsx
-        cd /etc/apt/sources.list.d
-        
-        mv -v pve-enterprise.sources pve-enterprise.sources.disabled
-        mv -v ceph.sources ceph.sources.disabled
-        ```
-        
-        - 일반 패키지 리포 추가
-        
-        ```jsx
-        cat > /etc/apt/sources.list.d/pve-no-subscription.sources <<'EOF'
-        Types: deb
-        URIs: http://download.proxmox.com/debian/pve
-        Suites: trixie
-        Components: pve-no-subscription
-        Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
-        EOF
-        ```
-        
-    - 하단의 토큰 값 유출되지 않도록 유의
-        - 서버가 시작될때마다 Tunnel이 자동으로 기동되게 할 경우
-            
-            ```jsx
-            cloudflared service install <토큰>
-            ```
-            
-        - 현재 터미널에서만 Tunnel 연결할 경우
-            
-            ```jsx
-            cloudflared tunnel run --token <토큰>
-            ```
-            
+    - 이 방식에서는 서버가 외부에서 접근 가능한 상태가 되며, 열려 있는 포트는 스캔이나 공격의 대상이 될 수 있어서 보안적으로 매우 취약
 
-### 2. Cloudflare Routes 설정
+### Cloudflare Tunnel 방식
 
-- 연동한 tunnel을 통해서 연결할 도메인 경로 및 라우팅 경로 설정
-    - Hostname: 보유 도메인 기입
-    - Type: HTTPS
-    - URL: localhost:8006
+1. Cloudflare Tunnel은 서버가 먼저 Cloudflare로 Outbound 연결을 생성
     
-    ![CloudflareTunnelSetting06.png](CloudflareTunnelSetting06.png)
+    ```
+    [항상 유지되는 연결]
+    홈서버(cloudflared) → Cloudflare
+    ```
     
-- Promox 서버에서 https://localhost:8006로 접근 시 TLS 해제 필요
+    - `cloudflared` 데몬은 Cloudflare Edge와 여러 개의 TLS 연결을 지속적으로 유지
+    - 이 시점에는 외부 요청이 없어도 연결은 계속 생존
+    - 즉, 요청이 올 때마다 연결을 여는 구조가 아니다
+2. 외부 사용자가 서비스에 접근하면 요청은 먼저 Cloudflare에 도달
     
-    ![CloudflareTunnelSetting07.png](CloudflareTunnelSetting07.png)
+    ```
+    외부 클라이언트 → Cloudflare
+    ```
     
-- 여기까지 설정 완료 시 기입한 서브도메인으로 PVE 접근 가능
-
-### 3. Cloudflare Access 설정
-
-- 서브도메인에 대한 인증 설정
-
-![CloudflareTunnelSetting08.png](CloudflareTunnelSetting08.png)
-
-![CloudflareTunnelSetting09.png](CloudflareTunnelSetting09.png)
-
-- Self-hosted 설명에 나와 있듯이 Policy 먼저 생성
+    이 단계에서 Cloudflare는 아래 접근 제어를 수행
     
-    ![CloudflareTunnelSetting10.png](CloudflareTunnelSetting10.png)
+    - Cloudflare Access 기반 인증 (로그인, OTP, SSO, 서비스 토큰 등)
+    - IP, 국가, 정책 기반 접근 제어
+    - 인증 실패 시 요청 차단
+    - 인증과 접근 제어는 홈서버와 분리된 상태에서 Cloudflare가 전담
+3. 인증 이후 실 연결
     
-    - PVE 접속 도메인 접근 시 Email 인증하도록 Policy 설정
-
-![CloudflareTunnelSetting11.png](CloudflareTunnelSetting11.png)
-
-- 설정한 Policy 할당
-
-![CloudflareTunnelSetting12.png](CloudflareTunnelSetting12.png)
-
-- PVE 접속 도메인 접근 시 이메일 인증 요구하는 화면 출력 확인
-- 설정 완료!
-
-### 3. Promox 인바운드 접근 차단
-
-- Cloudflare Tunnel이 뚫렸기 때문에, 기존에 anyopen되어 있던 Promox 공인 IP에 대한 접근을 전부 차단
-- Zero-Inbound 설정
-- PVE 콘솔 → Datacenter → Firewall → Options → Firewall 활성화
+    ```
+    Cloudflare → 기존 Tunnel → 홈서버
+    ```
     
-    ![CloudflareTunnelSetting13.png](CloudflareTunnelSetting13.png)
+    - 인증을 통과한 요청만 이미 열려 있는 터널 연결을 통해 홈서버로 전달됨
+
+## 2. Cloudflare Access
+
+Cloudflare tunnel만 사용한다면, 최초 목적 중 공인 IP 숨기기만 가능하다.
+
+PVE 콘솔에 대한 접근 자체를 막기 위해선 Cloudflare Access를 사용한 인증 절차 도입이 필요하다.
+
+### Cloudflare Access 도입 후의 구조
+
+- 위 Cloudflare Tunnel의 2번째 단계에서 Cloudflare Access 추가
     
-- 설정 즉시 공인 IP를 통한 PVE 콘솔 차단 완료!
+    ```jsx
+    외부 클라이언트 → Cloudflare Access → Cloudflare
+    ```
+    
 
-### 결과
+### 정리
 
-- 홈서버로서의 취약한 보안 조치 완료
-    - 홈 공인IP 숨기기
-    - 관리자용 페이지 접근 시 이메일 인증 적용
+- Cloudflare Tunnel은 요청을 역방향으로 전달하는 Outbound 기반 리버스 프록시 구조
+- 홈서버 입장에서는 외부 클라이언트와 직접 통신하지 않는다
+- Cloudflare와 유지 중인 Outbound 연결만 사용하며, 외부에서 서버로 들어오는 Inbound 포트는 존재하지 않는다
+- 따라서 Zero-Inbound로 외부에서 서비스 접근이 가능
+- 내가 외부에서 접근해야 하지만 공개적으로 오픈하면 안 될 경우 Cloudflare Access 사용
+- 실제 작업 과정은 다음 글 확인
