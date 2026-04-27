@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -26,7 +25,7 @@ func main() {
 
 		// index.md 파일만 처리
 		if !info.IsDir() && info.Name() == "index.md" {
-			content, err := ioutil.ReadFile(path)
+			content, err := os.ReadFile(path)
 			if err != nil {
 				fmt.Printf("Error reading %s: %v\n", path, err)
 				return nil
@@ -63,29 +62,33 @@ func main() {
 		os.MkdirAll(primaryDir, 0755)
 
 		// Primary 카테고리 _index.md 생성
+		primarySlug := slugify(primary)
 		primaryIndexPath := filepath.Join(primaryDir, "_index.md")
 		primaryContent := fmt.Sprintf(`---
 title: "%s"
 description: "%s 카테고리의 모든 포스트"
 primary_category: "%s"
 layout: "category-primary"
+url: "/categories/%s/"
 ---
-`, primary, primary, primary)
-		ioutil.WriteFile(primaryIndexPath, []byte(primaryContent), 0644)
+`, primary, primary, primary, primarySlug)
+		os.WriteFile(primaryIndexPath, []byte(primaryContent), 0644)
 		fmt.Printf("Created: %s\n", primaryIndexPath)
 
 		// Secondary 카테고리 페이지 생성
 		for secondary := range secondaries {
-			secondaryPath := filepath.Join(primaryDir, slugify(secondary)+".md")
+			secondarySlug := slugify(secondary)
+			secondaryPath := filepath.Join(primaryDir, secondarySlug+".md")
 			secondaryContent := fmt.Sprintf(`---
 title: "%s"
 description: "%s > %s 카테고리의 포스트"
 primary_category: "%s"
 secondary_category: "%s"
 layout: "category-secondary"
+url: "/categories/%s/%s/"
 ---
-`, secondary, primary, secondary, primary, secondary)
-			ioutil.WriteFile(secondaryPath, []byte(secondaryContent), 0644)
+`, secondary, primary, secondary, primary, secondary, primarySlug, secondarySlug)
+			os.WriteFile(secondaryPath, []byte(secondaryContent), 0644)
 			fmt.Printf("Created: %s\n", secondaryPath)
 		}
 	}
