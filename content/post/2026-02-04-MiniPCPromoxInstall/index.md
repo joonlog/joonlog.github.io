@@ -29,16 +29,16 @@ tags: ["home server", "promox", "mini pc", "an3p"]
 - 가상화 기능을 써야 하니 관련 설정이 정상적인지 확인
     - Advanced → CPU Configuration → `SVM` / `Virtualization` / `AMD-V` 관련 항목은 무조건 `Enabled`
 
-![MiniPCPromoxInstall03.png](MiniPCPromoxInstall03.png)
+![MiniPCPromoxInstall03.jpg](MiniPCPromoxInstall03.jpg)
 
 - USB를 통한 Promox 설치 시 막힐 수 있어서 Secure Boot 해제
     - Boot → Boot Configuration → Secure Boot → `Disabled`
 
-![MiniPCPromoxInstall04.png](MiniPCPromoxInstall04.png)
+![MiniPCPromoxInstall04.jpg](MiniPCPromoxInstall04.jpg)
 
 - Boot → Boot Option 순서에서 Promox 설치 USB를 첫번째 순서로 조정
 
-![MiniPCPromoxInstall05.png](MiniPCPromoxInstall05.png)
+![MiniPCPromoxInstall05.jpg](MiniPCPromoxInstall05.jpg)
 
 - 설정 저장 및 재기동
 
@@ -48,7 +48,7 @@ tags: ["home server", "promox", "mini pc", "an3p"]
 - 인터페이스는 일단 DHCP로 설정
 - 모든 설정 후 재부팅하면 설치 완료
     
-    ![MiniPCPromoxInstall06.png](MiniPCPromoxInstall06.png)
+    ![MiniPCPromoxInstall06.jpg](MiniPCPromoxInstall06.jpg)
     
 
 ### 4. Promox PVE 접근 확인
