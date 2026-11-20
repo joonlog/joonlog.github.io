@@ -33,11 +33,14 @@ jobs:
                   go-version: "^1.17.0"
             - run: go version
 
+            # Hugo 0.170+ dropped libsass; the theme's SCSS needs Dart Sass
+            - name: Install Dart Sass
+              run: sudo snap install dart-sass
+
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v3
               with:
                   hugo-version: "latest"
-                  extended: true
 
             - name: Generate category pages
               run: go run scripts/generate-categories.go
