@@ -1,5 +1,7 @@
 ---
 title: "Obsidian Custom 설정"
+slug: "obsidian-custom-settings"
+aliases: ["/p/obsidian-custom-설정/"]
 date: 2026-05-19T09:00:00+09:00
 categories: ["Home Server", "Obsidian"]
 tags: ["home server", "obsidian", "folder notes", "templater", "custom sort"]

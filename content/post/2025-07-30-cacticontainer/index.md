@@ -1,5 +1,7 @@
 ---
 title: "Cacti Conainer 구축"
+slug: "cacti-container-build"
+aliases: ["/p/cacti-conainer-구축/"]
 date: 2025-07-30T09:00:00+09:00
 categories: ["Container", "Cacti"]
 tags: ["docker", "container", "cacti", "cacti container"]

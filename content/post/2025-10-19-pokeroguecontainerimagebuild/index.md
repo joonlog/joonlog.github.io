@@ -1,5 +1,7 @@
 ---
 title: "Pokerogue 게임을 Container 이미지로 빌드하기 위한 방법"
+slug: "pokerogue-container-image"
+aliases: ["/p/pokerogue-게임을-container-이미지로-빌드하기-위한-방법/"]
 date: 2025-10-19T09:00:00+09:00
 categories: ["Container", "Pokerogue"]
 tags: ["pokerogue", "rogueserver", "docker", "container", "dockerfile", "oauth"]

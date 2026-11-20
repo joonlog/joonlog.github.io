@@ -1,5 +1,7 @@
 ---
 title: "Samba 파일 공유 구축"
+slug: "samba-file-share"
+aliases: ["/p/samba-파일-공유-구축/"]
 date: 2024-12-17T09:00:00+09:00
 categories: ["Linux", "File Sharing"]
 tags: ["rocky 8.10", "windows 2019", "samba"]

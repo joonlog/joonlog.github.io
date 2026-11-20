@@ -1,5 +1,7 @@
 ---
 title: "SSH Config 옵션 정리"
+slug: "ssh-config-options"
+aliases: ["/p/ssh-config-옵션-정리/"]
 date: 2026-05-01T09:00:00+09:00
 categories: ["Linux", "SSH"]
 tags: ["linux", "ssh", "ssh config", "proxyjump", "proxycommand"]

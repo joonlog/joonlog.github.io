@@ -1,5 +1,7 @@
 ---
 title: "Ansible 기본 개념"
+slug: "ansible-basics"
+aliases: ["/p/ansible-기본-개념/"]
 date: 2025-04-16T09:00:00+09:00
 categories: ["Ansible", "Basic"]
 tags: ["ansible", "inventory"]

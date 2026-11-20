@@ -1,5 +1,7 @@
 ---
 title: "Apache-Tomcat 설치 및 연동"
+slug: "apache-tomcat-install"
+aliases: ["/p/apache-tomcat-설치-및-연동/"]
 date: 2024-12-09T18:08:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["rocky 8.10", "apache", "tomcat", "web", "was"]

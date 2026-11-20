@@ -1,5 +1,7 @@
 ---
 title: "Apache AJP Localhost 연결 에러 TroubleShooting"
+slug: "apache-ajp-localhost-troubleshooting"
+aliases: ["/p/apache-ajp-localhost-연결-에러-troubleshooting/"]
 date: 2025-06-07T09:00:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["linux", "apache", "ajp", "localhost", "127.0.0.1", "ipv4/ipv6", "troubleshooting"]

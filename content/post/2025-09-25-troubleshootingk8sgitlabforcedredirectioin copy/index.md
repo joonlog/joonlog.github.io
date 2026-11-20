@@ -1,5 +1,7 @@
 ---
 title: "K8S에 구축한 GitLab UI 접근 시 접근 포트가 제거된 상태로 강제 리다이렉션 TroubleShooting"
+slug: "k8s-gitlab-redirect-port-troubleshooting"
+aliases: ["/p/k8s에-구축한-gitlab-ui-접근-시-접근-포트가-제거된-상태로-강제-리다이렉션-troubleshooting/"]
 date: 2025-09-25T09:00:00+09:00
 categories: ["Kubernetes", "GitLab"]
 tags: ["Kubernetes", "k8s", "self managed k8s", "troubleshooting", "gitlab", "gitlab helm chart"]

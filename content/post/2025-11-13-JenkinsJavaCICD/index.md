@@ -1,5 +1,7 @@
 ---
 title: "컨테이너 환경에서 Jenkins의 Java CICD 파이프라인 구축하기"
+slug: "jenkins-java-cicd-container"
+aliases: ["/p/컨테이너-환경에서-jenkins의-java-cicd-파이프라인-구축하기/"]
 date: 2025-11-13T09:00:00+09:00
 categories: ["Container", "Jenkins"]
 tags: ["container", "jenkins", "cicd", "java cicd"]

@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Ingress Overview"
+slug: "k8s-ingress-overview"
+aliases: ["/p/kubernetes-ingress-overview/"]
 date: 2025-08-13T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "ingress", "ingress controller"]

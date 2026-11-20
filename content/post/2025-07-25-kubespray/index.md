@@ -1,5 +1,7 @@
 ---
 title: "Kubespray를 사용한 Kubernetes 클러스터 배포 (자체 관리형 Kubernetes)"
+slug: "kubespray-k8s-cluster"
+aliases: ["/p/kubespray를-사용한-kubernetes-클러스터-배포-자체-관리형-kubernetes/"]
 date: 2025-07-25T09:00:00+09:00
 categories: ["Kubernetes", "Deploy"]
 tags: ["kubernetes", "k8s", "kubespray", "docker", "self managed k8s"]

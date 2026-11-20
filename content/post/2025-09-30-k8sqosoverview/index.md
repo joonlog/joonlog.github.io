@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes QoS Overview"
+slug: "k8s-qos-overview"
+aliases: ["/p/kubernetes-qos-overview/"]
 date: 2025-09-30T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "qos", "guaranteed", "burstable", "bestEffort", "eviction"]

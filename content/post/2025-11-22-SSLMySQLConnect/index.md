@@ -1,5 +1,7 @@
 ---
 title: "SSL 인증서를 사용한 MySQL/MariaDB 암호화 통신"
+slug: "mysql-mariadb-ssl"
+aliases: ["/p/ssl-인증서를-사용한-mysql-mariadb-암호화-통신/"]
 date: 2025-11-22T09:00:00+09:00
 categories: ["Linux", "DB"]
 tags: ["linux", "db", "mysql", "mariadb", "ca connect", "ssl connect"]

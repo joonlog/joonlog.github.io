@@ -1,5 +1,7 @@
 ---
 title: "GitHub 내의 민감한 정보 제거"
+slug: "github-remove-sensitive-data"
+aliases: ["/p/github-내의-민감한-정보-제거/"]
 date: 2026-03-16T09:00:00+09:00
 categories: ["SCM", "Git"]
 tags: ["git", "github", "github sensitive data"]

@@ -1,5 +1,7 @@
 ---
 title: "Hugo Stack 테마에서 계층형 카테고리 커스텀하기"
+slug: "hugo-stack-hierarchical-categories"
+aliases: ["/p/hugo-stack-테마에서-계층형-카테고리-커스텀하기/"]
 date: 2025-11-12T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
 tags: ["github blog", "hugo", "stack", "github pages", "go", "hierarchical category"]

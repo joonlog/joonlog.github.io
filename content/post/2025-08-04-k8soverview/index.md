@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes 아키텍쳐"
+slug: "k8s-architecture"
+aliases: ["/p/kubernetes-아키텍쳐/"]
 date: 2025-08-04T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "kubernetes architecture"]

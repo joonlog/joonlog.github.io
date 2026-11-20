@@ -1,5 +1,7 @@
 ---
 title: "Go iota"
+slug: "go-iota"
+aliases: ["/p/go-iota/"]
 date: 2025-05-29T09:00:00+09:00
 categories: ["Go", "Go Basic"]
 tags: ["go", "iota", "const"]

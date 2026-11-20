@@ -1,5 +1,7 @@
 ---
 title: "리눅스 CMD 로그, 시스템 로그 logrotate, openfile, sar 로그 설정"
+slug: "linux-cmd-log-logrotate-openfile-sar"
+aliases: ["/p/리눅스-cmd-로그-시스템-로그-logrotate-openfile-sar-로그-설정/"]
 date: 2025-10-30T09:00:00+09:00
 categories: ["Linux", "System"]
 tags: ["linux", "system log", "cmd log", "openfile", "sar", "logrotate"]

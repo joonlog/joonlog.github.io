@@ -1,5 +1,7 @@
 ---
 title: "Tmux 명령어"
+slug: "tmux-commands"
+aliases: ["/p/tmux-명령어/"]
 date: 2026-03-31T09:00:00+09:00
 categories: ["Session", "Tmux"]
 tags: ["session", "tmux"]

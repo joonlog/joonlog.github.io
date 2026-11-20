@@ -1,5 +1,7 @@
 ---
 title: "Nagios 모니터링 구축"
+slug: "nagios-install"
+aliases: ["/p/nagios-모니터링-구축/"]
 date: 2024-12-12T09:00:00+09:00
 categories: ["Linux", "Monitoring"]
 tags: ["rocky 8.10", "nagios", "nrpe"]

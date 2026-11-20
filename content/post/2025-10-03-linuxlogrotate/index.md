@@ -1,5 +1,7 @@
 ---
 title: "Linux logrotate를 통한 로그 관리"
+slug: "linux-logrotate"
+aliases: ["/p/linux-logrotate를-통한-로그-관리/"]
 date: 2025-10-03T09:00:00+09:00
 categories: ["Linux", "System"]
 tags: ["linux", "logrotate", "mariadb"]

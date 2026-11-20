@@ -1,5 +1,7 @@
 ---
 title: "Tomcat Thread Stuck으로 인한 사이트 접근 불가 TroubleShooting"
+slug: "tomcat-thread-stuck-troubleshooting"
+aliases: ["/p/tomcat-thread-stuck으로-인한-사이트-접근-불가-troubleshooting/"]
 date: 2025-07-24T09:00:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["linux", "tomcat", "tibero", "tibero backup", "thread stuck", "troubleshooting"]

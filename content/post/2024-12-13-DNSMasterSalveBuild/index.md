@@ -1,5 +1,7 @@
 ---
 title: "DNS Master-Slave 구축"
+slug: "dns-master-slave"
+aliases: ["/p/dns-master-slave-구축/"]
 date: 2024-12-13T09:00:00+09:00
 categories: ["Linux", "DNS"]
 tags: ["rocky 8.10", "dns", "bind", "master", "slave"]

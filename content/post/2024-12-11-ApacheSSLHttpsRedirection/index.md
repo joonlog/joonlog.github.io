@@ -1,5 +1,7 @@
 ---
 title: "Apache SSL HTTPS Redirection"
+slug: "apache-ssl-https-redirect"
+aliases: ["/p/apache-ssl-https-redirection/"]
 date: 2024-12-11T18:00:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["rocky 8.10", "apache", "ssl", "https"]

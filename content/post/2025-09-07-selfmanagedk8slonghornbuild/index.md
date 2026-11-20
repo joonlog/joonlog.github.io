@@ -1,5 +1,7 @@
 ---
 title: "자체 관리형 Kubernetes에서의 분산 스토리지 Longhorn 구축"
+slug: "self-managed-k8s-longhorn"
+aliases: ["/p/자체-관리형-kubernetes에서의-분산-스토리지-longhorn-구축/"]
 date: 2025-09-07T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
 tags: ["kubernetes", "k8s", "self managed k8s", "longhorn", "pv"]

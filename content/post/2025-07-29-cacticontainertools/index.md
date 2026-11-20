@@ -1,5 +1,7 @@
 ---
 title: "Cacti Conainer의 Script Tools"
+slug: "cacti-container-script-tools"
+aliases: ["/p/cacti-conainer의-script-tools/"]
 date: 2025-07-29T09:00:00+09:00
 categories: ["Container", "Cacti"]
 tags: ["docker", "container cacti", "cacti container", "cacti tools"]

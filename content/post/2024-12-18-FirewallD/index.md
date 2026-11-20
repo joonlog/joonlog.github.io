@@ -1,5 +1,7 @@
 ---
 title: "FirewallD"
+slug: "firewalld"
+aliases: ["/p/firewalld/"]
 date: 2024-12-18T09:00:00+09:00
 categories: ["Linux", "Firewall"]
 tags: ["rocky 8.10", "firewall", "firewalld"]

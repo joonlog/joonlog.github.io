@@ -1,5 +1,7 @@
 ---
 title: "NCP Backup"
+slug: "ncp-backup"
+aliases: ["/p/ncp-backup/"]
 date: 2025-05-24T09:00:00+09:00
 categories: ["NCP", "Storage"]
 tags: ["ncp", "storage", "backup"]

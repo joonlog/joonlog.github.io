@@ -1,5 +1,7 @@
 ---
 title: "Cacti Conainer 환경변수"
+slug: "cacti-container-env"
+aliases: ["/p/cacti-conainer-환경변수/"]
 date: 2025-07-28T09:00:00+09:00
 categories: ["Container", "Cacti"]
 tags: ["docker", "container", "cacti", "cacti container", "cacti env"]

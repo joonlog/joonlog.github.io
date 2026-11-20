@@ -1,5 +1,7 @@
 ---
 title: "RHCSA 8 후기"
+slug: "rhcsa-8-review"
+aliases: ["/p/rhcsa-8-후기/"]
 date: 2024-12-31T09:00:00+09:00
 categories: ["Certification", "RedHat"]
 tags: ["redhat", "linux", "rhcsa8", "rhel8"]

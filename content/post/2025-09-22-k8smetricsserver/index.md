@@ -1,5 +1,7 @@
 ---
 title: "자체 관리형 Kubernetes에서 Metrics Server를 통한 매트릭 자원 확인"
+slug: "self-managed-k8s-metrics-server"
+aliases: ["/p/자체-관리형-kubernetes에서-metrics-server를-통한-매트릭-자원-확인/"]
 date: 2025-09-22T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
 tags: ["kubernetes", "k8s", "metrics server", "kubectl top", "self managed k8s"]

@@ -1,5 +1,7 @@
 ---
 title: "AWS 자원에 핵폭탄 날리기 (AWS Nuke)"
+slug: "aws-nuke"
+aliases: ["/p/aws-자원에-핵폭탄-날리기-aws-nuke/"]
 date: 2025-06-20T09:00:00+09:00
 categories: ["AWS", "AWS CLI"]
 tags: ["aws", "aws-nuke"]

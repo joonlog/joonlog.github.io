@@ -1,5 +1,7 @@
 ---
 title: "Jenkins Agent를 Docker로 동작시키기 위한 방법"
+slug: "jenkins-docker-agent"
+aliases: ["/p/jenkins-agent를-docker로-동작시키기-위한-방법/"]
 date: 2025-10-27T09:00:00+09:00
 categories: ["Container", "Jenkins"]
 tags: ["docker", "container", "jenkins", "dockerfile", "docker compose"]

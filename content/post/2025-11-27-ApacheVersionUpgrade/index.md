@@ -1,5 +1,7 @@
 ---
 title: "Apache 버전 업그레이드"
+slug: "apache-version-upgrade"
+aliases: ["/p/apache-버전-업그레이드/"]
 date: 2025-11-27T09:00:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["linux", "apache", "apache version upgrade"]

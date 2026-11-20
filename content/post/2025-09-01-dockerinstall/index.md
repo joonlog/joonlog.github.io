@@ -1,5 +1,7 @@
 ---
 title: "Linux 환경에서 Docker 설치 (RedHat/Ubuntu 계열)"
+slug: "docker-install-linux"
+aliases: ["/p/linux-환경에서-docker-설치-redhat-ubuntu-계열/"]
 date: 2025-09-01T09:00:00+09:00
 categories: ["Container", "Docker"]
 tags: ["container", "docker", "redhat", "centos", "ubuntu"]

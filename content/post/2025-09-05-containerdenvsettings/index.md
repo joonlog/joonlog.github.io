@@ -1,5 +1,7 @@
 ---
 title: "Containerd 설치 및 환경 세팅하기"
+slug: "containerd-install"
+aliases: ["/p/containerd-설치-및-환경-세팅하기/"]
 date: 2025-09-05T09:00:00+09:00
 categories: ["Container", "Containerd"]
 tags: ["container", "containerd", "nerdctl", "buildkit"]

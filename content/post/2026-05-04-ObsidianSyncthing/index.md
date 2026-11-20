@@ -1,5 +1,7 @@
 ---
 title: "Syncthing으로 Obsidian vault 동기화하기"
+slug: "obsidian-syncthing"
+aliases: ["/p/syncthing으로-obsidian-vault-동기화하기/"]
 date: 2026-05-03T09:00:00+09:00
 categories: ["Home Server", "Obsidian"]
 tags: ["home server", "obsidian", "syncthing", "lxc", "synctrayzor"]

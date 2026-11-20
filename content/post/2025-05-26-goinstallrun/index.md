@@ -1,5 +1,7 @@
 ---
 title: "Go 설치와 실행"
+slug: "go-install-run"
+aliases: ["/p/go-설치와-실행/"]
 date: 2025-05-26T09:00:00+09:00
 categories: ["Go", "Go Basic"]
 tags: ["go", "go install", "go run"]

@@ -1,5 +1,7 @@
 ---
 title: "Go의 기본 자료형과 단축 선언"
+slug: "go-basic-types"
+aliases: ["/p/go의-기본-자료형과-단축-선언/"]
 date: 2025-05-28T09:00:00+09:00
 categories: ["Go", "Go Basic"]
 tags: ["go", "data type", "fmt", "casting", "short declaration"]

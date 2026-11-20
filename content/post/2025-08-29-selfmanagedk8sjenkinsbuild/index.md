@@ -1,5 +1,7 @@
 ---
 title: "자체 관리형 Kubernetes에서의 Jenkins 구축"
+slug: "self-managed-k8s-jenkins"
+aliases: ["/p/자체-관리형-kubernetes에서의-jenkins-구축/"]
 date: 2025-08-29T09:00:00+09:00
 categories: ["Kubernetes", "Jenkins"]
 tags: ["kubernetes", "k8s", "self managed k8s", "jenkins"]

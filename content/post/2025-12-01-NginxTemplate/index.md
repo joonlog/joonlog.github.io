@@ -1,5 +1,7 @@
 ---
 title: "Nginx 리버스 프록시 템플릿"
+slug: "nginx-reverse-proxy-template"
+aliases: ["/p/nginx-리버스-프록시-템플릿/"]
 date: 2025-12-01T09:00:00+09:00
 categories: ["Linux", "Middleware"]
 tags: ["linux", "nginx", "ssl termination", "https redirect", "java nginx", "php nginx", "fastcgi"]

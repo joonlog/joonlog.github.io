@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Storage Overview"
+slug: "k8s-storage-overview"
+aliases: ["/p/kubernetes-storage-overview/"]
 date: 2025-08-21T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "pv", "pvc", "storageclass"]

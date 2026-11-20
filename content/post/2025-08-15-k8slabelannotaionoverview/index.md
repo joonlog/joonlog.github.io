@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Label과 Annotation"
+slug: "k8s-labels-annotations"
+aliases: ["/p/kubernetes-label과-annotation/"]
 date: 2025-08-17T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "label", "annotation"]

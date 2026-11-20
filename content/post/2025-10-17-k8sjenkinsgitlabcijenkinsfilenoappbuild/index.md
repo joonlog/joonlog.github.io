@@ -1,5 +1,7 @@
 ---
 title: "K8S에 구축된 Jenkins-GitLab CI Jenkinsfile - 애플리케이션 빌드 필요 없는 경우"
+slug: "k8s-jenkins-gitlab-jenkinsfile-no-build"
+aliases: ["/p/k8s에-구축된-jenkins-gitlab-ci-jenkinsfile-애플리케이션-빌드-필요-없는-경우/"]
 date: 2025-10-17T09:00:00+09:00
 categories: ["Kubernetes", "Jenkins"]
 tags: ["Kubernetes", "k8s", "self managed k8s", "jenkins", "gitlab", "jenkins pipeline", "ci", "jenkinsfile"]

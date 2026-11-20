@@ -1,5 +1,7 @@
 ---
 title: "GitHub 블로그(Jekyll Chirpy) 오류 TroubleShooting"
+slug: "jekyll-chirpy-build-troubleshooting"
+aliases: ["/p/github-블로그jekyll-chirpy-오류-troubleshooting/"]
 date: 2024-12-29T09:00:00+09:00
 categories: ["GitHub Blog", "Jekyll"]
 tags: ["git", "github", "github blog", "github action error", "jekyll", "jekyll chirpy", "troubleshooting"]

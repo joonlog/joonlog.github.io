@@ -1,5 +1,7 @@
 ---
 title: "홈서버 접근 용도로 Cloudflare Tunnel을 쓰는 이유"
+slug: "why-cloudflare-tunnel-homeserver"
+aliases: ["/p/홈서버-접근-용도로-cloudflare-tunnel을-쓰는-이유/"]
 date: 2026-02-05T09:00:00+09:00
 categories: ["Home Server", "Cloudflare"]
 tags: ["home server", "cloudflare", "cloudflare tunnel", "promox"]

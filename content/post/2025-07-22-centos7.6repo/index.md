@@ -1,5 +1,7 @@
 ---
 title: "CentOS 7.6 Yum Repository"
+slug: "centos-7-6-yum-repo"
+aliases: ["/p/centos-7.6-yum-repository/"]
 date: 2025-07-22T09:00:00+09:00
 categories: ["Linux", "EOS Repository"]
 tags: ["linux", "centos 7.6", "yum repository", "eos"]

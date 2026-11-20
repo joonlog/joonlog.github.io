@@ -1,5 +1,7 @@
 ---
 title: "Ansible Variables / Secrets / Facts"
+slug: "ansible-variables-secrets-facts"
+aliases: ["/p/ansible-variables-secrets-facts/"]
 date: 2025-04-22T09:00:00+09:00
 categories: ["Ansible", "Basic"]
 tags: ["ansible", "variables", "facts", "secrets"]

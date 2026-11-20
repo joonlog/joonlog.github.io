@@ -1,5 +1,7 @@
 ---
 title: "K8S에 구축한 Jenkins CI 파이프라인의 Dind 네트워크 에러 TroubleShooting"
+slug: "k8s-jenkins-dind-network-troubleshooting"
+aliases: ["/p/k8s에-구축한-jenkins-ci-파이프라인의-dind-네트워크-에러-troubleshooting/"]
 date: 2025-09-27T09:00:00+09:00
 categories: ["Kubernetes", "Jenkins"]
 tags: ["Kubernetes", "k8s", "self managed k8s", "troubleshooting", "jenkins", "dind"]

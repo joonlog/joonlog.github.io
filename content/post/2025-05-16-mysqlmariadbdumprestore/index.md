@@ -1,5 +1,7 @@
 ---
 title: "MySQL / MariaDB 덤프 및 복원"
+slug: "mysql-mariadb-dump-restore"
+aliases: ["/p/mysql-mariadb-덤프-및-복원/"]
 date: 2025-05-16T09:00:00+09:00
 categories: ["Linux", "DB"]
 tags: ["linux", "db", "mysql", "mariadb", "mysql dump", "mysql restore"]

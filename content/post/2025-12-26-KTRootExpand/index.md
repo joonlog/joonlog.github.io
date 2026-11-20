@@ -1,5 +1,7 @@
 ---
 title: "KT Cloud에서 루트 디스크 증설하는 방법"
+slug: "kt-cloud-root-disk-expand"
+aliases: ["/p/kt-cloud에서-루트-디스크-증설하는-방법/"]
 date: 2025-12-26T09:00:00+09:00
 categories: ["KT Cloud", "Server"]
 tags: ["kt cloud", "server", "root disk", "lvm"]

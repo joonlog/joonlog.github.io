@@ -1,5 +1,7 @@
 ---
 title: "NCP에서 NLB 구성 후 503 발생 TroubleShooting"
+slug: "ncp-nlb-503-troubleshooting"
+aliases: ["/p/ncp에서-nlb-구성-후-503-발생-troubleshooting/"]
 date: 2025-12-14T09:00:00+09:00
 categories: ["NCP", "Load Balancer"]
 tags: ["ncp", "load balancer", "nlb", "network load balancer"]

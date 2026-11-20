@@ -1,5 +1,7 @@
 ---
 title: "CKA 후기"
+slug: "cka-review"
+aliases: ["/p/cka-후기/"]
 date: 2025-01-04T09:00:00+09:00
 categories: ["Certification", "Kubernetes"]
 tags: ["kubernetes", "k8s", "cka"]

@@ -1,5 +1,7 @@
 ---
 title: "Cloudflare Tunnel을 사용한 홈서버 Promox PVE 콘솔 접근 설정"
+slug: "cloudflare-tunnel-proxmox-console"
+aliases: ["/p/cloudflare-tunnel을-사용한-홈서버-promox-pve-콘솔-접근-설정/"]
 date: 2026-02-06T09:00:00+09:00
 categories: ["Home Server", "Cloudflare"]
 tags: ["home server", "cloudflare", "cloudflare tunnel", "cloudflare access", "promox"]

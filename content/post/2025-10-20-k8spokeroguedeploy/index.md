@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes에서 Pokerogue 게임 배포하기"
+slug: "k8s-pokerogue-deploy"
+aliases: ["/p/kubernetes에서-pokerogue-게임-배포하기/"]
 date: 2025-10-20T09:00:00+09:00
 categories: ["Kubernetes", "Pokerogue"]
 tags: ["Kubernetes", "k8s", "self managed k8s", "pokerogue", "rogueserver"]

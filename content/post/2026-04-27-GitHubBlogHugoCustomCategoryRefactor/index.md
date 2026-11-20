@@ -1,5 +1,7 @@
 ---
 title: "Hugo Stack 계층형 카테고리 리팩토링"
+slug: "hugo-stack-categories-refactor"
+aliases: ["/p/hugo-stack-계층형-카테고리-리팩토링/"]
 date: 2026-04-27T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
 tags: ["github blog", "hugo", "stack", "go", "hierarchical category", "refactoring"]

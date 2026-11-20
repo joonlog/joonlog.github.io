@@ -1,5 +1,7 @@
 ---
 title: "AWS-SAP C02 후기"
+slug: "aws-sap-c02-review"
+aliases: ["/p/aws-sap-c02-후기/"]
 date: 2026-10-22T09:00:00+09:00
 categories: ["Certification", "AWS"]
 tags: ["aws", "aws-sap", "c02"]

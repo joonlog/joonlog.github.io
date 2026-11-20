@@ -1,5 +1,7 @@
 ---
 title: "Hugo 템플릿 Stack 테마로 GitHub Blog 배포하기"
+slug: "hugo-stack-github-blog"
+aliases: ["/p/hugo-템플릿-stack-테마로-github-blog-배포하기/"]
 date: 2025-11-04T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
 tags: ["github blog", "hugo", "stack", "github pages", "go"]

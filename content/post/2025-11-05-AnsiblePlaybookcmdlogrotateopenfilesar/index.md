@@ -1,5 +1,7 @@
 ---
 title: "Ansible Playbook으로 CMD 로그 / logrotate / openfile / SAR 설정하기"
+slug: "ansible-playbook-cmd-log-logrotate-openfile-sar"
+aliases: ["/p/ansible-playbook으로-cmd-로그-logrotate-openfile-sar-설정하기/"]
 date: 2025-11-05T09:00:00+09:00
 categories: ["Ansible", "Playbook"]
 tags: ["ansible", "playbook", "cmd log", "logrotate", "openfile", "sar"]

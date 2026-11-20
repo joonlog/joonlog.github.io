@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes ConfigMap과 Secret"
+slug: "k8s-configmap-secret"
+aliases: ["/p/kubernetes-configmap과-secret/"]
 date: 2025-08-17T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "configmap", "secret"]

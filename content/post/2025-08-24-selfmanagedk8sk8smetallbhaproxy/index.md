@@ -1,5 +1,7 @@
 ---
 title: "외부에서 자체 관리형 Kubernetes 접근을 위한 MetalLB/HAproxy 설정과 통신 구조"
+slug: "self-managed-k8s-metallb-haproxy"
+aliases: ["/p/외부에서-자체-관리형-kubernetes-접근을-위한-metallb-haproxy-설정과-통신-구조/"]
 date: 2025-08-24T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
 tags: ["kubernetes", "k8s", "local k8s", "metallb", "haproxy", "nginx controller", "self managed k8s"]

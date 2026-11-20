@@ -1,5 +1,7 @@
 ---
 title: "Jekyll Chirpy 테마에서 Hugo Stack 테마로 블로그 이관하기"
+slug: "jekyll-chirpy-to-hugo-stack"
+aliases: ["/p/jekyll-chirpy-테마에서-hugo-stack-테마로-블로그-이관하기/"]
 date: 2025-11-11T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
 tags: ["github blog", "hugo", "stack", "github pages", "go"]

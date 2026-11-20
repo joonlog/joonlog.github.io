@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes 환경에서 Prometheus를 많이 사용하는 이유"
+slug: "why-prometheus-in-k8s"
+aliases: ["/p/kubernetes-환경에서-prometheus를-많이-사용하는-이유/"]
 date: 2025-09-12T09:00:00+09:00
 categories: ["Kubernetes", "Monitoring"]
 tags: ["kubernetes", "k8s", "prometheus", "metric monitoring", "kubelet", "cadvisor"]

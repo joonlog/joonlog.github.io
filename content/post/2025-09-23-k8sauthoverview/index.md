@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes 인증 / 권한 관리 Overview"
+slug: "k8s-auth-overview"
+aliases: ["/p/kubernetes-인증-권한-관리-overview/"]
 date: 2025-09-23T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "role", "rolebinding", "clusterrole", "clusterrolebinding"]

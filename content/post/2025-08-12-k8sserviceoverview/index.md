@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Service Overview"
+slug: "k8s-service-overview"
+aliases: ["/p/kubernetes-service-overview/"]
 date: 2025-08-12T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "service", "clusterip", "nodeport", "loadbalancer"]

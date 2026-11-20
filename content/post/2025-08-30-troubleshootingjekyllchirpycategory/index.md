@@ -1,5 +1,7 @@
 ---
 title: "Jekyll Chirpy 테마 카테고리 에러 TroubleShooting(1)"
+slug: "jekyll-chirpy-category-troubleshooting-1"
+aliases: ["/p/jekyll-chirpy-테마-카테고리-에러-troubleshooting1/"]
 date: 2025-08-30T09:00:00+09:00
 categories: ["GitHub Blog", "Jekyll"]
 tags: ["jekyll", "chirpy", "chirpy category error", "troubleshooting"]

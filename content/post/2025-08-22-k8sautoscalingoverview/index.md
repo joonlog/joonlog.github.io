@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Overview"
+slug: "k8s-autoscaling-overview"
+aliases: ["/p/kubernetes-autoscaling-overview/"]
 date: 2025-08-22T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
 tags: ["kubernetes", "k8s", "autoscaling", "hpa", "ca"]

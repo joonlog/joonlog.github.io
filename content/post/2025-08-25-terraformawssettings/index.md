@@ -1,5 +1,7 @@
 ---
 title: "Terraform으로 AWS 리소스를 컨트롤하기 위한 세팅"
+slug: "terraform-aws-setup"
+aliases: ["/p/terraform으로-aws-리소스를-컨트롤하기-위한-세팅/"]
 date: 2025-08-25T09:00:00+09:00
 categories: ["Terraform", "AWS"]
 tags: ["terraform", "aws", "awscli", "accesskey"]

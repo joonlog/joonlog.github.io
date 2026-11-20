@@ -1,5 +1,7 @@
 ---
 title: "Teleport 18 소스 빌드 환경 설정"
+slug: "teleport-18-source-build-env"
+aliases: ["/p/teleport-18-소스-빌드-환경-설정/"]
 date: 2025-10-06T09:00:00+09:00
 categories: ["Go", "Teleport"]
 tags: ["go", "teleport", "teleport 18", "teleport source build"]

@@ -1,5 +1,7 @@
 ---
 title: "GitHub Blog(Jekyll Chirpy) SEO 설정"
+slug: "jekyll-chirpy-seo"
+aliases: ["/p/github-blogjekyll-chirpy-seo-설정/"]
 date: 2025-04-25T09:00:00+09:00
 categories: ["GitHub Blog", "Jekyll"]
 tags: ["git", "github", "github blog", "jekyll", "jekyll chirpy", "seo", "sitemap"]

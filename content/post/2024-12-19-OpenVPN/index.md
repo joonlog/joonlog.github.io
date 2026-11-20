@@ -1,5 +1,7 @@
 ---
 title: "OpenVPN 구축"
+slug: "openvpn-install"
+aliases: ["/p/openvpn-구축/"]
 date: 2024-12-19T09:00:00+09:00
 categories: ["Linux", "VPN"]
 tags: ["rocky 8.10", "openvpn", "vpn"]
