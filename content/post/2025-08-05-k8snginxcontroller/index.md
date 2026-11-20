@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes 아키텍쳐"
+title: "Kubernetes Nginx Ingress Controller 설치"
 date: 2025-08-05T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
 tags: ["kubernetes", "k8s", "nginx controller", "ingress controller", "helm"]
