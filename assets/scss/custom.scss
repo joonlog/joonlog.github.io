@@ -1,3 +1,118 @@
 /*
-    You can add your own custom styles here.
+    Custom styles. Category pages (layouts/categories, layouts/_default/category-*.html).
+    Uses theme variables only, so light/dark mode follow the theme.
 */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--small-card-padding);
+    border-radius: var(--card-border-radius);
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--shadow-l2);
+    }
+}
+
+.category-card__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--card-text-color-main);
+    text-decoration: none;
+
+    &:hover .category-card__title {
+        color: var(--accent-color);
+    }
+}
+
+.category-card__title {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.category-card__count {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--card-text-color-tertiary);
+}
+
+.category-card__meta {
+    margin: 4px 0 16px;
+    font-size: 1.3rem;
+    color: var(--card-text-color-secondary);
+}
+
+.category-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-chips--nav {
+    margin-bottom: var(--section-separation);
+}
+
+.category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: var(--tag-border-radius);
+    background-color: var(--body-background);
+    color: var(--card-text-color-main);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &.is-active {
+        background-color: var(--accent-color);
+        color: var(--accent-color-text);
+
+        .category-chip__count {
+            color: inherit;
+            opacity: 0.8;
+        }
+    }
+
+    .category-chips--nav & {
+        background-color: var(--card-background);
+        box-shadow: var(--shadow-l1);
+    }
+}
+
+.category-chip__count {
+    font-size: 1.2rem;
+    color: var(--card-text-color-tertiary);
+}
+
+.category-breadcrumb a,
+.category-section-title a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--accent-color);
+    }
+}
+
+.category-breadcrumb__sep {
+    margin: 0 6px;
+}
+
+.category-section-title {
+    scroll-margin-top: 20px;
+}

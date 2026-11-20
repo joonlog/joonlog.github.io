@@ -1,200 +1,35 @@
 {{ define "main" }}
-    <header class="page-header">
-        <h1>{{ .Title }}</h1>
-        {{ with .Params.description }}
-            <p class="description">{{ . }}</p>
-        {{ end }}
+    {{ $cats := partialCached "category-index.html" . "category-index" }}
+    {{ $me := index (where $cats "name" .Params.primary_category) 0 }}
+
+    <header>
+        <h3 class="section-title category-breadcrumb">
+            <a href="{{ "categories/" | relURL }}">Categories</a>
+        </h3>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">{{ $me.count }}개의 글</h3>
+                <h1 class="section-term">{{ $me.name }}</h1>
+            </div>
+        </div>
     </header>
 
-    {{ $primaryCat := .Params.primary_category }}
-
-    {{/* Primary 카테고리에 속하는 모든 포스트 필터링 */}}
-    {{ $posts := slice }}
-    {{ range .Site.RegularPages }}
-        {{ $cats := .Params.categories }}
-        {{ if and $cats (ge (len $cats) 1) }}
-            {{ if eq (index $cats 0) $primaryCat }}
-                {{ $posts = $posts | append . }}
-            {{ end }}
+    <nav class="category-chips category-chips--nav">
+        {{ range $me.subs }}
+            <a class="category-chip" href="#{{ .name | anchorize }}">
+                {{ .name }}<span class="category-chip__count">{{ .count }}</span>
+            </a>
         {{ end }}
+    </nav>
+
+    {{ range $me.subs }}
+        <h2 class="section-title category-section-title" id="{{ .name | anchorize }}">
+            <a href="{{ .link }}">{{ .name }}</a>
+        </h2>
+        <section class="article-list--compact">
+            {{ range .pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </section>
     {{ end }}
-
-    <div class="post-count">
-        총 {{ len $posts }}개의 포스트
-    </div>
-
-    {{/* 서브 카테고리별로 그룹핑 */}}
-    <section class="category-posts">
-        {{ $subCategories := slice }}
-        {{ range $posts }}
-            {{ $cats := .Params.categories }}
-            {{ if ge (len $cats) 2 }}
-                {{ $sub := index $cats 1 }}
-                {{ if not (in $subCategories $sub) }}
-                    {{ $subCategories = $subCategories | append $sub }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
-        {{ $subCategories = $subCategories | uniq | sort }}
-
-        {{ range $subCat := $subCategories }}
-            {{ $postCount := 0 }}
-            {{ range $posts }}
-                {{ $cats := .Params.categories }}
-                {{ if and (ge (len $cats) 2) (eq (index $cats 1) $subCat) }}
-                    {{ $postCount = add $postCount 1 }}
-                {{ end }}
-            {{ end }}
-
-            <details class="sub-category-group" open>
-                <summary class="sub-category-title">
-                    <span class="title-text">{{ $subCat }}</span>
-                    <span class="post-count-badge">{{ $postCount }}</span>
-                </summary>
-                <div class="post-list">
-                    {{ range $posts }}
-                        {{ $cats := .Params.categories }}
-                        {{ if and (ge (len $cats) 2) (eq (index $cats 1) $subCat) }}
-                            <article class="post-item">
-                                <a href="{{ .RelPermalink }}" class="post-link">
-                                    <h3 class="post-title">{{ .Title }}</h3>
-                                    <div class="post-meta">
-                                        <time>{{ .Date.Format "2006-01-02" }}</time>
-                                        {{ with .Params.tags }}
-                                            <span class="tags">
-                                                {{ range first 3 . }}
-                                                    <span class="tag">{{ . }}</span>
-                                                {{ end }}
-                                            </span>
-                                        {{ end }}
-                                    </div>
-                                </a>
-                            </article>
-                        {{ end }}
-                    {{ end }}
-                </div>
-            </details>
-        {{ end }}
-    </section>
-
-    <style>
-    .page-header {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--accent-color);
-    }
-
-    .page-header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .page-header .description {
-        color: var(--card-text-color-secondary);
-    }
-
-    .post-count {
-        margin-bottom: 2rem;
-        color: var(--card-text-color-secondary);
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .sub-category-group {
-        margin-bottom: 1.5rem;
-        background: var(--card-background);
-        border-radius: 8px;
-        padding: 1rem;
-        box-shadow: var(--shadow-l1);
-    }
-
-    .sub-category-title {
-        font-size: 2rem;
-        font-weight: 700;
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 1.2rem;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-
-    .sub-category-title:hover {
-        background: var(--body-background);
-    }
-
-    .sub-category-title::-webkit-details-marker {
-        display: none;
-    }
-
-    .sub-category-title .title-text {
-        color: var(--card-text-color-main);
-    }
-
-    .sub-category-title .post-count-badge {
-        background: var(--accent-color);
-        color: white;
-        padding: 0.4rem 0.9rem;
-        border-radius: 16px;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .post-list {
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .post-item {
-        padding: 1.5rem 1.8rem;
-        border-radius: 8px;
-        transition: all 0.2s;
-    }
-
-    .post-item:hover {
-        background: var(--body-background);
-        transform: translateX(4px);
-    }
-
-    .post-link {
-        text-decoration: none;
-        display: block;
-    }
-
-    .post-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--card-text-color-main);
-        margin: 0 0 0.7rem 0;
-        line-height: 1.4;
-    }
-
-    .post-meta {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-size: 1.1rem;
-        color: var(--card-text-color-secondary);
-    }
-
-    .post-meta time {
-        font-family: monospace;
-    }
-
-    .tags {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .tag {
-        background: var(--body-background);
-        padding: 0.25rem 0.7rem;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-    </style>
 {{ end }}

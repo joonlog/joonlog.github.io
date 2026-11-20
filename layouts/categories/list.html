@@ -1,188 +1,33 @@
 {{ define "main" }}
-    <header class="page-header">
-        <h1>카테고리</h1>
-        <p class="description">모든 카테고리 목록</p>
+    {{ $cats := partialCached "category-index.html" . "category-index" }}
+    {{ $total := 0 }}
+    {{ range $cats }}{{ $total = add $total .count }}{{ end }}
+
+    <header>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">{{ len $cats }}개 카테고리 · {{ $total }}개의 글</h3>
+                <h1 class="section-term">Categories</h1>
+            </div>
+        </div>
     </header>
 
-    {{/* 카테고리 계층 구조 빌드 */}}
-    {{ $hierarchy := dict }}
-
-    {{/* 모든 페이지를 순회하며 메인-서브 구조 파싱 */}}
-    {{ range .Site.RegularPages }}
-        {{ $cats := .Params.categories }}
-        {{ if and $cats (ge (len $cats) 2) }}
-            {{ $main := index $cats 0 }}
-            {{ $sub := index $cats 1 }}
-
-            {{/* 메인 카테고리가 없으면 초기화 */}}
-            {{ if not (index $hierarchy $main) }}
-                {{ $hierarchy = merge $hierarchy (dict $main (slice)) }}
-            {{ end }}
-
-            {{/* 서브 카테고리 추가 */}}
-            {{ $subs := index $hierarchy $main }}
-            {{ $subs = $subs | append $sub }}
-            {{ $hierarchy = merge $hierarchy (dict $main $subs) }}
-        {{ end }}
-    {{ end }}
-
-    {{/* 계층 구조 표시 */}}
-    <section class="hierarchical-categories">
-        {{ range $mainCat, $subCats := $hierarchy }}
-            {{ $subCats = uniq $subCats | sort }}
-
-            {{/* 메인 카테고리의 총 포스트 수 계산 */}}
-            {{ $totalPosts := 0 }}
-            {{ range $.Site.RegularPages }}
-                {{ $cats := .Params.categories }}
-                {{ if and $cats (ge (len $cats) 1) }}
-                    {{ if eq (index $cats 0) $mainCat }}
-                        {{ $totalPosts = add $totalPosts 1 }}
-                    {{ end }}
-                {{ end }}
-            {{ end }}
-
-            <details class="category-group" open>
-                <summary class="main-cat">
-                    <span class="main-cat-title">
-                        <span class="icon">📁</span>
-                        <a href="{{ printf "/categories/%s/" ($mainCat | urlize) }}">{{ $mainCat }}</a>
-                    </span>
-                    <span class="post-count-badge">{{ $totalPosts }}</span>
-                </summary>
-                <div class="sub-cats">
-                    {{ range $subCat := $subCats }}
-                        {{/* 서브 카테고리의 포스트 수 계산 */}}
-                        {{ $count := 0 }}
-                        {{ range $.Site.RegularPages }}
-                            {{ $cats := .Params.categories }}
-                            {{ if and $cats (ge (len $cats) 2) }}
-                                {{ if and (eq (index $cats 0) $mainCat) (eq (index $cats 1) $subCat) }}
-                                    {{ $count = add $count 1 }}
-                                {{ end }}
-                            {{ end }}
-                        {{ end }}
-
-                        <a href="{{ printf "/categories/%s/%s/" ($mainCat | urlize) ($subCat | urlize) }}" class="sub-cat-link">
-                            <span class="sub-cat-name">{{ $subCat }}</span>
-                            <span class="count">({{ $count }})</span>
+    <section class="category-grid">
+        {{ range $cats }}
+            <article class="category-card">
+                <a class="category-card__head" href="{{ .link }}">
+                    <h2 class="category-card__title">{{ .name }}</h2>
+                    <span class="category-card__count">{{ .count }}</span>
+                </a>
+                <p class="category-card__meta">최근 글 {{ .latest.Format "2006-01-02" }}</p>
+                <div class="category-chips">
+                    {{ range .subs }}
+                        <a class="category-chip" href="{{ .link }}">
+                            {{ .name }}<span class="category-chip__count">{{ .count }}</span>
                         </a>
                     {{ end }}
                 </div>
-            </details>
+            </article>
         {{ end }}
     </section>
-
-    <style>
-.page-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--accent-color);
-}
-
-.page-header h1 {
-    font-size: 2.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.page-header .description {
-    color: var(--card-text-color-secondary);
-}
-
-.hierarchical-categories {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.category-group {
-    background: var(--card-background);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-l1);
-}
-
-.main-cat {
-    font-size: 2.592rem;
-    font-weight: 700;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-}
-
-.main-cat::-webkit-details-marker {
-    display: none;
-}
-
-.main-cat-title {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-.main-cat-title .icon {
-    font-size: 2.304rem;
-}
-
-.main-cat-title a {
-    color: var(--card-text-color-main);
-    text-decoration: none;
-    font-size: 2.592rem;
-}
-
-.main-cat-title a:hover {
-    color: var(--accent-color);
-    text-decoration: underline;
-}
-
-.post-count-badge {
-    background: var(--accent-color);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 18px;
-    font-size: 1.296rem;
-    font-weight: 600;
-}
-
-.sub-cats {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    padding-left: 2rem;
-}
-
-.sub-cat-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.6rem;
-    background: var(--body-background);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-}
-
-.sub-cat-link:hover {
-    transform: translateX(6px);
-    border-color: var(--accent-color);
-    background: var(--card-background);
-}
-
-.sub-cat-name {
-    color: var(--card-text-color-main);
-    font-weight: 600;
-    font-size: 1.728rem;
-}
-
-.count {
-    color: var(--card-text-color-secondary);
-    font-size: 1.44rem;
-    font-weight: 500;
-}
-    </style>
 {{ end }}

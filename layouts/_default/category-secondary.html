@@ -1,158 +1,36 @@
 {{ define "main" }}
-    <header class="page-header">
-        <div class="breadcrumb">
-            <a href="{{ printf "/categories/%s/" (.Params.primary_category | urlize) }}">
-                {{ .Params.primary_category }}
-            </a>
-            <span class="separator">›</span>
-            <span class="current">{{ .Title }}</span>
+    {{ $cats := partialCached "category-index.html" . "category-index" }}
+    {{ $me := index (where $cats "name" .Params.primary_category) 0 }}
+    {{ $cur := .Params.secondary_category }}
+    {{ $sub := index (where $me.subs "name" $cur) 0 }}
+
+    <header>
+        <h3 class="section-title category-breadcrumb">
+            <a href="{{ "categories/" | relURL }}">Categories</a>
+            <span class="category-breadcrumb__sep">›</span>
+            <a href="{{ $me.link }}">{{ $me.name }}</a>
+        </h3>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">{{ $sub.count }}개의 글</h3>
+                <h1 class="section-term">{{ $cur }}</h1>
+            </div>
         </div>
-        <h1>{{ .Title }}</h1>
-        {{ with .Params.description }}
-            <p class="description">{{ . }}</p>
-        {{ end }}
     </header>
 
-    {{ $primaryCat := .Params.primary_category }}
-    {{ $secondaryCat := .Params.secondary_category }}
-
-    {{/* Primary AND Secondary 조건에 맞는 포스트만 필터링 */}}
-    {{ $posts := slice }}
-    {{ range .Site.RegularPages }}
-        {{ $cats := .Params.categories }}
-        {{ if and $cats (ge (len $cats) 2) }}
-            {{ if and (eq (index $cats 0) $primaryCat) (eq (index $cats 1) $secondaryCat) }}
-                {{ $posts = $posts | append . }}
+    {{ if gt (len $me.subs) 1 }}
+        <nav class="category-chips category-chips--nav">
+            {{ range $me.subs }}
+                <a class="category-chip{{ if eq .name $cur }} is-active{{ end }}" href="{{ .link }}">
+                    {{ .name }}<span class="category-chip__count">{{ .count }}</span>
+                </a>
             {{ end }}
-        {{ end }}
+        </nav>
     {{ end }}
 
-    <div class="post-count">
-        총 {{ len $posts }}개의 포스트
-    </div>
-
-    <section class="category-posts">
-        <div class="post-list">
-            {{ range $posts }}
-                <article class="post-item">
-                    <a href="{{ .RelPermalink }}" class="post-link">
-                        <h3 class="post-title">{{ .Title }}</h3>
-                        <div class="post-meta">
-                            <time>{{ .Date.Format "2006-01-02" }}</time>
-                            {{ with .Params.tags }}
-                                <span class="tags">
-                                    {{ range first 3 . }}
-                                        <span class="tag">{{ . }}</span>
-                                    {{ end }}
-                                </span>
-                            {{ end }}
-                        </div>
-                    </a>
-                </article>
-            {{ end }}
-        </div>
+    <section class="article-list--compact">
+        {{ range $sub.pages }}
+            {{ partial "article-list/compact" . }}
+        {{ end }}
     </section>
-
-    <style>
-    .page-header {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--accent-color);
-    }
-
-    .breadcrumb {
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .breadcrumb a {
-        color: var(--accent-color);
-        text-decoration: none;
-    }
-
-    .breadcrumb a:hover {
-        text-decoration: underline;
-    }
-
-    .breadcrumb .separator {
-        margin: 0 0.5rem;
-        color: var(--card-text-color-secondary);
-    }
-
-    .breadcrumb .current {
-        color: var(--card-text-color-main);
-        font-weight: 600;
-    }
-
-    .page-header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .page-header .description {
-        color: var(--card-text-color-secondary);
-    }
-
-    .post-count {
-        margin-bottom: 2rem;
-        color: var(--card-text-color-secondary);
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .post-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .post-item {
-        padding: 1.5rem 1.8rem;
-        background: var(--card-background);
-        border-radius: 8px;
-        transition: all 0.2s;
-    }
-
-    .post-item:hover {
-        background: var(--body-background);
-        transform: translateX(4px);
-    }
-
-    .post-link {
-        text-decoration: none;
-        display: block;
-    }
-
-    .post-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--card-text-color-main);
-        margin: 0 0 0.7rem 0;
-        line-height: 1.4;
-    }
-
-    .post-meta {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-size: 1.1rem;
-        color: var(--card-text-color-secondary);
-    }
-
-    .post-meta time {
-        font-family: monospace;
-    }
-
-    .tags {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .tag {
-        background: var(--body-background);
-        padding: 0.25rem 0.7rem;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-    </style>
 {{ end }}
