@@ -1,3 +1,0 @@
-# Preview site (joonlog/blog-preview): no comments, so Giscus threads are not created for preview paths.
-[comments]
-enabled = false
