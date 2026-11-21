@@ -1,7 +1,7 @@
 {{ define "main" }}
     {{ $cats := partialCached "category-index.html" . "category-index" }}
     {{ $me := index (where $cats "name" .Params.primary_category) 0 }}
-    {{ $subs := sort $me.subs "count" "desc" }}
+    {{ $subs := $me.subs }}
 
     <header>
         <h3 class="section-title category-breadcrumb">
