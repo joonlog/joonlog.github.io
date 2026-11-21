@@ -49,9 +49,92 @@
     color: var(--card-text-color-tertiary);
 }
 
-.category-card__meta {
-    margin: 4px 0 16px;
+.category-card__posts {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 0;
+        border-top: 1px solid var(--card-separator-color);
+    }
+
+    a {
+        color: var(--card-text-color-main);
+        font-size: 1.5rem;
+        line-height: 1.4;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--accent-color);
+        }
+    }
+
+    time {
+        font-size: 1.2rem;
+        color: var(--card-text-color-tertiary);
+    }
+}
+
+.category-card__more {
+    margin-top: auto;
+    padding-top: 10px;
     font-size: 1.3rem;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* /categories: compact primary tiles */
+.category-grid--primary {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.category-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: var(--card-border-radius);
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    color: var(--card-text-color-main);
+    text-decoration: none;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--shadow-l2);
+
+        .category-tile__title {
+            color: var(--accent-color);
+        }
+    }
+}
+
+.category-tile__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.category-tile__title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.category-tile__count {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--card-text-color-tertiary);
+}
+
+.category-tile__meta {
+    font-size: 1.2rem;
     color: var(--card-text-color-secondary);
 }
 
@@ -99,8 +182,7 @@
     color: var(--card-text-color-tertiary);
 }
 
-.category-breadcrumb a,
-.category-section-title a {
+.category-breadcrumb a {
     color: inherit;
     text-decoration: none;
 
@@ -113,6 +195,3 @@
     margin: 0 6px;
 }
 
-.category-section-title {
-    scroll-margin-top: 20px;
-}

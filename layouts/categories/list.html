@@ -12,22 +12,15 @@
         </div>
     </header>
 
-    <section class="category-grid">
+    <section class="category-grid category-grid--primary">
         {{ range $cats }}
-            <article class="category-card">
-                <a class="category-card__head" href="{{ .link }}">
-                    <h2 class="category-card__title">{{ .name }}</h2>
-                    <span class="category-card__count">{{ .count }}</span>
-                </a>
-                <p class="category-card__meta">최근 글 {{ .latest.Format "2006-01-02" }}</p>
-                <div class="category-chips">
-                    {{ range .subs }}
-                        <a class="category-chip" href="{{ .link }}">
-                            {{ .name }}<span class="category-chip__count">{{ .count }}</span>
-                        </a>
-                    {{ end }}
-                </div>
-            </article>
+            <a class="category-tile" href="{{ .link }}">
+                <span class="category-tile__head">
+                    <span class="category-tile__title">{{ .name }}</span>
+                    <span class="category-tile__count">{{ .count }}</span>
+                </span>
+                <span class="category-tile__meta">하위 {{ len .subs }}개 · 최근 {{ .latest.Format "2006-01-02" }}</span>
+            </a>
         {{ end }}
     </section>
 {{ end }}

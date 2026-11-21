@@ -1,6 +1,7 @@
 {{ define "main" }}
     {{ $cats := partialCached "category-index.html" . "category-index" }}
     {{ $me := index (where $cats "name" .Params.primary_category) 0 }}
+    {{ $subs := sort $me.subs "count" "desc" }}
 
     <header>
         <h3 class="section-title category-breadcrumb">
@@ -8,28 +9,31 @@
         </h3>
         <div class="section-card">
             <div class="section-details">
-                <h3 class="section-count">{{ $me.count }}개의 글</h3>
+                <h3 class="section-count">하위 {{ len $subs }}개 · {{ $me.count }}개의 글</h3>
                 <h1 class="section-term">{{ $me.name }}</h1>
             </div>
         </div>
     </header>
 
-    <nav class="category-chips category-chips--nav">
-        {{ range $me.subs }}
-            <a class="category-chip" href="#{{ .name | anchorize }}">
-                {{ .name }}<span class="category-chip__count">{{ .count }}</span>
-            </a>
+    <section class="category-grid">
+        {{ range $subs }}
+            <article class="category-card">
+                <a class="category-card__head" href="{{ .link }}">
+                    <h2 class="category-card__title">{{ .name }}</h2>
+                    <span class="category-card__count">{{ .count }}</span>
+                </a>
+                <ul class="category-card__posts">
+                    {{ range first 3 .pages }}
+                        <li>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                        </li>
+                    {{ end }}
+                </ul>
+                {{ if gt .count 3 }}
+                    <a class="category-card__more" href="{{ .link }}">전체 {{ .count }}개 보기 →</a>
+                {{ end }}
+            </article>
         {{ end }}
-    </nav>
-
-    {{ range $me.subs }}
-        <h2 class="section-title category-section-title" id="{{ .name | anchorize }}">
-            <a href="{{ .link }}">{{ .name }}</a>
-        </h2>
-        <section class="article-list--compact">
-            {{ range .pages }}
-                {{ partial "article-list/compact" . }}
-            {{ end }}
-        </section>
-    {{ end }}
+    </section>
 {{ end }}
