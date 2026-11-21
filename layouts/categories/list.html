@@ -19,7 +19,7 @@
                     <span class="category-tile__title">{{ .name }}</span>
                     <span class="category-tile__count">{{ .count }}</span>
                 </span>
-                <span class="category-tile__meta">하위 {{ len .subs }}개 · 최근 {{ .latest.Format "2006-01-02" }}</span>
+                <span class="category-tile__meta"><span>하위 {{ len .subs }}개</span><span>최근 {{ .latest.Format "2006-01-02" }}</span></span>
             </a>
         {{ end }}
     </section>

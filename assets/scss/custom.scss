@@ -134,6 +134,8 @@
 }
 
 .category-tile__meta {
+    display: flex;
+    flex-direction: column;
     font-size: 1.2rem;
     color: var(--card-text-color-secondary);
 }
@@ -160,8 +162,16 @@
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
 
+    .category-chips--nav & {
+        background-color: var(--card-background);
+        box-shadow: var(--shadow-l1);
+    }
+
+    /* after the nav rule so the highlight wins over its background */
     &:hover,
-    &.is-active {
+    &.is-active,
+    .category-chips--nav &:hover,
+    .category-chips--nav &.is-active {
         background-color: var(--accent-color);
         color: var(--accent-color-text);
 
@@ -169,11 +179,6 @@
             color: inherit;
             opacity: 0.8;
         }
-    }
-
-    .category-chips--nav & {
-        background-color: var(--card-background);
-        box-shadow: var(--shadow-l1);
     }
 }
 
