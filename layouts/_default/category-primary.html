@@ -1,7 +1,6 @@
 {{ define "main" }}
     {{ $cats := partialCached "category-index.html" . "category-index" }}
     {{ $me := index (where $cats "name" .Params.primary_category) 0 }}
-    {{ $subs := $me.subs }}
 
     <header>
         <h3 class="section-title category-breadcrumb">
@@ -9,14 +8,14 @@
         </h3>
         <div class="section-card">
             <div class="section-details">
-                <h3 class="section-count">하위 {{ len $subs }}개 · {{ $me.count }}개의 글</h3>
+                <h3 class="section-count">하위 {{ len $me.subs }}개 · {{ $me.count }}개의 글</h3>
                 <h1 class="section-term">{{ $me.name }}</h1>
             </div>
         </div>
     </header>
 
     <section class="category-grid">
-        {{ range $subs }}
+        {{ range $me.subs }}
             <article class="category-card">
                 <a class="category-card__head" href="{{ .link }}">
                     <h2 class="category-card__title">{{ .name }}</h2>
