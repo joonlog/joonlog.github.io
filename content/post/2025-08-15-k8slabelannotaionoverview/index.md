@@ -13,7 +13,7 @@ tags: ["Kubernetes"]
 
 - selector로 검색/필터링 가능
 
-- label은 3개 이상 정의할 것을 권장
+- 공식 권장 레이블: `app.kubernetes.io/name`, `instance`, `version`, `component`, `part-of`, `managed-by`
 
     ```bash
     environment=prod
@@ -38,7 +38,7 @@ tags: ["Kubernetes"]
 
 - [참고] Labels vs Annotations
 
-    - lables: 클러스터를 관리할 때 사용자가 원하는 값을 입력
+    - labels: 클러스터를 관리할 때 사용자가 원하는 값을 입력
 
     - annotations: 클러스터 시스템에 필요한 정보를 표시하는데 사용
 
