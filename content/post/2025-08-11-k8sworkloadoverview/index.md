@@ -7,15 +7,17 @@ categories: ["Kubernetes", "Architecture"]
 tags: ["Kubernetes"]
 ---
 
-
 ## ReplicaSet
 
 - 동일한 스펙의 Pod를 지정된 개수만큼 유지
+
 - 집합 기반 셀렉터(Set-based selector)
-- rolling update 지원
+
+- rolling update는 하지 않음(템플릿을 바꿔도 기존 Pod는 그대로). 업데이트는 Deployment가 새 ReplicaSet을 만들어 처리
+
 - 직접 쓰기보다는 Deployment 내부에서 주로 사용됨
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -40,10 +42,12 @@ spec:
 ## Deployment
 
 - ReplicaSet을 관리하며 Pod의 개수를 보장
+
 - Pod에 대한 rolling update/rollback 기능 지원
+
 - 무중단 파드 배포를 위해 사용
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -70,11 +74,13 @@ spec:
 
 ## DaemonSet
 
-- 하나의 노드당 1개의 Pod 실행(controlplane 제외)
+- 노드마다 Pod 1개 실행(control plane 노드는 기본 taint 때문에 빠지고, toleration을 주면 포함)
+
 - Rolling Update / Rollback 기능 지원
+
 - 데몬셋 용도: (관리) ex) 모니터링 Pod 실행
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -96,10 +102,12 @@ spec:
 ## StatefulSet
 
 - State가 필요한 워크로드에 사용(Pod 이름, 스토리지 고정)
+
 - 고유 네트워크 ID, 안정적인 스토리지, 순차 배포/종료 보장
+
 - 주로 DB, 메시지 큐, Zookeeper, Kafka 등에 사용
 
-```bash
+```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -130,12 +138,15 @@ spec:
 
 ## Job
 
-- 트랜잭션의 단위
-- 잡이 성공적으로 종료 될 때 까지 지속적으로 파드 실행
-- 잡이 성공하면 completed
-- 잡은 실패하면 종료 후 다시 실행
+- 한 번 끝까지 실행돼야 하는 작업(배치) 단위
 
-```bash
+- 잡이 성공적으로 종료 될 때 까지 지속적으로 파드 실행
+
+- 잡이 성공하면 completed
+
+- 실패하면 `backoffLimit` 횟수까지 다시 실행
+
+```yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -154,10 +165,12 @@ spec:
 ## CronJob
 
 - Job 컨트롤러를 사용하여 애플리케이션 파드를 주기적으로 반복해서 실행
+
 - Job이 종료되면 스케쥴링에 의해 주기적으로 실행
+
 - Job이 비정상 종료되면 다시 실행
 
-```bash
+```yaml
 apiVersion: batch/v1
 kind: CronJob
 metadata:
