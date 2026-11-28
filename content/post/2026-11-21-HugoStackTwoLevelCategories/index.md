@@ -117,9 +117,11 @@ tags: ["GitHub Blog", "Hugo"]
 - 반환하는 구조
 
     ```text
-    [ { name, key, count, latest, link,
+    [ { name, key, count, latest, link, recent,
         subs: [ { name, key, count, link, pages } ] } ]
     ```
+
+    - `recent`는 그 1차 아래 2차 전체에서 가장 최근 글 2개(`{ page, sub }`)
 
     - `pages`는 그 2차 카테고리의 포스트 목록(최신순)
 
@@ -147,6 +149,10 @@ tags: ["GitHub Blog", "Hugo"]
             {{- $s.SetInMap (printf "subs|%s" $m) $sub (index $c 1) -}}
             {{- $s.Add (printf "n|%s" $m) 1 -}}
             {{- $s.Add (printf "pages|%s" $sub) (slice $p) -}}
+            {{- if lt ($s.Get (printf "rc|%s" $m) | default 0) 2 -}}
+                {{- $s.Add (printf "recent|%s" $m) (slice (dict "page" $p "sub" (index $c 1))) -}}
+                {{- $s.Add (printf "rc|%s" $m) 1 -}}
+            {{- end -}}
             {{- if not ($s.Get (printf "latest|%s" $m)) -}}
                 {{- $s.Set (printf "latest|%s" $m) $p.Date -}}
             {{- end -}}
@@ -166,6 +172,7 @@ tags: ["GitHub Blog", "Hugo"]
             "count" ($s.Get (printf "n|%s" $m))
             "latest" ($s.Get (printf "latest|%s" $m))
             "link" (index $links $m)
+            "recent" ($s.Get (printf "recent|%s" $m))
             "subs" (sort $subs "key")) -}}
     {{- end -}}
     {{- return sort $result "key" -}}
@@ -197,11 +204,17 @@ tags: ["GitHub Blog", "Hugo"]
 
 - 그래서 단계마다 그 단계의 카테고리만 크게 보여주도록 나눔
 
-### 5.1 `/categories/`: 1차 카테고리 타일
+### 5.1 `/categories/`: 1차 카테고리 카드
 
-- 이름, 글 수, 하위 카테고리 수, 최근 글 날짜만 담은 작은 타일
+- 1차마다 카드 하나: 이름, 글 수, 하위 카테고리 수, 1차 전체에서 가장 최근 글 2개, `전체 N개 보기 →`
 
-- 15개 정도라 한 화면에 다 들어옴
+    - 최근 글마다 어느 2차에 속하는지(`Playbook · 2025-11-05`)를 작게 붙여서, 1차 화면에서도 2차가 무엇인지 드러남
+
+- 처음에는 이름, 글 수, 하위 수, 최근 글 날짜만 담은 작은 타일을 한 줄에 6개 놓았음
+
+    - 한 화면에 다 들어오지만 카드 하나하나가 너무 작아 보였음
+
+    - 크기만 키우면 빈 카드가 되므로, 카드 크기에 맞는 내용(최근 글)을 넣고 2차 페이지 카드와 같은 `category-card` 스타일로 통일함
 
 ![HugoStackTwoLevelCategories01.png](HugoStackTwoLevelCategories01.png)
 
@@ -235,7 +248,7 @@ tags: ["GitHub Blog", "Hugo"]
 
 ### 5.4 정렬
 
-- 카테고리를 고르는 단계(1차 타일, 2차 카드)는 **이름순**
+- 카테고리를 고르는 단계(1차 카드, 2차 카드)는 **이름순**
 
     - 찾는 카테고리의 위치를 예측할 수 있음
 
