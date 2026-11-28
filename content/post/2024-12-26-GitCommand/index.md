@@ -7,14 +7,13 @@ categories: ["Git", "Basic"]
 tags: ["Git"]
 ---
 
-
-- 깃허브 리포지토리 clone
+- 리포지토리 clone
 
 ```bash
 git clone <repo-url>
 ```
 
-- 깃허브 Pull / Push
+- Pull / Push
 
 ```bash
 git pull origin main 
@@ -23,7 +22,7 @@ git commit -am "commit message"
 git push origin main
 ```
 
-- 깃허브 rebase
+- rebase
 
 ```bash
 # git pull 할 때 rebase 방식을 사용하도록 설정
@@ -39,14 +38,14 @@ git rebase main
 git rebase --abort
 ```
 
-- 깃허브 리포지토리 관리
+- 리포지토리 관리
 
 ```bash
 git remote add origin <repo-url>
 git remote set-url origin <repo-url>
 ```
 
-- 깃허브 브랜치 변경
+- 브랜치 변경
 
 ```bash
 git show-ref
@@ -57,7 +56,7 @@ git branch -m main
 - 커밋 히스토리
 
 ```bash
-git log --online
+git log --oneline
 ```
 
 - 최근 커밋 취소
