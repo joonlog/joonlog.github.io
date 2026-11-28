@@ -7,24 +7,32 @@ categories: ["Ansible", "Basic"]
 tags: ["Ansible"]
 ---
 
-
 ## 반복문과 조건문
 
 1. 반복문
+
+    - 지금은 `loop`가 권장 문법이다(Ansible 2.5+). `with_*`는 옛 문법이지만 계속 동작한다
+
+        - `with_items` → `loop: "{{ list }}"`, `with_nested` → `loop: "{{ a | product(b) | list }}"`
+
     - **단순 반복문**: `with_items`
+
     - **중첩 반복문**: `with_nested`
+
     - **기타 반복 지시문**:
+
         - `with_file`
+
         - `with_fileglob`
+
         - `with_sequence`
+
         - `with_random_choice`
-    
+
     > 반복문에서 사용되는 변수는 List 형식으로 정의
     > 
-    > 
     > 각 항목은 **key-value 형식**으로 사용 가능
-    > 
-    
+
     ```yaml
     - name: 단순 반복 예시
       debug:
@@ -33,30 +41,42 @@ tags: ["Ansible"]
         - value1
         - value2
     ```
-    
+
 2. 조건문
+
     - `when` 구문 사용
+
     - 조건식은 **Jinja2 문법**을 사용하지만, **중괄호({})는 쓰지 않음**
-    
+
     ```yaml
     - name: 조건문 예시
       debug:
         msg: "x86_64 시스템입니다."
       when: ansible_machine == "x86_64"
     ```
-    
+
     - **자주 사용하는 조건 예시**:
+
         - `ansible_machine == "x86_64"`
+
         - `max_memory == 512`
+
         - `min_memory != 512`
+
         - `min_memory < 120`
+
         - `min_memory is defined`
+
         - `min_memory is not defined`
+
         - `memory_available`
+
         - `not memory_available`
-        - `"ny special user" in superusers`
+
+        - `"my special user" in superusers`
+
 3. 반복문+조건문
-    
+
     ```yaml
     - name: 특정 조건에 맞는 마운트 포인트 처리
       debug:
@@ -64,18 +84,18 @@ tags: ["Ansible"]
       with_items: "{{ mount_list }}"
       when: item.mount == "/" and item.size_available > 300000000
     ```
-    
 
 ## 핸들러 구현
 
 - `notify`는 해당 task가 **changed 상태일 때만** 트리거됨
-- `handlers`는 **모든 task가 끝난 후** 실행됨
+
+- `handlers`는 **play의 모든 task가 끝난 후** 한 번 실행됨(중간에 실행하려면 `meta: flush_handlers`)
 
 ```yaml
 tasks:
   - name: Task1
-    file:
-      src: httpd.conf.template
+    template:
+      src: httpd.conf.j2
       dest: /etc/httpd/conf/httpd.conf
     notify:
       - restart httpd
@@ -91,7 +111,7 @@ handlers:
 1. 실패 무시하기
 
     ```yaml
-    - name: 실패해도 무시Z
+    - name: 실패해도 무시
       command: /bin/false
       ignore_errors: yes
     ```
