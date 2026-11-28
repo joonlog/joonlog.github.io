@@ -7,40 +7,35 @@ categories: ["Kubernetes", "Architecture"]
 tags: ["Kubernetes"]
 ---
 
-
 ## Pod
 
 - 컨테이너를 추상화 시켜 놓은 단위
+
 - k8s에서 배포하는 최소 단위
+
 - 하나의 Pod에는 여러 Container가 들어 갈 수 있다
+
 - Pod는 하나의 IP를 갖는다
 
-Multi-Container Pod
+## Probe
 
-```bash
-Liveness Probe
-- httpGet
-    - livenessProbe:
-      httpGet:
-        path: /
-        port: 80
-- tcpSocket
-    - livenessProbe:
-      tcpSocket:
-        port: 22
-- exec:
-    - livenessProbe:
-      exec:
-        command:
-        - ls
-        - /tmp/datafile
+- Pod 안 컨테이너가 살아 있는지(liveness) 점검하고, 실패하면 kubelet이 컨테이너를 재시작
+- 점검 방식: httpGet, tcpSocket, exec
 
-Liveness Probe Parameter
-- initialDelaySeconds: 0
-- periodSeconds: 5
-- timeoutSeconds: 1
-- successThreshold: 1
-- failureThreshold: 2
+```yaml
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 0   # 첫 점검까지 대기
+  periodSeconds: 5         # 점검 간격
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 2      # 연속 실패 횟수
+# tcpSocket:
+#   port: 22
+# exec:
+#   command: ["ls", "/tmp/datafile"]
 ```
 
 ## initcontainer
@@ -48,6 +43,7 @@ Liveness Probe Parameter
 앱 컨테이너가 동작하기 위한 전초 작업을 위한 컨테이너
 
 - (WEB-DB) 환경의 WEB 컨테이너에서 DB 컨테이너가 기동되었는지를 위한 작업
+
 - (Network) 네트워크 인프라 점검을 위한 전초 작업
 
 ```yaml
@@ -72,14 +68,17 @@ spec:
 ## Static Pod
 
 - /var/lib/kubelet/config.yaml
+
     - staticPodPath: /etc/kubernetes/manifests
 
 ## Pod 자원 할당
 
 - 자원 할당
+
     - cpu(단위: 1core/1vCPU = 1000m)
+
     - mem(단위: 500Mi, 1Gi, ..)
-    
+
     ```yaml
     apiVersion: v1
     kind: Pod
@@ -100,7 +99,6 @@ spec:
             cpu: 1
             memory: 1Gi
     ```
-    
 
 ## Pod 환경 변수
 
@@ -123,8 +121,12 @@ spec:
       value: "password"
 ```
 
+- 실제 비밀번호는 평문 대신 Secret으로 넣는다([ConfigMap & Secret](/p/k8s-configmap-secret/))
+
 ## 디자인 패턴
 
-- 사이드카 - 협업
-- 어댑터 - 입력 표준화
-- 앰버서더 - 출력 표준화
+- 사이드카 - 메인 컨테이너를 보조(로그 수집, 프록시 등). 1.33부터 네이티브 사이드카(`initContainers`에 `restartPolicy: Always`)가 정식 기능
+
+- 어댑터 - 앱의 출력(로그·메트릭 형식)을 표준 형태로 바꿔 내보냄
+
+- 앰버서더 - 앱 대신 외부 서비스로 나가는 연결을 대리(프록시)
