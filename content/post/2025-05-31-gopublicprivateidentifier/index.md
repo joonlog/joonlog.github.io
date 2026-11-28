@@ -3,8 +3,8 @@ title: "Go Public / Private 식별자"
 slug: "go-public-private-identifiers"
 aliases: ["/p/go-public-private-식별자/"]
 date: 2025-05-31T09:00:00+09:00
-categories: ["Go", "Go Basic"]
-tags: ["go", "public", "private"]
+categories: ["Go", "Basic"]
+tags: ["Go"]
 ---
 
 

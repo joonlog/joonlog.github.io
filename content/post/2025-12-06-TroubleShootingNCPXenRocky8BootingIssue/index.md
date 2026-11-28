@@ -4,7 +4,7 @@ slug: "ncp-xen-rocky8-boot-troubleshooting"
 aliases: ["/p/ncp에서-xen-기반-rocky-linux-8-업데이트-후-부팅-이슈-troubleshooting/"]
 date: 2025-12-06T09:00:00+09:00
 categories: ["NCP", "Server"]
-tags: ["ncp", "grub", "xen", "rocky 8", "linux"]
+tags: ["NCP", "Rocky Linux", "XEN"]
 ---
 
 

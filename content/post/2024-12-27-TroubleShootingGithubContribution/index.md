@@ -3,8 +3,8 @@ title: "GitHub 잔디 누락 TroubleShooting"
 slug: "github-contribution-missing-troubleshooting"
 aliases: ["/p/github-잔디-누락-troubleshooting/"]
 date: 2024-12-27T09:00:00+09:00
-categories: ["SCM", "Git"]
-tags: ["git", "github", "github contribution", "troubleshooting"]
+categories: ["Git", "GitHub"]
+tags: ["Git"]
 ---
 
 

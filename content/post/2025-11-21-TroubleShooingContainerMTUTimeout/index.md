@@ -4,7 +4,7 @@ slug: "container-mtu-timeout-troubleshooting"
 aliases: ["/p/컨테이너-환경에서-mtu-불일치로-인한-네트워크-타임아웃-이슈-troubleshooting/"]
 date: 2025-11-21T09:00:00+09:00
 categories: ["Container", "Network"]
-tags: ["container", "network", "mtu", "ncp mtu"]
+tags: ["Container", "Docker", "MTU", "NCP", "Nginx", "PHP-FPM"]
 ---
 
 

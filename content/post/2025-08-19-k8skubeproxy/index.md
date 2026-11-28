@@ -4,7 +4,7 @@ slug: "kube-proxy-iptables-vs-ipvs"
 aliases: ["/p/kube-proxy-모드iptables-vs-ipvs/"]
 date: 2025-08-19T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
-tags: ["kubernetes", "k8s", "kube-proxy", "iptables", "ipvs"]
+tags: ["Kubernetes", "iptables", "IPVS"]
 ---
 
 

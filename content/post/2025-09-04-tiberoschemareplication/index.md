@@ -3,8 +3,8 @@ title: "같은 Tibero DB 안에서 스키마 복제하는 방법"
 slug: "tibero-schema-copy"
 aliases: ["/p/같은-tibero-db-안에서-스키마-복제하는-방법/"]
 date: 2025-09-04T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["linux", "db", "tibero6", "tibero", "schema replication", "tbexport"]
+categories: ["Database", "Tibero"]
+tags: ["Database", "Tibero"]
 ---
 
 

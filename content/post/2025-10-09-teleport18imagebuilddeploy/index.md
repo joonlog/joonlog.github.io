@@ -3,8 +3,8 @@ title: "Teleport 18 이미지 빌드 및 배포"
 slug: "teleport-18-image-build-deploy"
 aliases: ["/p/teleport-18-이미지-빌드-및-배포/"]
 date: 2025-10-09T09:00:00+09:00
-categories: ["Go", "Teleport"]
-tags: ["go", "teleport", "teleport 18", "dockerfile", "docker compose"]
+categories: ["Container", "Teleport"]
+tags: ["Container", "Teleport", "Docker"]
 ---
 
 

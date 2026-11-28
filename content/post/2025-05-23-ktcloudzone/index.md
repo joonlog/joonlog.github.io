@@ -4,7 +4,7 @@ slug: "kt-cloud-zone"
 aliases: ["/p/kt-cloud-zone-구조/"]
 date: 2025-05-23T09:00:00+09:00
 categories: ["KT Cloud", "Zone"]
-tags: ["kt cloud", "zone"]
+tags: ["KT Cloud"]
 ---
 
 

@@ -4,7 +4,7 @@ slug: "hugo-stack-seo"
 aliases: ["/p/hugo-stack에서-seo-설정google-searche-console/"]
 date: 2025-12-23T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
-tags: ["github blog", "hugo", "stack", "seo", "google search console"]
+tags: ["GitHub Blog", "Hugo"]
 ---
 
 

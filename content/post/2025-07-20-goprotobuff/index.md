@@ -3,8 +3,8 @@ title: "Go 언어에서의 Protocal Buffers"
 slug: "go-protocol-buffers"
 aliases: ["/p/go-언어에서의-protocal-buffers/"]
 date: 2025-07-20T09:00:00+09:00
-categories: ["Go", "Go Ecosystem"]
-tags: ["go", "protobuf", "protocal buffers"]
+categories: ["Go", "Ecosystem"]
+tags: ["Go"]
 ---
 
 

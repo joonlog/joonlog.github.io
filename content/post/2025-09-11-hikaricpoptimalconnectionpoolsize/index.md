@@ -3,8 +3,8 @@ title: "HikariCP 개발자가 제안한 커넥션 풀 사이즈 공식"
 slug: "hikaricp-pool-size-formula"
 aliases: ["/p/hikaricp-개발자가-제안한-커넥션-풀-사이즈-공식/"]
 date: 2025-09-11T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["linux", "spring", "hikaricp", "mysql", "pool size"]
+categories: ["Database", "MySQL"]
+tags: ["Database", "HikariCP"]
 ---
 
 

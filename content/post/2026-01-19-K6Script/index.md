@@ -4,7 +4,7 @@ slug: "k6-script-results"
 aliases: ["/p/k6-스크립트-및-결과값-해석/"]
 date: 2026-01-19T09:00:00+09:00
 categories: ["Testing", "k6"]
-tags: ["k6", "performance test", "grafana k6", "k6 script", "login test"]
+tags: ["Testing", "k6"]
 ---
 
 

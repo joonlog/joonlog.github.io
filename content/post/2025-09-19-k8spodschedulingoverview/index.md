@@ -4,7 +4,7 @@ slug: "k8s-pod-scheduling-overview"
 aliases: ["/p/kubernetes-pod-scheduling-overview/"]
 date: 2025-09-19T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
-tags: ["kubernetes", "k8s", "node affinity", "pod affinity", "taint", "toleration", "cordon", "drain"]
+tags: ["Kubernetes"]
 ---
 
 

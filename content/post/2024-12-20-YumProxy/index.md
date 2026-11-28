@@ -4,7 +4,7 @@ slug: "yum-proxy"
 aliases: ["/p/yum-proxy-설정/"]
 date: 2024-12-20T09:00:00+09:00
 categories: ["Linux", "Package"]
-tags: ["rocky8", "yum", "proxy"]
+tags: ["Linux", "yum"]
 ---
 
 

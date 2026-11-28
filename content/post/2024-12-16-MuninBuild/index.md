@@ -4,7 +4,7 @@ slug: "munin-install"
 aliases: ["/p/munin-모니터링-구축/"]
 date: 2024-12-16T09:00:00+09:00
 categories: ["Linux", "Monitoring"]
-tags: ["rocky 8.10", "munin", "master", "slave"]
+tags: ["Linux", "Munin"]
 ---
 
 

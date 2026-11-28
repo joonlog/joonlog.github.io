@@ -4,7 +4,7 @@ slug: "self-managed-k8s-prometheus-grafana"
 aliases: ["/p/자체-관리형-kubernetes에서의-prometheus와-grafana-구축/"]
 date: 2025-09-12T09:00:00+09:00
 categories: ["Kubernetes", "Monitoring"]
-tags: ["kubernetes", "k8s", "self managed k8s", "prometheus", "grafana", "metric monitoring"]
+tags: ["Kubernetes", "Prometheus", "Grafana", "Helm", "Self-Managed Kubernetes"]
 ---
 
 

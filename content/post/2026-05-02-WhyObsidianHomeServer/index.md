@@ -3,8 +3,8 @@ title: "Notion에서 Obsidian으로 넘어온 이유"
 slug: "notion-to-obsidian"
 aliases: ["/p/notion에서-obsidian으로-넘어온-이유/"]
 date: 2026-05-02T09:00:00+09:00
-categories: ["Home Server", "Obsidian"]
-tags: ["home server", "obsidian", "notion", "syncthing", "ai"]
+categories: ["Obsidian", "Setup"]
+tags: ["Obsidian", "Notion"]
 ---
 
 

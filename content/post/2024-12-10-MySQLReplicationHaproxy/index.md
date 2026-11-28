@@ -3,8 +3,8 @@ title: "MySQL Replication & HAproxy 연동"
 slug: "mysql-replication-haproxy"
 aliases: ["/p/mysql-replication-haproxy-연동/"]
 date: 2024-12-10T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["rocky 8.10", "mysql", "haproxy", "replication"]
+categories: ["Database", "MySQL"]
+tags: ["Database", "MySQL", "HAProxy", "sysbench"]
 ---
 
 

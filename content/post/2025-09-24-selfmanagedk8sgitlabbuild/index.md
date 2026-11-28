@@ -4,7 +4,7 @@ slug: "self-managed-k8s-gitlab"
 aliases: ["/p/자체-관리형-kubernetes에서의-gitlab-구축/"]
 date: 2025-09-24T09:00:00+09:00
 categories: ["Kubernetes", "GitLab"]
-tags: ["kubernetes", "k8s", "self managed k8s", "scm", "gitlab", "gitlab registry", "minio"]
+tags: ["Kubernetes", "GitLab", "Helm", "Self-Managed Kubernetes"]
 ---
 
 

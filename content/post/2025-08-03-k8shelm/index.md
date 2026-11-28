@@ -4,7 +4,7 @@ slug: "k8s-helm-install"
 aliases: ["/p/kubernetes-helm-설치/"]
 date: 2025-08-03T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
-tags: ["kubernetes", "k8s", "helm"]
+tags: ["Kubernetes", "Helm", "Self-Managed Kubernetes"]
 ---
 
 

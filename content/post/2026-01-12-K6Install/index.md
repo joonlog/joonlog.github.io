@@ -4,7 +4,7 @@ slug: "k6-install"
 aliases: ["/p/k6-설치-방법/"]
 date: 2026-01-12T09:00:00+09:00
 categories: ["Testing", "k6"]
-tags: ["k6", "performance test", "grafana k6", "k6 install"]
+tags: ["Testing", "k6"]
 ---
 
 

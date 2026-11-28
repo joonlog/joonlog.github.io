@@ -3,8 +3,8 @@ title: "CentOS 7.9 Yum Repository"
 slug: "centos-7-9-yum-repo"
 aliases: ["/p/centos-7.9-yum-repository/"]
 date: 2025-07-23T09:00:00+09:00
-categories: ["Linux", "EOS Repository"]
-tags: ["linux", "centos 7.9", "yum repository", "eos"]
+categories: ["Linux", "Package"]
+tags: ["Linux", "yum", "CentOS"]
 ---
 
 

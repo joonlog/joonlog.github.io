@@ -3,8 +3,8 @@ title: "Apache OPTIONS * 루프백 요청으로 인한 CPU 과부하 TroubleShoo
 slug: "apache-options-loopback-cpu-troubleshooting"
 aliases: ["/p/apache-options-루프백-요청으로-인한-cpu-과부하-troubleshooting/"]
 date: 2025-04-25T09:00:00+09:00
-categories: ["Linux", "Middleware"]
-tags: ["linux", "apache", "mpm", "troubleshooting"]
+categories: ["Middleware", "Apache"]
+tags: ["Middleware", "Apache"]
 ---
 
 

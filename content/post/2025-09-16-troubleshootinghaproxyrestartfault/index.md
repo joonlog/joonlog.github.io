@@ -4,7 +4,7 @@ slug: "haproxy-concurrent-restart-troubleshooting"
 aliases: ["/p/haproxy-동시-재기동-오류-troubleshooting/"]
 date: 2025-09-16T09:00:00+09:00
 categories: ["Linux", "Load Balancer"]
-tags: ["linux", "troubleshooting", "haproxy", "loadbalancer"]
+tags: ["Linux", "HAProxy", "keepalived"]
 ---
 
 

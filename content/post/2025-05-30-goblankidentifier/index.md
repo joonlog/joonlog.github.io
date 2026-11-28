@@ -3,8 +3,8 @@ title: "Go Blank Identifier"
 slug: "go-blank-identifier"
 aliases: ["/p/go-blank-identifier/"]
 date: 2025-05-30T09:00:00+09:00
-categories: ["Go", "Go Basic"]
-tags: ["go", "blank identifier"]
+categories: ["Go", "Basic"]
+tags: ["Go"]
 ---
 
 

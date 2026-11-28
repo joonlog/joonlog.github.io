@@ -4,7 +4,7 @@ slug: "k8s-workload-overview"
 aliases: ["/p/kubernetes-workload-overview/"]
 date: 2025-08-11T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
-tags: ["kubernetes", "k8s", "replicaset", "deployment", "daemonset", "statefulset", "job"]
+tags: ["Kubernetes"]
 ---
 
 

@@ -3,8 +3,8 @@ title: "죽은 Connection 사용 중인 Tomcat Troubleshooting"
 slug: "tomcat-dead-connection-troubleshooting"
 aliases: ["/p/죽은-connection-사용-중인-tomcat-troubleshooting/"]
 date: 2025-06-19T09:00:00+09:00
-categories: ["Linux", "Middleware"]
-tags: ["linux", "tomcat", "testwhileidle", "timeBetweenEvictionRunsMillis", "troubleshooting"]
+categories: ["Middleware", "Tomcat"]
+tags: ["Middleware", "Tomcat", "Tibero"]
 ---
 
 

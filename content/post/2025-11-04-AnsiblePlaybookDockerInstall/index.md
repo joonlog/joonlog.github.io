@@ -4,7 +4,7 @@ slug: "ansible-playbook-docker-install"
 aliases: ["/p/ansible-playbook으로-docker-설치/"]
 date: 2025-11-04T09:00:00+09:00
 categories: ["Ansible", "Playbook"]
-tags: ["ansible", "playbook", "docker", "redhat"]
+tags: ["Ansible", "Docker"]
 ---
 
 

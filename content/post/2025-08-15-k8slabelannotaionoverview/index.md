@@ -4,120 +4,79 @@ slug: "k8s-labels-annotations"
 aliases: ["/p/kubernetes-label과-annotation/"]
 date: 2025-08-17T09:00:00+09:00
 categories: ["Kubernetes", "Architecture"]
-tags: ["kubernetes", "k8s", "label", "annotation"]
+tags: ["Kubernetes"]
 ---
 
+## Label
 
-### LoadBalancer
+- 리소스를 식별하기 위한 key-value 쌍
 
-- L4 - NLB + Service의 LoadBalancer
-    
-    웹서버가 아닌 백엔드 서비스(API, DB 프록시 등)에 대한 부하 분산에 적합
-    
-    TCP/UDP 레벨에서 패킷을 라우팅
-    
-- L7 - ALB + Ingress
-    
-    웹 애플리케이션 HTTP/HTTPS 트래픽 부하 분산에 적합
-    
-    URL 경로, 호스트명 등 애플리케이션 계층의 규칙 기반 라우팅 가능
-    
+- selector로 검색/필터링 가능
 
-## Ingress
+- label은 3개 이상 정의할 것을 권장
 
-- 트래픽 부하 분산 (HTTP/HTTPS)
-- 경로 기반 라우팅
-    
-    예: /, /home, /pay, /login
-    
-- 도메인 기반 라우팅
-    
-    예: www.example.com, www.test.com
-    
-- SSL/TLS 인증서 처리
-    
-    HTTPS 통신을 위한 인증서 설치 및 자동 갱신(Let's Encrypt 등과 연계 가능)
-    
-- 경로 기반 라우팅 예시
-    
     ```bash
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: path-based-ingress
-    spec:
-      ingressClassName: nginx
-      rules:
-        - host: shop.example.com
-          http:
-            paths:
-              - path: /products
-                pathType: Prefix
-                backend:
-                  service:
-                    name: product-service
-                    port:
-                      number: 80
-              - path: /orders
-                pathType: Prefix
-                backend:
-                  service:
-                    name: order-service
-                    port:
-                      number: 80
+    environment=prod
+    tier=frontend
+    release=stable
+    team=devops1
     ```
-    
-- 호스트 기반 라우팅 예시
-    
+
+## Annotation
+
+- 메타데이터를 key, value 쌍으로 정의
+
+- k8s에 메타데이터를 전달할 용도로 사용
+
+- 관리를 위해 필요한정보를 기록할 용도로 사용
+
     ```bash
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: host-based-ingress
-    spec:
-      ingressClassName: nginx
-      rules:
-        - host: api.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: api-service
-                    port:
-                      number: 80
-        - host: admin.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: admin-service
-                    port:
-                      number: 80
+    builder: BSC
+    buildDate: "2024-04-03"
+    imageRegistry: "https://registry.example.com/nginx"
     ```
-    
 
-## Ingress Architecture
+- [참고] Labels vs Annotations
 
-> Client(HTTP/HTTPS) → Ingress Controller(Ingress Rules 라우팅) → Service(ClusterIP) → Pod
-> 
-- **Ingress Controller**
-    - Ingress 리소스에 정의된 **Ingress Rules**를 읽고 동작
-        - Input: <ingress service>
-        - Output: <service name>:80
-    - 실제 트래픽은 Service(ClusterIP)를 통해 Pod로 전달
-- **Service (ClusterIP)**
-    - Input: <service name>:80
-    - Output: <pod’s label>:80
-- **Deployment(ReplicaSet, Pod)**
-    - 여러 Pod를 레플리카로 생성해 무중단 운영 가능
+    - lables: 클러스터를 관리할 때 사용자가 원하는 값을 입력
 
-## Ingress Controller 종류
+    - annotations: 클러스터 시스템에 필요한 정보를 표시하는데 사용
 
-- **로컬(Kubernetes On-Prem, Minikube 등)** → **NGINX Ingress Controller** 사용
-- **AWS EKS** → **AWS Load Balancer Controller(ALB 기반)** 사용
-    - ALB와 연동해 L7 라우팅 처리
-    - ACM(AWS Certificate Manager)로 TLS 인증서 관리 가능
+- Label+Annotation 예시
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    environment: prod
+    tier: frontend
+    release: stable
+    team: devops1
+  annotations:
+    kubernetes.io/change-cause: "nginx image upgraded to 1.14"
+    builder: "BSC"
+    buildDate: "2024-04-03"
+    imageRegistry: "https://registry.example.com/nginx"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        environment: prod
+        tier: frontend
+        release: stable
+        team: devops1
+      annotations:
+        lastChecked: "2024-04-05T10:00:00Z"
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14
+        ports:
+        - containerPort: 80
+```

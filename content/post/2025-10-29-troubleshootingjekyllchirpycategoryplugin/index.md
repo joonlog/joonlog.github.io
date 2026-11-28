@@ -4,7 +4,7 @@ slug: "jekyll-chirpy-category-troubleshooting-2"
 aliases: ["/p/jekyll-chirpy-테마-카테고리-에러-troubleshooting2/"]
 date: 2025-10-29T18:00:00+09:00
 categories: ["GitHub Blog", "Jekyll"]
-tags: ["jekyll", "chirpy", "chirpy category error", "jekyll plugin", "ruby", "troubleshooting"]
+tags: ["GitHub Blog", "Jekyll"]
 ---
 
 

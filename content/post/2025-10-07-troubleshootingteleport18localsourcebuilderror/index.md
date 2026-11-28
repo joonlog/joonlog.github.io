@@ -4,7 +4,7 @@ slug: "teleport-18-local-build-troubleshooting"
 aliases: ["/p/teleport-18버전-로컬-소스-빌드-오류-troubleshooting/"]
 date: 2025-10-07T09:00:00+09:00
 categories: ["Go", "Teleport"]
-tags: ["go", "teleport 18", "local source build"]
+tags: ["Go", "Teleport", "Rust"]
 ---
 
 

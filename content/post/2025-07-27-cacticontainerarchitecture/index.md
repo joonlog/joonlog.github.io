@@ -4,7 +4,7 @@ slug: "cacti-container-architecture"
 aliases: ["/p/cacti-conainer-구조/"]
 date: 2025-07-27T09:00:00+09:00
 categories: ["Container", "Cacti"]
-tags: ["docker", "container", "cacti", "cacti container"]
+tags: ["Container", "Cacti", "Docker"]
 ---
 
 

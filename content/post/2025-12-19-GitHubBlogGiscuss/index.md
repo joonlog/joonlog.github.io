@@ -4,7 +4,7 @@ slug: "hugo-giscus-comments"
 aliases: ["/p/github-blog에서-giscuss로-댓글-기능-추가/"]
 date: 2025-12-19T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
-tags: ["github blog", "hugo", "stack", "giscuss"]
+tags: ["GitHub Blog", "Hugo", "Giscus"]
 ---
 
 

@@ -4,7 +4,7 @@ slug: "jekyll-chirpy-github-blog"
 aliases: ["/p/github-블로그-구축-jekyll-chirpy/"]
 date: 2024-12-25T09:00:00+09:00
 categories: ["GitHub Blog", "Jekyll"]
-tags: ["git", "github", "github blog", "jekyll", "chirpy"]
+tags: ["GitHub Blog", "Jekyll", "GitHub Pages"]
 ---
 
 

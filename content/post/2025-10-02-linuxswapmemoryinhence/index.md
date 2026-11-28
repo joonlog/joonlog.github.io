@@ -3,8 +3,8 @@ title: "Linux Swap 메모리 증설 방법"
 slug: "linux-swap-expand"
 aliases: ["/p/linux-swap-메모리-증설-방법/"]
 date: 2025-10-02T09:00:00+09:00
-categories: ["Linux", "System"]
-tags: ["linux", "swap memory"]
+categories: ["Linux", "Storage"]
+tags: ["Linux"]
 ---
 
 

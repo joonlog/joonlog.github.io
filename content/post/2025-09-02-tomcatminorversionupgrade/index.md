@@ -3,8 +3,8 @@ title: "Tomcat 마이너 버전 업그레이드 (Tomcat 9)"
 slug: "tomcat-9-minor-upgrade"
 aliases: ["/p/tomcat-마이너-버전-업그레이드-tomcat-9/"]
 date: 2025-09-02T09:00:00+09:00
-categories: ["Linux", "Middleware"]
-tags: ["linux", "tomcat", "minor version upgrade", "tomcat9"]
+categories: ["Middleware", "Tomcat"]
+tags: ["Middleware", "Tomcat"]
 ---
 
 

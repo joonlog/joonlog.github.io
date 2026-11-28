@@ -3,8 +3,8 @@ title: "GitHub 명령어 정리"
 slug: "git-commands"
 aliases: ["/p/github-명령어-정리/"]
 date: 2024-12-26T09:00:00+09:00
-categories: ["SCM", "Git"]
-tags: ["git", "github", "github command"]
+categories: ["Git", "Basic"]
+tags: ["Git"]
 ---
 
 

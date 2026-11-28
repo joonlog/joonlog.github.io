@@ -3,8 +3,8 @@ title: "직렬화 기능을 사용중인 Tomcat의 세션 만료로 인한 강�
 slug: "tomcat-session-serialization-logout-troubleshooting"
 aliases: ["/p/직렬화-기능을-사용중인-tomcat의-세션-만료로-인한-강제-로그아웃-troubleshooting/"]
 date: 2025-06-23T09:00:00+09:00
-categories: ["Linux", "Middleware"]
-tags: ["linux", "tomcat", "serialization", "session", "troubleshooting"]
+categories: ["Middleware", "Tomcat"]
+tags: ["Middleware", "Tomcat"]
 ---
 
 

@@ -3,8 +3,8 @@ title: "Linux에서 디스크 추가 시에 LVM 증설"
 slug: "linux-lvm-disk-expand"
 aliases: ["/p/linux에서-디스크-추가-시에-lvm-증설/"]
 date: 2025-11-28T09:00:00+09:00
-categories: ["Linux", "System"]
-tags: ["linux", "lvm"]
+categories: ["Linux", "Storage"]
+tags: ["Linux", "LVM"]
 ---
 
 

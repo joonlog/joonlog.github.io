@@ -4,7 +4,7 @@ slug: "rhce-9-review"
 aliases: ["/p/rhce9-후기/"]
 date: 2025-01-05T09:00:00+09:00
 categories: ["Certification", "RedHat"]
-tags: ["redhat", "linux", "rhce", "rhce9", "ansible"]
+tags: ["Certification", "Linux", "Ansible"]
 ---
 
 

@@ -4,7 +4,7 @@ slug: "cloudflare-warp-tunnel"
 aliases: ["/p/cloudflare-warp를-사용한-tunnel-접근/"]
 date: 2026-03-24T09:00:00+09:00
 categories: ["Home Server", "Cloudflare"]
-tags: ["home server", "cloudflare", "warp"]
+tags: ["Home Server", "Cloudflare Tunnel", "Cloudflare WARP"]
 ---
 
 

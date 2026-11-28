@@ -4,7 +4,7 @@ slug: "teleport-18-docker-build-troubleshooting"
 aliases: ["/p/teleport-18버전-도커-환경에서의-소스-빌드-오류-troubleshooting/"]
 date: 2025-10-08T09:00:00+09:00
 categories: ["Go", "Teleport"]
-tags: ["go", "teleport 18", "docker source build"]
+tags: ["Go", "Teleport", "Docker"]
 ---
 
 

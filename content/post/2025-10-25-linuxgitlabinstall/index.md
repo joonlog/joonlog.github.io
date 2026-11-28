@@ -4,7 +4,7 @@ slug: "gitlab-omnibus-install-linux"
 aliases: ["/p/linux-환경에서-gitlab-omnibus-설치/"]
 date: 2025-10-25T09:00:00+09:00
 categories: ["Linux", "GitLab"]
-tags: ["linux", "rocky 8.10", "gitlab", "gitlab omnibus", "container registry"]
+tags: ["Linux", "GitLab"]
 ---
 
 

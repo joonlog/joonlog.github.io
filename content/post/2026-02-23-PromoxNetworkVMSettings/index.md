@@ -4,7 +4,7 @@ slug: "proxmox-network-vm"
 aliases: ["/p/promox-네트워크-설정-및-vm-생성/"]
 date: 2026-02-23T09:00:00+09:00
 categories: ["Home Server", "Proxmox"]
-tags: ["home server", "promox", "pve", "nftables"]
+tags: ["Home Server", "Proxmox"]
 ---
 
 

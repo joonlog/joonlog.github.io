@@ -3,8 +3,8 @@ title: "RSA Key를 사용한 SSH 불가 TroubleShooting"
 slug: "rsa-key-ssh-fail-troubleshooting"
 aliases: ["/p/rsa-key를-사용한-ssh-불가-troubleshooting/"]
 date: 2025-05-20T09:00:00+09:00
-categories: ["Linux", "Key"]
-tags: ["linux", "ssh", "rsa", "key", "esdsa", "troubleshooting"]
+categories: ["Linux", "SSH"]
+tags: ["Linux", "SSH", "SecureCRT"]
 ---
 
 

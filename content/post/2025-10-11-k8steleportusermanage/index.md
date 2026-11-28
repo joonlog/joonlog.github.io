@@ -4,7 +4,7 @@ slug: "k8s-teleport-user-management"
 aliases: ["/p/kubernetes환경-teleport에서-사용자-관리하기/"]
 date: 2025-10-11T09:00:00+09:00
 categories: ["Kubernetes", "Teleport"]
-tags: ["kubernetes", "k8s", "self managed k8s", "teleport", "tsh"]
+tags: ["Kubernetes", "Teleport", "Self-Managed Kubernetes"]
 ---
 
 

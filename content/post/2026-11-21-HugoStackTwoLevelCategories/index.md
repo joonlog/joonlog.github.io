@@ -3,7 +3,7 @@ title: "Hugo Stack 테마에 2단계 카테고리 직접 구현하기"
 slug: "hugo-stack-two-level-categories"
 date: 2026-11-21T09:00:00+09:00
 categories: ["GitHub Blog", "Hugo"]
-tags: ["github blog", "hugo", "stack", "category", "custom layout"]
+tags: ["GitHub Blog", "Hugo"]
 ---
 
 > Hugo Stack 테마에 1차/2차 두 단계로 된 카테고리를 직접 구현한 구조와 화면 설계

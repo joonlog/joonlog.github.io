@@ -4,7 +4,7 @@ slug: "pokerogue-oauth-login-troubleshooting"
 aliases: ["/p/깃허브-코드로-배포한-pokerogue-앱에서-구글-디스코드-외부-로그인이-실패하는-이슈/"]
 date: 2025-10-22T09:00:00+09:00
 categories: ["Kubernetes", "Pokerogue"]
-tags: ["Kubernetes", "k8s", "self managed k8s", "pokerogue", "rogueserver", "oauth", "samesitelax"]
+tags: ["Kubernetes", "Pokerogue", "OAuth", "Go", "Self-Managed Kubernetes"]
 ---
 
 

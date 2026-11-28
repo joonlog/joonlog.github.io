@@ -3,8 +3,8 @@ title: "HikariCP connection is closed 에러 TroubleShooting"
 slug: "hikaricp-connection-closed-troubleshooting"
 aliases: ["/p/hikaricp-connection-is-closed-에러-troubleshooting/"]
 date: 2025-09-10T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["linux", "spring", "hikaricp", "mysql", "wait_timeout", "maxlifetime", "troubleshooting"]
+categories: ["Database", "MySQL"]
+tags: ["Database", "HikariCP", "MySQL"]
 ---
 
 

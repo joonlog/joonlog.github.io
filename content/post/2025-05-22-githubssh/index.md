@@ -3,8 +3,8 @@ title: "GitHub SSH 설정"
 slug: "github-ssh"
 aliases: ["/p/github-ssh-설정/"]
 date: 2025-05-22T09:00:00+09:00
-categories: ["SCM", "Git"]
-tags: ["git", "github", "github ssj"]
+categories: ["Git", "GitHub"]
+tags: ["Git", "SSH"]
 ---
 
 

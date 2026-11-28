@@ -4,7 +4,7 @@ slug: "proxmox-management-lxc"
 aliases: ["/p/proxmox에-관리용-lxc-구성하기/"]
 date: 2026-04-30T09:00:00+09:00
 categories: ["Home Server", "Proxmox"]
-tags: ["home server", "proxmox", "lxc", "cloudflare", "cloudflare tunnel", "bastion"]
+tags: ["Home Server", "Proxmox", "LXC"]
 ---
 
 

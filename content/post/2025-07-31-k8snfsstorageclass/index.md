@@ -4,7 +4,7 @@ slug: "k8s-nfs-storageclass"
 aliases: ["/p/자체-관리형-kubernetes에서-nfs를-통한-storageclass-사용/"]
 date: 2025-07-31T09:00:00+09:00
 categories: ["Kubernetes", "Plugins"]
-tags: ["kubernetes", "k8s", "storageclass", "nfs", "pvc", "self managed k8s"]
+tags: ["Kubernetes", "NFS", "Helm", "Self-Managed Kubernetes"]
 ---
 
 

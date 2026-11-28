@@ -4,7 +4,7 @@ slug: "jenkins-install-linux"
 aliases: ["/p/linux-환경에서-jenkins-설치/"]
 date: 2025-10-23T09:00:00+09:00
 categories: ["Linux", "Jenkins"]
-tags: ["linux", "jenkins", "rocky 8.10", "java21"]
+tags: ["Linux", "Jenkins"]
 ---
 
 

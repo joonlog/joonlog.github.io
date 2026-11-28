@@ -4,7 +4,7 @@ slug: "jenkins-php-cicd-container"
 aliases: ["/p/컨테이너-환경에서-jenkins의-php-cicd-파이프라인-구축하기/"]
 date: 2025-11-20T09:00:00+09:00
 categories: ["Container", "Jenkins"]
-tags: ["container", "jenkins", "cicd", "php cicd"]
+tags: ["Container", "Jenkins", "GitLab", "Docker", "PHP"]
 ---
 
 

@@ -3,8 +3,8 @@ title: "Tibero DB에서 tbrmgr 명령어를 사용한 물리적 백업 및 복�
 slug: "tibero-tbrmgr-backup"
 aliases: ["/p/tibero-db에서-tbrmgr-명령어를-사용한-물리적-백업-및-복구-방법/"]
 date: 2025-09-03T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["linux", "db", "tibero6", "tibero", "tbrmgr"]
+categories: ["Database", "Tibero"]
+tags: ["Database", "Tibero"]
 ---
 
 

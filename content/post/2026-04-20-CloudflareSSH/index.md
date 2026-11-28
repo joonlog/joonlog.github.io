@@ -4,7 +4,7 @@ slug: "cloudflare-ssh"
 aliases: ["/p/cloudflare를-사용한-서버-ssh-접근/"]
 date: 2026-04-20T09:00:00+09:00
 categories: ["Home Server", "Cloudflare"]
-tags: ["home server", "cloudflare", "cloudflare tunnel", "cloudflare access", "cloudflare ssh"]
+tags: ["Home Server", "Cloudflare Tunnel", "SSH"]
 ---
 
 

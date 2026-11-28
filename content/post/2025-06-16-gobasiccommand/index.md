@@ -3,8 +3,8 @@ title: "Go 기본 명령어"
 slug: "go-basic-commands"
 aliases: ["/p/go-기본-명령어/"]
 date: 2025-06-16T09:00:00+09:00
-categories: ["Go", "Go Basic"]
-tags: ["go", "go build", "go install", "go get", "go tidy"]
+categories: ["Go", "Basic"]
+tags: ["Go"]
 ---
 
 

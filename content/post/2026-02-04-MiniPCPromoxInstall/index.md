@@ -4,7 +4,7 @@ slug: "mini-pc-proxmox-install"
 aliases: ["/p/홈서버용-mini-pc에-promox-설치하기/"]
 date: 2026-02-04T09:00:00+09:00
 categories: ["Home Server", "Proxmox"]
-tags: ["home server", "promox", "mini pc", "an3p"]
+tags: ["Home Server", "Proxmox"]
 ---
 
 

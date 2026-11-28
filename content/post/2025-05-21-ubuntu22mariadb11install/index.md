@@ -3,8 +3,8 @@ title: "Ubuntu22 MariaDB 11.4.5 버전 설치"
 slug: "ubuntu22-mariadb-11-install"
 aliases: ["/p/ubuntu22-mariadb-11.4.5-버전-설치/"]
 date: 2025-05-21T09:00:00+09:00
-categories: ["Linux", "DB"]
-tags: ["linux", "db", "mysql", "mariadb", "ubuntu22", "mariadb 11.4.5"]
+categories: ["Database", "MySQL"]
+tags: ["Database", "MariaDB", "Ubuntu"]
 ---
 
 ### 방법 1: 수동으로 저장소 구성 후 설치

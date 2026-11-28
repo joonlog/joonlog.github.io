@@ -4,7 +4,7 @@ slug: "cacti-rocky8-install"
 aliases: ["/p/rocky8.10-cacti-설치/"]
 date: 2025-07-26T09:00:00+09:00
 categories: ["Linux", "Monitoring"]
-tags: ["linux", "rocky 8.10", "cacti"]
+tags: ["Linux", "Cacti", "Apache"]
 ---
 
 

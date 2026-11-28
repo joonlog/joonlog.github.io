@@ -4,7 +4,7 @@ slug: "self-managed-k8s-teleport"
 aliases: ["/p/자체-관리형-kubernetes에서의-teleport-구축/"]
 date: 2025-10-10T09:00:00+09:00
 categories: ["Kubernetes", "Teleport"]
-tags: ["kubernetes", "k8s", "self managed k8s", "teleport"]
+tags: ["Kubernetes", "Teleport", "Helm", "Self-Managed Kubernetes"]
 ---
 
 

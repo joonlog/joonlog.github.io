@@ -4,7 +4,7 @@ slug: "ansible-conditionals-loops-handlers-errors"
 aliases: ["/p/ansible-조건문-반복문-핸들러-오류-처리/"]
 date: 2025-05-18T09:00:00+09:00
 categories: ["Ansible", "Basic"]
-tags: ["ansible", "loop", "if", "handler", "block rescue"]
+tags: ["Ansible"]
 ---
 
 

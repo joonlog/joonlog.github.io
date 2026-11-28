@@ -3,8 +3,8 @@ title: "Docker Tomcat에서 Context Path 설정 무시 TroubleShooting"
 slug: "docker-tomcat-context-path-troubleshooting"
 aliases: ["/p/docker-tomcat에서-context-path-설정-무시-troubleshooting/"]
 date: 2025-10-04T09:00:00+09:00
-categories: ["Container", "Java"]
-tags: ["docker", "container java 1.8", "tomcat 9", "context path", "servlet path", "appbase", "docbase"]
+categories: ["Middleware", "Tomcat"]
+tags: ["Middleware", "Tomcat", "Docker", "Spring"]
 ---
 
 

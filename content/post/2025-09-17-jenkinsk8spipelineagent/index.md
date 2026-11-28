@@ -4,7 +4,7 @@ slug: "jenkins-k8s-pod-agent"
 aliases: ["/p/jenkins-파이프라인을-k8s-pod로-사용하기-위한-설정/"]
 date: 2025-09-17T09:00:00+09:00
 categories: ["Kubernetes", "Jenkins"]
-tags: ["kubernetes", "jenkins", "cicd", "jenkins pipeline", "jenkins agent"]
+tags: ["Kubernetes", "Jenkins", "Self-Managed Kubernetes"]
 ---
 
 

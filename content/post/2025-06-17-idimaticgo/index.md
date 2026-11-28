@@ -3,8 +3,8 @@ title: "Go 코딩 규칙(Idiomatic Go)"
 slug: "idiomatic-go"
 aliases: ["/p/go-코딩-규칙idiomatic-go/"]
 date: 2025-06-17T09:00:00+09:00
-categories: ["Go", "Go Basic"]
-tags: ["go", "idiomatic go"]
+categories: ["Go", "Basic"]
+tags: ["Go"]
 ---
 
 

@@ -4,7 +4,7 @@ slug: "k8s-jenkins-gitlab-pipeline"
 aliases: ["/p/k8s에-구축된-jenkins-gitlab-파이프라인-설정/"]
 date: 2025-10-16T09:00:00+09:00
 categories: ["Kubernetes", "Jenkins"]
-tags: ["Kubernetes", "k8s", "self managed k8s", "jenkins", "gitlab", "jenkins pipeline"]
+tags: ["Kubernetes", "Jenkins", "GitLab", "Self-Managed Kubernetes"]
 ---
 
 

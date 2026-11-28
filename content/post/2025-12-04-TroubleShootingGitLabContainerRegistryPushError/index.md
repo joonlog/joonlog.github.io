@@ -4,7 +4,7 @@ slug: "gitlab-registry-push-troubleshooting"
 aliases: ["/p/gitlab-container-registry에-docker-push-실패-troubleshooting/"]
 date: 2025-12-04T09:00:00+09:00
 categories: ["Linux", "GitLab"]
-tags: ["linux", "gitlab", "gitlab.rb", "external_url"]
+tags: ["Linux", "GitLab", "Docker"]
 ---
 
 

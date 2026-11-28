@@ -4,7 +4,7 @@ slug: "aws-saa-c03-review"
 aliases: ["/p/aws-saa-c03-후기/"]
 date: 2025-01-01T09:00:00+09:00
 categories: ["Certification", "AWS"]
-tags: ["aws", "aws-saa", "c03"]
+tags: ["Certification", "AWS"]
 ---
 
 
