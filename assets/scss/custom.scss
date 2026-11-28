@@ -87,57 +87,18 @@
     text-decoration: none;
 }
 
-/* /categories: compact primary tiles */
-.category-grid--primary {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
-}
-
-.category-tile {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px 16px;
-    border-radius: var(--card-border-radius);
-    background-color: var(--card-background);
-    box-shadow: var(--shadow-l1);
-    color: var(--card-text-color-main);
-    text-decoration: none;
-    transition: box-shadow 0.3s ease;
-
-    &:hover {
-        box-shadow: var(--shadow-l2);
-
-        .category-tile__title {
-            color: var(--accent-color);
-        }
-    }
-}
-
-.category-tile__head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px;
-}
-
-.category-tile__title {
-    font-size: 1.7rem;
-    font-weight: 700;
-    transition: color 0.2s ease;
-}
-
-.category-tile__count {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--card-text-color-tertiary);
-}
-
-.category-tile__meta {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
+/* /categories: primary cards (meta line, 2 newest posts across subs) */
+.category-card__meta {
+    margin: 4px 0 0;
+    font-size: 1.3rem;
     color: var(--card-text-color-secondary);
+}
+
+.category-card--primary .category-card__posts a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .category-chips {
